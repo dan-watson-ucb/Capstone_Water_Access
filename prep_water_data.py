@@ -21,8 +21,8 @@ def clean_headings(df):
     return df
     
 #convert date and year columns to datetime
-df.new_report_date = pd.to_datetime(df.report_date)
-df.new_install_year = pd.to_datetime(df.install_year,format='%Y.0')
+df['new_report_date'] = pd.to_datetime(df.report_date)
+df['new_install_year'] = pd.to_datetime(df.install_year,format='%Y.0')
 
 #make age of well feature.  This will return in days, which assumes install year starts on Jan 1.  We may want to 
 #make more date features.

@@ -34,4 +34,7 @@ df['age_well']=df.new_report_date - df.new_install_year
 #binary target.  When status is yes == 0, when no OR maybe == 1
 df['status_binary']=np.where(df.status_id=='yes',0,1)
 
+#drop row ID
+df.drop(['Row ID'], axis=1)
+
 df.to_csv(OUTPUT_FILE, index=False)

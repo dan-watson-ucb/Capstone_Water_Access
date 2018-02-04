@@ -31,6 +31,9 @@ df['new_install_year'] = pd.to_datetime(df.install_year,format='%Y.0')
 
 df['age_well']=df.new_report_date - df.new_install_year
 
+#ugly work around buy age_well comes out with hours, min and UTC.  Converting to string, splitting, and taking the days digits
+df['age_well_days']=df.age_well.apply(lambda x: str(x).split()[0])
+
 #binary target.  When status is yes == 0, when no OR maybe == 1
 df['status_binary']=np.where(df.status_id=='yes',0,1)
 

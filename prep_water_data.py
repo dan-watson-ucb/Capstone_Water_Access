@@ -19,7 +19,9 @@ def clean_headings(df):
     #clean column names
     df.columns = [c.replace('#', '') for c in df.columns]
     return df
-    
+
+df=clean_headings(df)    
+
 #convert date and year columns to datetime
 df['new_report_date'] = pd.to_datetime(df.report_date)
 df['new_install_year'] = pd.to_datetime(df.install_year,format='%Y.0')
@@ -63,6 +65,8 @@ def make_well_years(df):
     return df
 
 #run the functions
+
+
 df= fill_missing(df)
 
 df = make_well_years(df)

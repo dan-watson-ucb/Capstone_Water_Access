@@ -54,7 +54,11 @@ def fill_missing(df):
     #fill with __MISSING___
     for col in cols:
         df[col].fillna('__MISSING__', inplace=True)
-        
+    
+    #new_install_year not filling? hardcoding in now but should fix.  Something to do with forcing pd.Datetime to Y%?
+    for annoying_col in ['install_year', 'new_install_year']:
+        df[annoying_col].fillna('__MISSING__', inplace=True)
+      
     return df
 
 def make_well_years(df):

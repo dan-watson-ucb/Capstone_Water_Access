@@ -10,7 +10,7 @@ import os
 #can eventually set this to the SOAPY API https://dev.socrata.com/foundry/data.waterpointdata.org/gihr-buz6
 DATA_PATH = "~chandlermccann/Downloads/"
 INPUT_FILE = os.path.join(DATA_PATH, "Water_Point_Data_Exchange_Complete_Dataset.csv")
-OUTPUT_FILE = os.path.join(DATA_PATH, "cleaned_water_data.csv")
+OUTPUT_FILE = os.path.join(DATA_PATH, "cleaned_water_data2.csv")
 
 #read in the file
 df = pd.read_csv(INPUT_FILE, encoding='latin-1')

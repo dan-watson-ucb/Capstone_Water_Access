@@ -76,6 +76,10 @@ df= fill_missing(df)
 df = make_well_years(df)
 
 #drop row ID
-df.drop(['Row ID'], axis=1)
+df.drop(['Row ID'], axis=1, inplace = True)
 
+#drop duplicates
+df.drop_duplicates(inplace=True)
+
+#write to csv
 df.to_csv(OUTPUT_FILE, index=False)

@@ -1,9 +1,5 @@
 import pandas as pd
-import xgboost as xgb
 import numpy as np
-import sklearn as sk
-from sklearn import model_selection
-from sklearn.metrics import confusion_matrix, mean_squared_error
 import os
 
 #set input/output paths

@@ -1,0 +1,131 @@
+{% extends "watermap/header.html" %}
+{% block content%}
+{% load staticfiles %}
+
+
+        <link rel="stylesheet" href="{% static 'watermap/dc.js-2.0.2/dc.css' %}">
+        
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+        <script src="{% static 'watermap/d3/d3.min.js' %}"></script>
+        <script src="{% static 'watermap/crossfilter/crossfilter.min.js' %}"></script>
+
+        <script src = "{% static 'watermap/dc.js-develop/dc.js' %}"></script>
+       
+
+        <script src="{% static 'watermap/dc-addons-master/dist/leaflet-map/dc-leaflet.js' %}"></script>
+        <script src="{% static 'watermap/dc-addons-master/dist/google-map/dc-google.js' %}"></script>
+
+
+
+        <style>
+            #holder {
+              width:850px;
+              margin:20px auto;
+            }
+            #holder {
+              padding:30px 0;
+              clear:both;
+            }
+            .map {
+              width:600px;
+              height:400px;
+            }
+            .pie {
+              margin-left:30px;
+            }
+          </style>
+
+          <div id="holder">
+            <div id="demo1">
+                
+                <div class ="select_menu">
+                <strong> Country </strong>
+                </div>
+
+                
+                <div class = "water_select"><Strong>Pump Type</div>
+                <div class ="water_tech"><Strong>Pump Technology </Strong></div>
+                <div class="map"></div> 
+
+                <div class="pie"><strong> Pump Status </strong>
+                <span class = "reset" style = "display: none;"> Selected: <span class = "filter"></span></span>
+                <a class = "reset" href = "javascript:pie.filterAll();dc.redrawAll();" style ="display: none;"> reset </a>
+
+                <div class = "clearfix"></div></div>
+
+            </div>   
+               
+        </div>
+
+
+
+        <script>
+        /*     Markers      */
+
+        d3.csv("{% static 'watermap/wpds2.csv' %}", function(data) {
+          drawMarkerSelect(data);
+          });
+
+        function drawMarkerSelect(data) {
+          var xf = crossfilter(data);
+          var groupname = "marker-area";
+          var facilities = xf.dimension(function(d) { return [d.lat_deg, d.lon_deg]; });
+          var facilitiesGroup = facilities.group();
+
+          var marker = dc.googleMarkerChart("#demo1 .map",groupname)
+              .dimension(facilities)
+              .group(facilitiesGroup)
+              .width(600)
+              .height(400)
+              .center([-2.83257,36.309])
+              .renderPopup(true)
+              .filterByArea(true)
+              .fitOnRedraw(true)
+              .icon(function(d) {if (d.status_id ==="yes") icon= "watson_dan.jpeg"})
+              ;
+
+          var types = xf.dimension(function(d) { return d.status_id; });
+          var typesGroup = types.group().reduceCount();
+
+          var pie = dc.pieChart("#demo1 .pie",groupname)
+              .dimension(types)
+              .group(typesGroup)
+              .width(300)
+              .height(300)
+              .renderLabel(true)
+              .renderTitle(true)
+              .ordering(function (p) {
+                  return -p.value;
+              });
+
+          var countryDim = xf.dimension(function(d) {return d.country_name})
+          var countryGroup = countryDim.group();
+
+          var select_menu= dc.selectMenu("#demo1 .select_menu", groupname)
+            .dimension(countryDim)
+            .group(countryGroup)
+
+          
+          var watersourceDim = xf.dimension(function(d) {return d['water_source']});
+          var watersourceGroup = watersourceDim.group();
+
+          var watersourcemenu = dc.selectMenu("#demo1 .water_select", groupname)
+            .dimension(watersourceDim)
+            .group(watersourceGroup)
+
+          var watertechDim = xf.dimension(function(d) {return d['water_tech']});
+          var watertechGroup = watertechDim.group();
+
+          var watertechmenu = dc.selectMenu("#demo1 .water_tech", groupname)
+            .dimension(watertechDim)
+            .group(watertechGroup)
+        
+
+          dc.renderAll(groupname);
+          return {marker: marker, pie: pie};
+        };
+        
+        </script>
+ 
+{% endblock %}

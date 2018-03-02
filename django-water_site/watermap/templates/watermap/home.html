@@ -1,4 +1,4 @@
-{% extends "watermap/header.html" %}
+{% extends 'watermap/header.html' %}
 {% block content%}
 {% load staticfiles %}
 
@@ -38,12 +38,13 @@
 
           <div id="holder">
             <div id="demo1">
+
                 
+                
+
                 <div class ="select_menu">
                 <strong> Country </strong>
                 </div>
-
-                
                 <div class = "water_select"><Strong>Pump Type</div>
                 <div class ="water_tech"><Strong>Pump Technology </Strong></div>
                 <div class="map"></div> 
@@ -62,12 +63,14 @@
 
         <script>
         /*     Markers      */
+     
+        
+        d3.json("{% url "map_data" %}", function(data) {
+          console.log(data);
+          ///drawMarkerSelect(data);
+        });
 
-        d3.csv("{% static 'watermap/wpds2.csv' %}", function(data) {
-          drawMarkerSelect(data);
-          });
-
-        function drawMarkerSelect(data) {
+        /*function drawMarkerSelect(data) {
           var xf = crossfilter(data);
           var groupname = "marker-area";
           var facilities = xf.dimension(function(d) { return [d.lat_deg, d.lon_deg]; });
@@ -124,7 +127,7 @@
 
           dc.renderAll(groupname);
           return {marker: marker, pie: pie};
-        };
+        }; */
         
         </script>
  

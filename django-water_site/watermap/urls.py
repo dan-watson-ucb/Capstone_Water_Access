@@ -1,6 +1,7 @@
-from django.urls import path
-from . import views
+from django.conf.urls import  url, include
+from .views import map_data, index
 
 urlpatterns = [
-	path('', views.index, name = 'index')
+	url(r'^watermap/$', index, name = 'index'),
+	url(r'^api/map_data', map_data, name = 'map_data'),
 ]

@@ -252,8 +252,8 @@ class SwaziTest(models.Model):
     field_converted = models.TextField(db_column='#converted', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
     field_created = models.TextField(db_column='#created', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
     field_updated = models.TextField(db_column='#updated', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
-    field_lat_deg = models.TextField(db_column='#lat_deg', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
-    field_long_deg = models.TextField(db_column='#long_deg', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
+    field_lat_deg = models.FloatField(db_column='#lat_deg', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
+    field_long_deg = models.FloatField(db_column='#long_deg', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
     location = models.TextField(db_column='Location', blank=True, null=True)  # Field name made lowercase.
     count = models.TextField(db_column='Count', blank=True, null=True)  # Field name made lowercase.
     field_fecal_coliform_presence = models.TextField(db_column='#fecal_coliform_presence', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'.

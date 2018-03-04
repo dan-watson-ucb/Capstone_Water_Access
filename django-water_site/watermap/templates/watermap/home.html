@@ -62,18 +62,17 @@
 
 
         <script>
-        /*     Markers      */
-     
-        
+        /*     Markers      */      
+
         d3.json("{% url "map_data" %}", function(data) {
           console.log(data);
-          ///drawMarkerSelect(data);
-        });
+          drawMarkerSelect(data);
+        }); 
 
-        /*function drawMarkerSelect(data) {
+        function drawMarkerSelect(data) {
           var xf = crossfilter(data);
           var groupname = "marker-area";
-          var facilities = xf.dimension(function(d) { return [d.lat_deg, d.lon_deg]; });
+          var facilities = xf.dimension(function(d) { return [d.field_lat_deg, d.field_long_deg]; });
           var facilitiesGroup = facilities.group();
 
           var marker = dc.googleMarkerChart("#demo1 .map",groupname)
@@ -85,10 +84,9 @@
               .renderPopup(true)
               .filterByArea(true)
               .fitOnRedraw(true)
-              .icon(function(d) {if (d.status_id ==="yes") icon= "watson_dan.jpeg"})
               ;
 
-          var types = xf.dimension(function(d) { return d.status_id; });
+          var types = xf.dimension(function(d) { return d.field_status_id; });
           var typesGroup = types.group().reduceCount();
 
           var pie = dc.pieChart("#demo1 .pie",groupname)
@@ -102,7 +100,7 @@
                   return -p.value;
               });
 
-          var countryDim = xf.dimension(function(d) {return d.country_name})
+          var countryDim = xf.dimension(function(d) {return d.field_country_name})
           var countryGroup = countryDim.group();
 
           var select_menu= dc.selectMenu("#demo1 .select_menu", groupname)
@@ -110,14 +108,14 @@
             .group(countryGroup)
 
           
-          var watersourceDim = xf.dimension(function(d) {return d['water_source']});
+          var watersourceDim = xf.dimension(function(d) {return d['field_water_source']});
           var watersourceGroup = watersourceDim.group();
 
           var watersourcemenu = dc.selectMenu("#demo1 .water_select", groupname)
             .dimension(watersourceDim)
             .group(watersourceGroup)
 
-          var watertechDim = xf.dimension(function(d) {return d['water_tech']});
+          var watertechDim = xf.dimension(function(d) {return d['field_water_tech']});
           var watertechGroup = watertechDim.group();
 
           var watertechmenu = dc.selectMenu("#demo1 .water_tech", groupname)
@@ -127,7 +125,7 @@
 
           dc.renderAll(groupname);
           return {marker: marker, pie: pie};
-        }; */
+        };
         
         </script>
  

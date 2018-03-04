@@ -1,3 +1,5 @@
+
+<!---
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +9,7 @@
 	{% load staticfiles %}
 	<link rel="stylesheet" href="{% static 'watermap/css/bootstrap.min.css' %}" type = "text/css"/>
 	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
-	
+
 	<style type="text/css">
 		html,
 		body {
@@ -15,7 +17,6 @@
 		}
 	</style>
 </head>
-
 <body class="body" style="background-color:#f6f6f6">
 	<div class="container-fluid" style="min-height:95%; ">
 		<div class="row">
@@ -37,33 +38,227 @@
 		  <div class="col-sm-2">
 		  <br>
 
-		  <br>
+		  <br>--->
 		   <!-- Great, til you resize. -->
 			<!--<div class="well bs-sidebar affix" id="sidebar" style="background-color:#fff">-->
+<!---
 			<div class="nav flex-column" id="sidebar" style="background-color:#fff">
 			  <ul class="nav-item">
 				<li><a href='/'>Map</a></li>
 				<li><a href='/apimap/'>API Map</a></li>
 				<li><a href='/contact/'>Contact</a></li>
 			  </ul>
-			</div> <!--well bs-sidebar affix-->
-		  </div> <!--col-sm-2-->
+			</div>---> <!--well bs-sidebar affix-->
+		<!---  </div>
 		  <div class="col-sm-10">
-		  
+
 			<div class='container-fluid'>
 			<br><br>
-			   {% block content %}
-			   {% endblock %}	
+
 			</div>
 		  </div>
-		</div> 
+		</div>
 	</div>
 	<footer>
 		<div class="container-fluid" style='margin-left:15px'>
 			<p><a href="#" target="blank">Contact</a> | <a href="#" target="blank">LinkedIn</a> | <a href="#" target="blank">Twitter</a> | <a href="#" target="blank">Google+</a></p>
 		</div>
-	</footer>	
-	
+	</footer>
+
 </body>
 
+</html>
+--->
+
+<!DOCTYPE html>
+<html>
+<head>
+		<title>Water Point Map</title>
+	<meta charset="utf-8" />
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'watermap/css/bootstrap.min.css' %}" type = "text/css"/>
+	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+
+<style type="text/css">
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial;
+    padding: 10px;
+    background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+    padding: 30px;
+    text-align: center;
+    background: white;
+    background-color: #F1F1F1;
+}
+
+.header h1 {
+    font-size: 50px;
+}
+
+.intro {
+	padding-top:20px;
+}
+
+.top-links {
+	float: right !important;
+}
+
+.banner-text-white {
+	padding-top:80px;
+	text-align:center;
+	color:white
+}
+/* Style the top navigation bar */
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+    float: left;
+    width: 65%;
+}
+
+/* Right column */
+.rightcolumn {
+    float: left;
+    width: 35%;
+    background-color: #f1f1f1;
+    padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Footer */
+.footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media (max-width: 800px) {
+    .leftcolumn, .rightcolumn {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media (max-width: 400px) {
+    .topnav a {
+        float: none;
+        width: 100%;
+    }
+}
+
+</style>
+</head>
+<body>
+<!--
+<div class="header">
+	<img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" width="10%">
+</div>
+-->
+<div class="topnav">
+	<img src="https://dret.net/netdret/docs/itng2011/ischool-logo.png" width="10%">
+  <a href="#" class="top-links">Map</a>
+  <a href="#" class="top-links">API Map</a>
+  <a href="#" class="top-links">Contact Us</a>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <div class="bgImg" style="height:200px; background-image: url('https://ansam518.files.wordpress.com/2009/11/banner_for_the_wbw_page_resized-crop_display.jpg');">
+		  <h1 class="banner-text-white">Improving Access to Water in Developing Nations</h1></div>
+      	<div class="intro">
+		<h2>The most water for the most people</h2>
+      <p>Around the world, nearly 25% of communal water access points are non-functional.
+		  This challenge has been difficult to address at a global, national, or even local level due to a severe scarcity of data.
+		  Consequently, the Water Point Data Exchange (WPDx) has created a harmonized data exchange standard for water point data
+		  and supported the development of a global repository.<p>
+			<p>We aim to use the WPDx data to create a web-based portal that will help governments manage water access in their countries.</p>
+			</div>
+		<p>
+			   {% block content %}
+			   {% endblock %}
+	  </p>
+    </div>
+    <div class="card">
+      <div class="pie">
+		  <p>
+			  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-kntS_24JHbiM_j9p4jv-QCdDD83UPi0RAJoMBF3ZbcaNDt-sLA">
+			  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-kntS_24JHbiM_j9p4jv-QCdDD83UPi0RAJoMBF3ZbcaNDt-sLA">
+			  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-kntS_24JHbiM_j9p4jv-QCdDD83UPi0RAJoMBF3ZbcaNDt-sLA">
+
+		  </p>
+	  </div>
+    </div>
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <h2>About the project:</h2>
+		<p>Our goal is to create four tools that will enable governments to make evidence-based decisions at the click of a button.</p>
+		<p><img src="http://127.0.0.1:8000/static/watermap/img/profile.jpg" width="300px"></p>
+    </div>
+    <div class="card">
+		<p>Collectively, the tools should give government officials a comprehensive view of water access across their respective countries, thereby empowering them to efficiently allocate resources towards areas of greatest need.</p>
+		<p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYVT4fV7b8YWsvNgl9bx_5bsDg9XE6zlaGKdGMKnbANZCfoSz9"></p>
+    </div>
+    <div class="card">
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+
+</body>
 </html>

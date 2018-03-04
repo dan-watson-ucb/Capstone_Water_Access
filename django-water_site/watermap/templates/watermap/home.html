@@ -2,52 +2,53 @@
 {% block content%}
 {% load staticfiles %}
 
+<html>
+<head>
+	<title>DC.js + Leaflet</title>
 
-        <link rel="stylesheet" href="{% static 'watermap/dc.js-2.0.2/dc.css' %}">
-        
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	<meta itemprop="name" content="DC.js + Leaflet"/>
+	<meta itemprop="description" content="DC.js + Leaflet chart"/>
 
-        <script src="{% static 'watermap/d3/d3.min.js' %}"></script>
-        <script src="{% static 'watermap/crossfilter/crossfilter.min.js' %}"></script>
+	<meta charset="UTF-8">
 
-        <script src = "{% static 'watermap/dc.js-develop/dc.js' %}"></script>
-       
+    <link rel="stylesheet" href="{% static 'watermap/leaflet/leaflet.css' %}">
+    <link rel="stylesheet" href="{% static 'watermap/leaflet/markercluster.css' %}">
+	<link rel="stylesheet" href="{% static 'watermap/dc.js-2.0.2/dc.css' %}">
 
-        <script src="{% static 'watermap/dc-addons-master/dist/leaflet-map/dc-leaflet.js' %}"></script>
-        <script src="{% static 'watermap/dc-addons-master/dist/google-map/dc-google.js' %}"></script>
+<style>
+    #holder {
+        width:100%;
+        margin:20px auto;
+    }
+    #holder {
+        padding:30px 0;
+        clear:both;
+    }
+    .map {
+        width:60%;
+        min-width:400px;
+        height:400px;
+        margin-top:10px
+    }
+    .pie {
+        margin-left:30px;
+    }
+    div.dc-chart {
+        padding:10px;
+    }
+</style>
+</head>
+<body>
 
-
-
-        <style>
-            #holder {
-              width:850px;
-              margin:20px auto;
-            }
-            #holder {
-              padding:30px 0;
-              clear:both;
-            }
-            .map {
-              width:600px;
-              height:400px;
-            }
-            .pie {
-              margin-left:30px;
-            }
-          </style>
-
-          <div id="holder">
+<div id="holder">
             <div id="demo1">
 
-                
-                
-
-                <div class ="select_menu">
-                <strong> Country </strong>
+                <div class="mapmenu row">
+                    <div class ="select_menu col-lg-3 col-sm-12" style="float:none !important"><b>Country<br> </b></div>
+                    <div class = "water_select col-lg-6 col-sm-12" style="float:left !important"><b>Pump Type<br> </b></div>
+                    <div class ="water_tech col-lg-3 col-sm-12" style="float:none !important"><b>Pump Technology<br> </b></div>
                 </div>
-                <div class = "water_select"><Strong>Pump Type</div>
-                <div class ="water_tech"><Strong>Pump Technology </Strong></div>
-                <div class="map"></div> 
+                <div class="map"></div>
 
                 <div class="pie"><strong> Pump Status </strong>
                 <span class = "reset" style = "display: none;"> Selected: <span class = "filter"></span></span>
@@ -55,78 +56,102 @@
 
                 <div class = "clearfix"></div></div>
 
-            </div>   
-               
+            </div>
         </div>
 
 
 
-        <script>
-        /*     Markers      */      
+<script src="{% static 'watermap/d3/d3.js' %}"></script>
+<script src="{% static 'watermap/crossfilter/crossfilter.min.js' %}"></script>
+<script src = "{% static 'watermap/dc.js-develop/dc.js' %}"></script>
+<script src = "{% static 'watermap/leaflet/leaflet.js' %}"></script>
 
-        d3.json("{% url "map_data" %}", function(data) {
-          console.log(data);
-          drawMarkerSelect(data);
-        }); 
+<!--Optional-->
+<script src="{% static 'watermap/leaflet/leaflet.markercluster.js' %}"></script>
 
-        function drawMarkerSelect(data) {
-          var xf = crossfilter(data);
-          var groupname = "marker-area";
-          var facilities = xf.dimension(function(d) { return [d.field_lat_deg, d.field_long_deg]; });
-          var facilitiesGroup = facilities.group();
+<script src="{% static 'watermap/dc-addons-master/dist/leaflet-map/dc-leaflet.js' %}"></script>
+<script type="text/javascript">
 
-          var marker = dc.googleMarkerChart("#demo1 .map",groupname)
-              .dimension(facilities)
-              .group(facilitiesGroup)
-              .width(600)
-              .height(400)
-              .center([-2.83257,36.309])
-              .renderPopup(true)
-              .filterByArea(true)
-              .fitOnRedraw(true)
-              ;
+/*     Markers      */
 
-          var types = xf.dimension(function(d) { return d.field_status_id; });
-          var typesGroup = types.group().reduceCount();
+/*d3.tsv("{% static 'watermap/demo1.tsv' %}", function(data) {
+  drawMarkerSelect(data);
+  console.log(typeof(data[0].geo));
+});*/
 
-          var pie = dc.pieChart("#demo1 .pie",groupname)
-              .dimension(types)
-              .group(typesGroup)
-              .width(300)
-              .height(300)
-              .renderLabel(true)
-              .renderTitle(true)
-              .ordering(function (p) {
-                  return -p.value;
-              });
+d3.json("{% url "map_data" %}", function(data) {
+  drawMarkerSelect(data);
+});
 
-          var countryDim = xf.dimension(function(d) {return d.field_country_name})
-          var countryGroup = countryDim.group();
+function drawMarkerSelect(data) {
+  var xf = crossfilter(data);
+  var groupname = "marker-select";
+	var facilities = xf.dimension(
+	    function(d) {
+	        return [d.field_lat_deg, d.field_long_deg];
+	    });
+	var facilitiesGroup = facilities.group().reduceCount();
 
-          var select_menu= dc.selectMenu("#demo1 .select_menu", groupname)
-            .dimension(countryDim)
-            .group(countryGroup)
+  dc.leafletMarkerChart("#demo1 .map",groupname)
+      .dimension(facilities)
+      .group(facilitiesGroup)
+      .width(600)
+	    .height(400)
+      .center([-2.83,36.309])
+      .zoom(5)
+      .renderPopup(true)
+      .popup(function(d, marker){
+        return d.key + " : " + d.value;
+      })
+      .cluster(true);
 
-          
-          var watersourceDim = xf.dimension(function(d) {return d['field_water_source']});
-          var watersourceGroup = watersourceDim.group();
+	var types = xf.dimension(function(d) {
+	    return d.field_status_id;
+	});
+	var typesGroup = types.group().reduceCount();
 
-          var watersourcemenu = dc.selectMenu("#demo1 .water_select", groupname)
-            .dimension(watersourceDim)
-            .group(watersourceGroup)
+  dc.pieChart("#demo1 .pie",groupname)
+      .dimension(types)
+      .group(typesGroup)
+      .width(200)
+	    .height(200)
+	    .renderLabel(true)
+	    .renderTitle(true)
+      .ordering(function (p) {
+        return -p.value;
+      });
+  var countryDim = xf.dimension(function(d) {return d.field_country_name})
+  var countryGroup = countryDim.group();
 
-          var watertechDim = xf.dimension(function(d) {return d['field_water_tech']});
-          var watertechGroup = watertechDim.group();
+  var select_menu= dc.selectMenu("#demo1 .select_menu", groupname)
+    .dimension(countryDim)
+    .group(countryGroup)
 
-          var watertechmenu = dc.selectMenu("#demo1 .water_tech", groupname)
-            .dimension(watertechDim)
-            .group(watertechGroup)
-        
 
-          dc.renderAll(groupname);
-          return {marker: marker, pie: pie};
-        };
-        
-        </script>
- 
+  var watersourceDim = xf.dimension(function(d) {return d['field_water_source']});
+  var watersourceGroup = watersourceDim.group();
+
+  var watersourcemenu = dc.selectMenu("#demo1 .water_select", groupname)
+    .dimension(watersourceDim)
+    .group(watersourceGroup)
+
+  var watertechDim = xf.dimension(function(d) {return d['field_water_tech']});
+  var watertechGroup = watertechDim.group();
+
+  var watertechmenu = dc.selectMenu("#demo1 .water_tech", groupname)
+    .dimension(watertechDim)
+    .group(watertechGroup)
+
+	dc.renderAll(groupname);
+}
+
+
+</script>
+
+
+
+</body>
+</html>
+
+
 {% endblock %}

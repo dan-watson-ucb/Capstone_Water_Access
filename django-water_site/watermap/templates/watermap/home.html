@@ -47,7 +47,7 @@
                     <div class = "water_select col-lg-6 col-sm-12" style="float:left !important"><b>Pump Type<br> </b></div>
                     <div class ="water_tech col-lg-3 col-sm-12" style="float:none !important"><b>Pump Technology<br> </b></div>
                 </div>
-                <div class="map" href = "javascript:map.filterAll();dc.redrawAll();"></div>
+                <div class="map"></div>
 
                 <div class="pie"><strong> Pump Status </strong>
                 <span class = "reset" style = "display: none;"> Selected: <span class = "filter"></span></span>
@@ -55,8 +55,11 @@
 
                 <div class = "clearfix"></div></div>
 
-                <div class ="table"><strong>Under here is a data table</strong></div>
-
+                <div id ="table"><strong>Under here is a data table</strong></div>
+                <div style="float: left">
+                  <button class="btn" id="download">download</button>
+                </div>
+                </div>
             </div>
         </div>
 
@@ -71,6 +74,11 @@
 <script src="{% static 'watermap/leaflet/leaflet.markercluster.js' %}"></script>
 
 <script src="{% static 'watermap/dc-addons-master/dist/leaflet-map/dc-leaflet.js' %}"></script>
+
+
+
+
+<script type="text/javascript" src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.js" ></script>
 
 
 
@@ -121,7 +129,7 @@ function init() {
             spinner.stop();
 
             // instantiate chart within callback
-            chart(data);
+            
 
         });
 
@@ -133,6 +141,7 @@ init();
 d3.json("{% url "map_data" %}", function(data) {
 
   drawMarkerSelect(data);
+
 });
 
 function drawMarkerSelect(data) {
@@ -143,6 +152,8 @@ function drawMarkerSelect(data) {
 	        return [d.field_lat_deg, d.field_long_deg];
 	    });
 	var facilitiesGroup = facilities.group().reduceCount();
+
+
 
   dc.leafletMarkerChart("#demo1 .map",groupname)
       .dimension(facilities)
@@ -196,39 +207,39 @@ function drawMarkerSelect(data) {
     .dimension(watertechDim)
     .group(watertechGroup)
 
+dc.dataTable("#table", groupname)
+  .width(800)
+  .height(800)
+  .dimension(countryDim)
+  .group(function (d) {return "List of Water Sources"})
+  .size(10)
+  .columns([
+    function (d) { return d.field_country_name; },
+    function (d) { return d.field_status_id; },
+    function (d) { return d.field_water_tech; },
+    function (d) { return d.field_water_source; },
+    function (d) { return d.field_lat_deg; },
+    function (d) { return d.field_long_deg; }
+    ])
+  .sortBy(function (d) { return d.field_status_id; })
+  .order(d3.ascending);
+
+  d3.select('#download', groupname)
+      .on('click', function() {
+          var data = countryDim.top(Infinity);
+          
+          var blob = new Blob([d3.csv.format(data)], {type: "text/plain;charset=utf-8"});
+          saveAs(blob, "data.csv");
+      });
+
+
 
 
 
 	dc.renderAll(groupname);
-}
+};
 
-var ofs = 0, pag = 10;
-  function display() {
-      d3.select('#begin')
-          .text(ofs);
-      d3.select('#end')
-          .text(ofs+pag-1);
-      d3.select('#last')
-          .attr('disabled', ofs-pag<0 ? 'true' : null);
-      d3.select('#next')
-          .attr('disabled', ofs+pag>=ndx.size() ? 'true' : null);
-      d3.select('#size').text(ndx.size());
-  }
-  function update() {
-      chart.beginSlice(ofs);
-      chart.endSlice(ofs+pag);
-      display();
-  }
-  function next() {
-      ofs += pag;
-      update();
-      chart.redraw();
-  }
-  function last() {
-      ofs -= pag;
-      update();
-      chart.redraw();
-  }
+
 
 
 </script>

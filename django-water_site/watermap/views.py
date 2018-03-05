@@ -25,7 +25,7 @@ def index(request):
 
     
 def map_data(request):
-    raw_data = serializers.serialize('python', SwaziTest.objects.all()[0:100], fields = ('field_water_tech', 'field_status_id'\
+    raw_data = serializers.serialize('python', SwaziTest.objects.all(), fields = ('field_water_tech', 'field_status_id'\
     	, 'field_water_source', 'field_country_name', 'field_lat_deg', \
     	'field_long_deg'))
     actual_data = [d['fields'] for d in raw_data]

@@ -59,6 +59,7 @@ article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, s
 }
 
 body {
+  top-padding: 2000px;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1rem;
@@ -1262,6 +1263,12 @@ pre code {
   .offset-md-11 {
     margin-left: 91.666667%;
   }
+}
+
+
+
+.spacer{
+  padding-top: 40px;
 }
 
 @media (min-width: 992px) {
@@ -3847,6 +3854,8 @@ tbody.collapse.show {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  position: fixed;
+  top: 0;
 }
 
 .nav-link {
@@ -3933,11 +3942,33 @@ tbody.collapse.show {
   display: block;
 }
 
+.topnav{
+  z-index:1;
+  width: 100%;
+  position:fixed;
+  top:0;
+}
+
 .navbar {
-  position: relative;
+  position: fixed;
+  top: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-fixed-top{
+  position: fixed;
+  top: 0;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   -webkit-box-align: center;
@@ -3989,6 +4020,7 @@ tbody.collapse.show {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  position: fixed;
 }
 
 .navbar-nav .nav-link {
@@ -4277,6 +4309,7 @@ tbody.collapse.show {
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
+  position: fixed;
 }
 
 .navbar-expand > .container,
@@ -8949,12 +8982,14 @@ a.text-dark:hover, a.text-dark:focus {
     size: a3;
   }
   body {
+    
     min-width: 992px !important;
   }
   .container {
     min-width: 992px !important;
   }
   .navbar {
+    position: fixed;
     display: none;
   }
   .badge {

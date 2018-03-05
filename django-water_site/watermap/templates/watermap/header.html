@@ -1,5 +1,5 @@
 
-<!---
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,9 +7,9 @@
 	<title>Water Point Map</title>
 	<meta charset="utf-8" />
 	{% load staticfiles %}
-	<link rel="stylesheet" href="{% static 'watermap/css/bootstrap.min.css' %}" type = "text/css"/>
+	<link rel="stylesheet" href="{% static 'watermap/css/bootstrap.css' %}" type = "text/css"/>
 	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
-
+<!---
 	<style type="text/css">
 		html,
 		body {
@@ -205,13 +205,17 @@ body {
 	<img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" width="10%">
 </div>
 -->
+</head>
 <div class="topnav">
+	<div class="container">
 	<img src="https://dret.net/netdret/docs/itng2011/ischool-logo.png" width="10%">
   <a href="#" class="top-links">Map</a>
   <a href="#" class="top-links">API Map</a>
   <a href="#" class="top-links">Contact Us</a>
+	</div>
 </div>
 
+<div class ="spacer">
 <div class="row">
   <div class="leftcolumn">
     <div class="card">
@@ -222,7 +226,7 @@ body {
       <p>Around the world, nearly 25% of communal water access points are non-functional.
 		  This challenge has been difficult to address at a global, national, or even local level due to a severe scarcity of data.
 		  Consequently, the Water Point Data Exchange (WPDx) has created a harmonized data exchange standard for water point data
-		  and supported the development of a global repository.<p>
+		  and supported the development of a global repository.</p>
 			<p>We aim to use the WPDx data to create a web-based portal that will help governments manage water access in their countries.</p>
 			</div>
 		<p>
@@ -255,6 +259,8 @@ body {
     </div>
   </div>
 </div>
+</div>
+</body>
 
 <div class="footer">
   <h2>Footer</h2>

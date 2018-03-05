@@ -2,18 +2,17 @@
 {% block content%}
 {% load staticfiles %}
 
-<html>
-<head>
-	<title>DC.js + Leaflet</title>
 
-	<meta itemprop="name" content="DC.js + Leaflet"/>
-	<meta itemprop="description" content="DC.js + Leaflet chart"/>
+<head>
+
+
 
 	<meta charset="UTF-8">
 
     <link rel="stylesheet" href="{% static 'watermap/leaflet/leaflet.css' %}">
     <link rel="stylesheet" href="{% static 'watermap/leaflet/markercluster.css' %}">
-	<link rel="stylesheet" href="{% static 'watermap/dc.js-2.0.2/dc.css' %}">
+	  <link rel="stylesheet" href="{% static 'watermap/dc.js-2.0.2/dc.css' %}">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.1/spin.min.js'></script> 
 
 <style>
     #holder {
@@ -38,7 +37,7 @@
     }
 </style>
 </head>
-<body>
+
 
 <div id="holder">
             <div id="demo1">
@@ -48,13 +47,15 @@
                     <div class = "water_select col-lg-6 col-sm-12" style="float:left !important"><b>Pump Type<br> </b></div>
                     <div class ="water_tech col-lg-3 col-sm-12" style="float:none !important"><b>Pump Technology<br> </b></div>
                 </div>
-                <div class="map"></div>
+                <div class="map" href = "javascript:map.filterAll();dc.redrawAll();"></div>
 
                 <div class="pie"><strong> Pump Status </strong>
                 <span class = "reset" style = "display: none;"> Selected: <span class = "filter"></span></span>
                 <a class = "reset" href = "javascript:pie.filterAll();dc.redrawAll();" style ="display: none;"> reset </a>
 
                 <div class = "clearfix"></div></div>
+
+                <div class ="table"><strong>Under here is a data table</strong></div>
 
             </div>
         </div>
@@ -70,6 +71,10 @@
 <script src="{% static 'watermap/leaflet/leaflet.markercluster.js' %}"></script>
 
 <script src="{% static 'watermap/dc-addons-master/dist/leaflet-map/dc-leaflet.js' %}"></script>
+
+
+
+
 <script type="text/javascript">
 
 /*     Markers      */
@@ -79,7 +84,54 @@
   console.log(typeof(data[0].geo));
 });*/
 
+//These settings are for the spinner
+var chartConfig = {
+    target : 'demo1',
+    data_url : "{% url "map_data" %}",
+    width: 900,
+    height: 450,
+    val: 90
+};
+var opts = {
+  lines: 9, // The number of lines to draw
+  length: 12, // The length of each line
+  width: 7, // The line thickness
+  radius: 14, // The radius of the inner circle
+  color: 'blue', // #rgb or #rrggbb or array of colors
+  speed: 1.4, // Rounds per second
+  trail: 25, // Afterglow percentage
+  top: '70%',
+  className: 'spinner', // The CSS class to assign to the spinner
+};
+// Spinner target
+var target = document.getElementById(chartConfig.target);
+//Spinner intializer
+function init() {
+
+    // trigger loader
+    var spinner = new Spinner(opts).spin(target);
+
+    // slow the json load intentionally, so we can see it every load
+    setTimeout(function() {
+
+        // load json data and trigger callback
+        d3.json(chartConfig.data_url, function(data) {
+
+            // stop spin.js loader
+            spinner.stop();
+
+            // instantiate chart within callback
+            chart(data);
+
+        });
+
+    }, 1500);
+} 
+init();
+
+
 d3.json("{% url "map_data" %}", function(data) {
+
   drawMarkerSelect(data);
 });
 
@@ -97,22 +149,23 @@ function drawMarkerSelect(data) {
       .group(facilitiesGroup)
       .width(600)
 	    .height(400)
-      .center([-2.83,36.309])
       .zoom(5)
+      .filterByArea(false)
+      .fitOnRender(true)
       .renderPopup(true)
       .popup(function(d, marker){
         return d.key + " : " + d.value;
       })
       .cluster(true);
 
-	var types = xf.dimension(function(d) {
+	var status = xf.dimension(function(d) {
 	    return d.field_status_id;
 	});
-	var typesGroup = types.group().reduceCount();
+	var statusGroup = status.group().reduceCount();
 
-  dc.pieChart("#demo1 .pie",groupname)
-      .dimension(types)
-      .group(typesGroup)
+  dc.pieChart("#demo1 .pie", groupname)
+      .dimension(status)
+      .group(statusGroup)
       .width(200)
 	    .height(200)
 	    .renderLabel(true)
@@ -120,6 +173,7 @@ function drawMarkerSelect(data) {
       .ordering(function (p) {
         return -p.value;
       });
+  
   var countryDim = xf.dimension(function(d) {return d.field_country_name})
   var countryGroup = countryDim.group();
 
@@ -142,16 +196,47 @@ function drawMarkerSelect(data) {
     .dimension(watertechDim)
     .group(watertechGroup)
 
+
+
+
 	dc.renderAll(groupname);
 }
+
+var ofs = 0, pag = 10;
+  function display() {
+      d3.select('#begin')
+          .text(ofs);
+      d3.select('#end')
+          .text(ofs+pag-1);
+      d3.select('#last')
+          .attr('disabled', ofs-pag<0 ? 'true' : null);
+      d3.select('#next')
+          .attr('disabled', ofs+pag>=ndx.size() ? 'true' : null);
+      d3.select('#size').text(ndx.size());
+  }
+  function update() {
+      chart.beginSlice(ofs);
+      chart.endSlice(ofs+pag);
+      display();
+  }
+  function next() {
+      ofs += pag;
+      update();
+      chart.redraw();
+  }
+  function last() {
+      ofs -= pag;
+      update();
+      chart.redraw();
+  }
 
 
 </script>
 
 
 
-</body>
-</html>
+
+
 
 
 {% endblock %}

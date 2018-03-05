@@ -228,7 +228,7 @@ dc.dataTable("#table", groupname)
       .on('click', function() {
           var data = countryDim.top(Infinity);
           
-          var blob = new Blob([d3.csv.format(data)], {type: "text/plain;charset=utf-8"});
+          var blob = new Blob([d3.csv.format(data)], {type: "text/csv;charset=utf-8"});
           saveAs(blob, "data.csv");
       });
 

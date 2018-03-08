@@ -14,61 +14,50 @@
 	  <link rel="stylesheet" href="{% static 'watermap/dc.js-2.0.2/dc.css' %}">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.1/spin.min.js'></script> 
 
-<style>
-    #holder {
-        width:100%;
-        margin:20px auto;
-    }
-    #holder {
-        padding:30px 0;
-        clear:both;
-    }
-    .map {
-        width:60%;
-        min-width:400px;
-        height:400px;
-        margin-top:10px
-    }
-    .pie {
-        margin-left:30px;
-    }
-    div.dc-chart {
-        padding:10px;
-    }
-</style>
 </head>
 
-
-<div id="holder">
+<div class ="spacer">
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+        <div class="bgImg" style="background-image: url('https://ansam518.files.wordpress.com/2009/11/banner_for_the_wbw_page_resized-crop_display.jpg');">
+		    <h1 class="banner-text-white">Improving Access to Water in Developing Nations</h1>
+        </div>
+        <h2>This is a map</h2>
+        <div id="holder">
             <div id="demo1">
-
                 <div class="mapmenu row">
                     <div class ="select_menu col-lg-3 col-sm-12" style="float:none !important"><b>Country<br> </b></div>
                     <div class = "water_select col-lg-6 col-sm-12" style="float:left !important"><b>Pump Type<br> </b></div>
                     <div class ="water_tech col-lg-3 col-sm-12" style="float:none !important"><b>Pump Technology<br> </b></div>
                 </div>
                 <div class="map"></div>
-
-                <div class="pie"><strong> Pump Status </strong>
-                <span class = "reset" style = "display: none;"> Selected: <span class = "filter"></span></span>
-                <a class = "reset" href = "javascript:pie.filterAll();dc.redrawAll();" style ="display: none;"> reset </a>
-
-                <div class = "clearfix"></div></div>
-
-                <div id ="table"><strong>Under here is a data table</strong></div>
-                <div style="float: left">
-                <button class="btn" id="download">download</button></div>
-                
-                <div id="paging"> Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
-                <input id="last" class="btn" type="Button" value="Last" onclick="javascript:last()" />
-                <input id="next" class="btn" type="button" value="Next" onclick="javascript:next()"/>
-                </div>
-                
-
-
-                </div>
             </div>
         </div>
+    </div>
+
+{#                    <div class="pie"><strong> Pump Status </strong>#}
+{#                    <span class = "reset" style = "display: none;"> Selected: <span class = "filter"></span></span>#}
+{#                    <a class = "reset" href = "javascript:pie.filterAll();dc.redrawAll();" style ="display: none;"> reset </a>#}
+     <div class = 'card'>
+        <h2>The most water for the most people</h2>
+        <div class = "clearfix"></div>
+        <div id ="table" class = "table"><strong>Under here is a data table</strong></div>
+         <div id="paging"> Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
+            <input id="last" class="btn" type="Button" value="Last" onclick="javascript:last()" />
+            <input id="next" class="btn" type="button" value="Next" onclick="javascript:next()"/>
+        </div>
+        <div class = "download">
+            <button class="btn" id="download">download</button>
+        </div>
+
+     </div>
+                
+
+
+    </div>
+            </div>
+    </div>
 
 
 

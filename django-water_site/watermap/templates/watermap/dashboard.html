@@ -57,8 +57,15 @@
 
                 <div id ="table"><strong>Under here is a data table</strong></div>
                 <div style="float: left">
-                  <button class="btn" id="download">download</button>
+                <button class="btn" id="download">download</button></div>
+                
+                <div id="paging"> Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
+                <input id="last" class="btn" type="Button" value="Last" onclick="javascript:last()" />
+                <input id="next" class="btn" type="button" value="Next" onclick="javascript:next()"/>
                 </div>
+                
+
+
                 </div>
             </div>
         </div>
@@ -232,12 +239,41 @@ dc.dataTable("#table", groupname)
           saveAs(blob, "data.csv");
       });
 
-
-
+ 
+  
 
 
 	dc.renderAll(groupname);
-};
+
+  var ofs = 0, pag = 20;
+    function display() {
+        d3.select('#begin')
+            .text(ofs);
+        d3.select('#end')
+            .text(ofs+pag-1);
+        d3.select('#last')
+            .attr('disabled', ofs-pag<0 ? 'true' : null);
+        d3.select('#next')
+            .attr('disabled', ofs+pag>=xf.size() ? 'true' : null);
+        d3.select('#size').text(xf.size());
+    }
+    function update() {
+        table.beginSlice(ofs);
+        table.endSlice(ofs+pag);
+        display();
+    }
+    function next() {
+        ofs += pag;
+        update();
+        table.redraw();
+    }
+    function last() {
+        ofs -= pag;
+        update();
+        table.redraw();
+    }
+  }; 
+
 
 
 

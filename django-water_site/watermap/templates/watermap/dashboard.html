@@ -28,8 +28,9 @@
             <div id="demo1">
                 <div class="mapmenu row">
                     <div class ="select_menu col-lg-3 col-sm-12" style="float:none !important"><b>Country<br> </b></div>
-                    <div class = "water_select col-lg-6 col-sm-12" style="float:left !important"><b>Pump Type<br> </b></div>
-                    <div class ="water_tech col-lg-3 col-sm-12" style="float:none !important"><b>Pump Technology<br> </b></div>
+                    <div class = "pump_status col-lg-3 col-sm-12" style="float:none!important"><b>Pump Status<br> </b></div>
+                    <div class = "water_tech col-lg-3 col-sm-12" style="float:left !important"><b>Pump Technology<br> </b></div>
+                    <div class ="water_select col-lg-3 col-sm-12" style="float:none !important"><b>Pump Technology<br> </b></div>
                 </div>
                 <div class="map"></div>
             </div>
@@ -170,16 +171,11 @@ function drawMarkerSelect(data) {
 	});
 	var statusGroup = status.group().reduceCount();
 
-  dc.pieChart("#demo1 .pie", groupname)
+  dc.selectMenu("#demo1 .pump_status", groupname)
       .dimension(status)
       .group(statusGroup)
-      .width(200)
-	    .height(200)
-	    .renderLabel(true)
-	    .renderTitle(true)
-      .ordering(function (p) {
-        return -p.value;
-      });
+      
+      
   
   var countryDim = xf.dimension(function(d) {return d.field_country_name})
   var countryGroup = countryDim.group();
@@ -187,6 +183,7 @@ function drawMarkerSelect(data) {
   var select_menu= dc.selectMenu("#demo1 .select_menu", groupname)
     .dimension(countryDim)
     .group(countryGroup)
+    
 
 
   var watersourceDim = xf.dimension(function(d) {return d['field_water_source']});
@@ -195,6 +192,7 @@ function drawMarkerSelect(data) {
   var watersourcemenu = dc.selectMenu("#demo1 .water_select", groupname)
     .dimension(watersourceDim)
     .group(watersourceGroup)
+    
 
   var watertechDim = xf.dimension(function(d) {return d['field_water_tech']});
   var watertechGroup = watertechDim.group();
@@ -202,13 +200,14 @@ function drawMarkerSelect(data) {
   var watertechmenu = dc.selectMenu("#demo1 .water_tech", groupname)
     .dimension(watertechDim)
     .group(watertechGroup)
+    
 
 dc.dataTable("#table", groupname)
   .width(800)
   .height(800)
   .dimension(countryDim)
   .group(function (d) {return "List of Water Sources"})
-  .size(10)
+  .size(5)
   .columns([
     function (d) { return d.field_country_name; },
     function (d) { return d.field_status_id; },
@@ -234,7 +233,7 @@ dc.dataTable("#table", groupname)
 
 	dc.renderAll(groupname);
 
-  var ofs = 0, pag = 20;
+  var ofs = 0, pag = 5;
     function display() {
         d3.select('#begin')
             .text(ofs);

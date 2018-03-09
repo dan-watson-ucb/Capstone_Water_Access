@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from watermap.models import SwaziTest
+from watermap.models import SwaziMvp
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.db import connections
@@ -34,4 +35,12 @@ def team(request):
 # load solution page
 def solution(request):
 	return render(request, 'watermap/solution.html')
+
+def map_preds(request):
+    raw_data = serializers.serialize('python', SwaziMvp.objects.all()[0:40], fields = ('country_name', \
+    	'water_source', 'water_tech', 'status_id', 'lat_deg ', 'lon_deg', 'fuzzy_water_source', \
+    	'predicted_class', 'probability', 'one_km_population', 'one_km_total_water_points', \
+    	'one_km_functioning_water_points'))
+    actual_data = [d['fields'] for d in raw_data]
+    return JsonResponse(actual_data, safe= False)
 

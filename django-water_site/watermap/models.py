@@ -233,14 +233,14 @@ class SwaziMvp(models.Model):
     water_tech = models.TextField(db_column='water_tech', blank=True, null=True)
     status_id= models.TextField(db_column='status_id', blank=True, null=True)
     install_year = models.TextField(db_column='install_year', blank=True, null=True)
-    lat_deg = models.TextField(db_column='lat_deg', blank=True, null=True)
-    lon_deg = models.TextField(db_column='lon_deg', blank=True, null=True)
+    lat_deg = models.FloatField(db_column='lat_deg', blank=True, null=True)
+    lon_deg = models.FloatField(db_column='lon_deg', blank=True, null=True)
     fuzzy_water_source = models.TextField(db_column='fuzzy_water_source', blank=True, null=True)
     predicted_class = models.TextField(db_column='predicted_class', blank=True, null=True)
-    probability = models.TextField(db_column='probability', blank=True, null=True)
-    one_km_population = models.TextField(db_column='one_km_population', blank=True, null=True)
-    one_km_total_water_points = models.TextField(db_column='one_km_total_water_points', blank=True, null=True)
-    one_km_functioning_water_points = models.TextField(db_column='one_km_functioning_water_points', blank=True, null=True)
+    probability = models.FloatField(db_column='probability', blank=True, null=True)
+    one_km_population = models.IntegerField(db_column='one_km_population', blank=True, null=True)
+    one_km_total_water_points = models.IntegerField(db_column='one_km_total_water_points', blank=True, null=True)
+    one_km_functioning_water_points = models.IntegerField(db_column='one_km_functioning_water_points', blank=True, null=True)
 
     class Meta:
         managed = False

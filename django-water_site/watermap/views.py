@@ -38,7 +38,7 @@ def solution(request):
 
 def map_preds(request):
     raw_data = serializers.serialize('python', SwaziMvp.objects.all()[0:40], fields = ('country_name', \
-    	'water_source', 'water_tech', 'status_id', 'lat_deg ', 'lon_deg', 'fuzzy_water_source', \
+    	'water_source', 'water_tech', 'status_id', 'lat_deg', 'lon_deg', 'fuzzy_water_source', \
     	'predicted_class', 'probability', 'one_km_population', 'one_km_total_water_points', \
     	'one_km_functioning_water_points'))
     actual_data = [d['fields'] for d in raw_data]

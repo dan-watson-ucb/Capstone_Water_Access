@@ -20,10 +20,6 @@
 <div class="row">
   <div class="leftcolumn">
     <div class="card">
-        <div class="bgImg" style="background-image: url('https://ansam518.files.wordpress.com/2009/11/banner_for_the_wbw_page_resized-crop_display.jpg');">
-		    <h1 class="banner-text-white">Improving Access to Water in Developing Nations</h1>
-        </div>
-        <h2>This is a map</h2>
         <div id="holder">
             <div id="demo1">
                 <div class="mapmenu row">
@@ -131,11 +127,11 @@ function init() {
         });
 
     }, 1500);
-} 
+}; 
 init();
 
 
-d3.json("{% url "map_data" %}", function(data) {
+d3.json("{% url "map_preds" %}", function(data) {
 
   drawMarkerSelect(data);
 
@@ -146,7 +142,7 @@ function drawMarkerSelect(data) {
   var groupname = "marker-select";
 	var facilities = xf.dimension(
 	    function(d) {
-	        return [d.field_lat_deg, d.field_long_deg];
+	        return [d.lat_deg, d.lon_deg];
 	    });
 	var facilitiesGroup = facilities.group().reduceCount();
 
@@ -167,7 +163,7 @@ function drawMarkerSelect(data) {
       .cluster(true);
 
 	var status = xf.dimension(function(d) {
-	    return d.field_status_id;
+	    return d.status_id;
 	});
 	var statusGroup = status.group().reduceCount();
 
@@ -177,7 +173,7 @@ function drawMarkerSelect(data) {
       
       
   
-  var countryDim = xf.dimension(function(d) {return d.field_country_name})
+  var countryDim = xf.dimension(function(d) {return d.country_name})
   var countryGroup = countryDim.group();
 
   var select_menu= dc.selectMenu("#demo1 .select_menu", groupname)
@@ -186,7 +182,7 @@ function drawMarkerSelect(data) {
     
 
 
-  var watersourceDim = xf.dimension(function(d) {return d['field_water_source']});
+  var watersourceDim = xf.dimension(function(d) {return d['water_source']});
   var watersourceGroup = watersourceDim.group();
 
   var watersourcemenu = dc.selectMenu("#demo1 .water_select", groupname)
@@ -194,7 +190,7 @@ function drawMarkerSelect(data) {
     .group(watersourceGroup)
     
 
-  var watertechDim = xf.dimension(function(d) {return d['field_water_tech']});
+  var watertechDim = xf.dimension(function(d) {return d['water_tech']});
   var watertechGroup = watertechDim.group();
 
   var watertechmenu = dc.selectMenu("#demo1 .water_tech", groupname)
@@ -202,21 +198,21 @@ function drawMarkerSelect(data) {
     .group(watertechGroup)
     
 
-dc.dataTable("#table", groupname)
+var table = dc.dataTable("#table", groupname)
   .width(800)
   .height(800)
   .dimension(countryDim)
   .group(function (d) {return "List of Water Sources"})
   .size(5)
   .columns([
-    function (d) { return d.field_country_name; },
-    function (d) { return d.field_status_id; },
-    function (d) { return d.field_water_tech; },
-    function (d) { return d.field_water_source; },
-    function (d) { return d.field_lat_deg; },
-    function (d) { return d.field_long_deg; }
+    function (d) { return d.country_name; },
+    function (d) { return d.status_id; },
+    function (d) { return d.water_tech; },
+    function (d) { return d.water_source; },
+    function (d) { return d.lat_deg; },
+    function (d) { return d.lon_deg; }
     ])
-  .sortBy(function (d) { return d.field_status_id; })
+  .sortBy(function (d) { return d.status_id; })
   .order(d3.ascending);
 
   d3.select('#download', groupname)
@@ -232,35 +228,36 @@ dc.dataTable("#table", groupname)
 
 
 	dc.renderAll(groupname);
-
+  
   var ofs = 0, pag = 5;
-    function display() {
-        d3.select('#begin')
-            .text(ofs);
-        d3.select('#end')
-            .text(ofs+pag-1);
-        d3.select('#last')
-            .attr('disabled', ofs-pag<0 ? 'true' : null);
-        d3.select('#next')
-            .attr('disabled', ofs+pag>=xf.size() ? 'true' : null);
-        d3.select('#size').text(xf.size());
-    }
-    function update() {
-        table.beginSlice(ofs);
-        table.endSlice(ofs+pag);
-        display();
-    }
-    function next() {
-        ofs += pag;
-        update();
-        table.redraw();
-    }
-    function last() {
-        ofs -= pag;
-        update();
-        table.redraw();
-    }
-  }; 
+  function display() {
+      d3.select('#begin')
+          .text(ofs);
+      d3.select('#end')
+          .text(ofs+pag-1);
+      d3.select('#last')
+          .attr('disabled', ofs-pag<0 ? 'true' : null);
+      d3.select('#next')
+          .attr('disabled', ofs+pag>=xf.size() ? 'true' : null);
+      d3.select('#size').text(xf.size());
+  }
+  function update() {
+      table.beginSlice(ofs);
+      table.endSlice(ofs+pag);
+      display();
+  }
+  function next() {
+      ofs += pag;
+      update();
+      table.redraw();
+  }
+  function last() {
+      ofs -= pag;
+      update();
+      table.redraw();
+  };
+};
+
 
 
 

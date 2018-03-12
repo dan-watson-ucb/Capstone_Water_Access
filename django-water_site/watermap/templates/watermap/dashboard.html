@@ -25,8 +25,16 @@
                 <div class="mapmenu row">
                     <div class ="select_menu col-lg-3 col-sm-12" style="float:none !important"><b>Country<br> </b></div>
                     <div class = "pump_status col-lg-3 col-sm-12" style="float:none!important"><b>Pump Status<br> </b></div>
-                    <div class = "water_tech col-lg-3 col-sm-12" style="float:left !important"><b>Pump Technology<br> </b></div>
-                    <div class ="water_select col-lg-3 col-sm-12" style="float:none !important"><b>Pump Technology<br> </b></div>
+                    <div class = "projected_status col-lg-3 col-sm-12" style="float:none!important"><b>Projected Status<br> </b></div>
+                    <div class = "water_tech col-lg-3 col-sm-12" style="float:left !important"><b>Water Technology<br> </b></div>
+                    <div class ="water_select col-lg-3 col-sm-12" style="float:none !important"><b><br> Water Source</b></div>
+
+                    <div class ="pump_risk col-lg-3 col-sm-12" style="float:none !important"><b>Risk Level<br> </b></div>
+
+
+
+                    <div class ="alt_water col-lg-3 col-sm-12" style="float:none !important"><b>Water Points within 1km<br> </b></div>
+                    <div class ="mgmt_group col-lg-3 col-sm-12" style="float:none !important"><b>Management Group<br> </b></div>
                 </div>
                 <div class="map"></div>
             </div>
@@ -163,13 +171,23 @@ function drawMarkerSelect(data) {
       .cluster(true);
 
 	var status = xf.dimension(function(d) {
-	    return d.status_id;
+      status = d.status_id
+	    if (status == "yes"){
+        return "Working";
+      }
+      else if (status == "no"){
+        return "Not Working";
+      }
+      else{
+        return "Unknown";
+      }
 	});
 	var statusGroup = status.group().reduceCount();
 
   dc.selectMenu("#demo1 .pump_status", groupname)
       .dimension(status)
       .group(statusGroup)
+      .promptText("Water Point Status")
       
       
   
@@ -179,6 +197,7 @@ function drawMarkerSelect(data) {
   var select_menu= dc.selectMenu("#demo1 .select_menu", groupname)
     .dimension(countryDim)
     .group(countryGroup)
+    .promptText("Country")
     
 
 
@@ -188,6 +207,7 @@ function drawMarkerSelect(data) {
   var watersourcemenu = dc.selectMenu("#demo1 .water_select", groupname)
     .dimension(watersourceDim)
     .group(watersourceGroup)
+    .promptText("Water Source")
     
 
   var watertechDim = xf.dimension(function(d) {return d['water_tech']});
@@ -196,6 +216,74 @@ function drawMarkerSelect(data) {
   var watertechmenu = dc.selectMenu("#demo1 .water_tech", groupname)
     .dimension(watertechDim)
     .group(watertechGroup)
+    .promptText("Water Technology")
+
+  var projected_statusDim = xf.dimension(function(d) {
+    if (d.predicted_class == 1) {
+      return "Not Working";
+    } else if (d.predicted_class == 0){
+      return "Working";
+    } else {
+      return "No Prediction";
+    }
+  });
+  var projected_statusGroup = projected_statusDim.group();
+  var projected_statusMenu = dc.selectMenu("#demo1 .projected_status", groupname)
+    .dimension(projected_statusDim)
+    .group(projected_statusGroup)
+    .promptText("Projected Status")
+
+  var mgmt_groupDim = xf.dimension(function(d) {return d['management']});
+  var mgmt_groupGroup = mgmt_groupDim.group();
+  var mgmt_groupMenu = dc.selectMenu("#demo1 .mgmt_group", groupname)
+    .dimension(mgmt_groupDim)
+    .group(mgmt_groupGroup)
+    .promptText("Management")
+
+
+  var riskDim = xf.dimension(function(d) {
+    if (d.probability <.1) {
+      return '1. Very Low Risk';
+    } else if (d.probability >=.1 && d.probability <.25) {
+      return '2. Low Risk';
+    } else if (d.probability >=.25 && d.probability <.5){
+      return '3. Moderate-Low Risk';
+    } else if (d.probability >=.5 && d.probability <.75) {
+      return '4. Moderate Risk'
+    } else if (d.probability >=.75 && d.probability <.9) {
+      return '5. Moderate-High Risk';
+    } else {
+      return '6. High Risk';
+    }
+  });
+  var riskGroup = riskDim.group().reduceCount();
+  var riskMenu = dc.selectMenu("#demo1 .pump_risk", groupname)
+    .dimension(riskDim)
+    .group(riskGroup)
+    .promptText("Risk Level")
+
+
+  var alt_waterDim = xf.dimension(function(d){
+    altpts = d.one_km_functioning_water_points
+    if (altpts < 10) {
+      return "1. Less than 10";
+    } else if (altpts >= 10 && altpts <=25) {
+      return "2. 10-25";
+    } else if (altpts>25 && altpts <=50){
+      return "3. 26-50";
+    } else if (altpts>50 && altpts <=100){
+      return "4. 51-100";
+    } else {
+      return "5. 100+";
+    }
+  });
+  var alt_waterGroup = alt_waterDim.group().reduceCount();
+  var alt_waterMenu = dc.selectMenu("#demo1 .alt_water", groupname)
+    .dimension(alt_waterDim)
+    .group(alt_waterGroup)
+    .promptText("Water Points Within 1km")
+
+
     
 
 var table = dc.dataTable("#table", groupname)

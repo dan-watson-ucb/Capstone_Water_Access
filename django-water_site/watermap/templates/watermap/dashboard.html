@@ -18,26 +18,27 @@
 
 <div class ="spacer">
 <div class="row">
-  <div class="leftcolumn">
+    <div id="demo1">
+    <div class = "leftcolumn">
+        <h2>Filter</h2>
+        <p>Use filters below to update the map and table results</p>
+        <div class="mapmenu row">
+                    <div class ="select_menu col-md-12">Country<br></div>
+                    <div class = "pump_status col-md-12">Pump Status<br></div>
+                    <div class = "projected_status col-md-12">Projected Status<br></div>
+                    <div class = "water_tech col-md-12">Water Technology<br></div>
+                    <div class ="pump_risk col-md-12">Risk Level<br></div>
+                    <div class ="alt_water col-md-12">Water Points Nearby<br></div>
+                    <div class ="mgmt_group col-md-12">Management Group<br></div>
+                    <div class ="water_select col-md-12">Water Source<br></div>
+
+                </div>
+    </div>
+  <div class="rightcolumn">
     <div class="card">
         <div id="holder">
-            <div id="demo1">
-                <div class="mapmenu row">
-                    <div class ="select_menu col-lg-3 col-sm-12" style="float:none !important"><b>Country<br> </b></div>
-                    <div class = "pump_status col-lg-3 col-sm-12" style="float:none!important"><b>Pump Status<br> </b></div>
-                    <div class = "projected_status col-lg-3 col-sm-12" style="float:none!important"><b>Projected Status<br> </b></div>
-                    <div class = "water_tech col-lg-3 col-sm-12" style="float:left !important"><b>Water Technology<br> </b></div>
-                    <div class ="water_select col-lg-3 col-sm-12" style="float:none !important"><b><br> Water Source</b></div>
-
-                    <div class ="pump_risk col-lg-3 col-sm-12" style="float:none !important"><b>Risk Level<br> </b></div>
-
-
-
-                    <div class ="alt_water col-lg-3 col-sm-12" style="float:none !important"><b>Water Points within 1km<br> </b></div>
-                    <div class ="mgmt_group col-lg-3 col-sm-12" style="float:none !important"><b>Management Group<br> </b></div>
-                </div>
+            <h2>Map Results</h2>
                 <div class="map"></div>
-            </div>
         </div>
     </div>
 
@@ -45,7 +46,8 @@
 {#                    <span class = "reset" style = "display: none;"> Selected: <span class = "filter"></span></span>#}
 {#                    <a class = "reset" href = "javascript:pie.filterAll();dc.redrawAll();" style ="display: none;"> reset </a>#}
      <div class = 'card'>
-        <div id ="table" class = "table"></div>
+         <h2>Tabular Results of Water Sources</h2>
+        <div id ="table" class = "table table-bordered"></div>
          <div id="paging"> Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
             <input id="last" class="btn" type="Button" value="Last" onclick="javascript:last()" />
             <input id="next" class="btn" type="button" value="Next" onclick="javascript:next()"/>
@@ -59,8 +61,9 @@
 
 
     </div>
-            </div>
     </div>
+    </div>
+</div>
 
 
 
@@ -199,7 +202,14 @@ function drawMarkerSelect(data) {
     
 
 
-  var watersourceDim = xf.dimension(function(d) {return d['water_source']});
+  var watersourceDim = xf.dimension(function(d) {
+      if (d.water_source.length < 15) {
+          return d['water_source']
+      }
+      else {
+          return d['water_source'].slice(0,15)
+      }
+  });
   var watersourceGroup = watersourceDim.group();
 
   var watersourcemenu = dc.selectMenu("#demo1 .water_select", groupname)
@@ -241,17 +251,17 @@ function drawMarkerSelect(data) {
 
   var riskDim = xf.dimension(function(d) {
     if (d.probability <.1) {
-      return '1. Very Low Risk';
+      return '1. Very Low';
     } else if (d.probability >=.1 && d.probability <.25) {
-      return '2. Low Risk';
+      return '2. Low';
     } else if (d.probability >=.25 && d.probability <.5){
-      return '3. Moderate-Low Risk';
+      return '3. Moderate-Low';
     } else if (d.probability >=.5 && d.probability <.75) {
-      return '4. Moderate Risk'
+      return '4. Moderate'
     } else if (d.probability >=.75 && d.probability <.9) {
-      return '5. Moderate-High Risk';
+      return '5. Moderate-High';
     } else {
-      return '6. High Risk';
+      return '6. High';
     }
   });
   var riskGroup = riskDim.group().reduceCount();
@@ -264,7 +274,7 @@ function drawMarkerSelect(data) {
   var alt_waterDim = xf.dimension(function(d){
     altpts = d.one_km_functioning_water_points
     if (altpts < 10) {
-      return "1. Less than 10";
+      return "1. <10";
     } else if (altpts >= 10 && altpts <=25) {
       return "2. 10-25";
     } else if (altpts>25 && altpts <=50){
@@ -279,7 +289,7 @@ function drawMarkerSelect(data) {
   var alt_waterMenu = dc.selectMenu("#demo1 .alt_water", groupname)
     .dimension(alt_waterDim)
     .group(alt_waterGroup)
-    .promptText("Water Points Within 1km")
+    .promptText("Nearby (within 1 km)")
 
 
     
@@ -288,18 +298,81 @@ var table = dc.dataTable("#table", groupname)
   .width(800)
   .height(800)
   .dimension(countryDim)
-  .group(function (d) {return "List of Water Sources"})
+  .group(function (d) {return ""})
+    .showGroups(false)
   .size(5)
   .columns([
-    function (d) { return d.country_name; },
-    function (d) { return d.status_id; },
-    function (d) { return d.water_tech; },
-    function (d) { return d.water_source; },
-    function (d) { return d.lat_deg; },
-    function (d) { return d.lon_deg; }
+    {label: "Country",
+    format: function (d) { return d.country_name; }},
+    {label: "Pump Status",
+    format: function (d) {
+        status = d.status_id
+	    if (status == "yes"){
+            return "Working";
+          }
+          else if (status == "no"){
+            return "Not Working";
+          }
+          else{
+            return "Unknown";
+          }
+    }},
+    {label: "Projected Status",
+    format: function (d) {
+        if (d.predicted_class == 1) {
+          return "Not Working";
+        } else if (d.predicted_class == 0){
+          return "Working";
+        } else {
+          return "No Prediction";
+        }
+    }},
+    {label: "Water Technology",
+    format: function (d) { return d.water_tech; }},
+    {label: "Risk Level",
+    format: function (d) {
+        if (d.probability <.1) {
+          return 'Very Low';
+        } else if (d.probability >=.1 && d.probability <.25) {
+          return 'Low';
+        } else if (d.probability >=.25 && d.probability <.5){
+          return 'Moderate-Low';
+        } else if (d.probability >=.5 && d.probability <.75) {
+          return 'Moderate'
+        } else if (d.probability >=.75 && d.probability <.9) {
+          return 'Moderate-High';
+        } else {
+          return 'High';
+        }
+    }},
+    {label: "Water Points Nearby",
+    format: function (d) {
+        altpts = d.one_km_functioning_water_points
+        if (altpts < 10) {
+          return "<10";
+        } else if (altpts >= 10 && altpts <=25) {
+          return "10-25";
+        } else if (altpts>25 && altpts <=50){
+          return "26-50";
+        } else if (altpts>50 && altpts <=100){
+          return "51-100";
+        } else {
+          return "100+";
+        }
+    }},
+    {label: "Management Group",
+    format: function (d) { return d.management }},
+    {label: "Water Source",
+    format: function (d) { return d.water_source; }},
+    {label: "Latitude",
+    format: function (d) { return d.lat_deg; }},
+    {label: "Longitude",
+    format: function (d) { return d.lon_deg; }}
     ])
   .sortBy(function (d) { return d.status_id; })
-  .order(d3.ascending);
+  .order(d3.ascending)
+
+;
 
   d3.select('#download', groupname)
       .on('click', function() {

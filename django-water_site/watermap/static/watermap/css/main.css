@@ -62,8 +62,13 @@ body {
 /* Create two unequal columns that floats next to each other */
 /* Left column */
 .leftcolumn {
-    width: 100%;
+    width: 20%;
+    float: left;
+    padding-top: 30px;
 
+}
+.centercolumn{
+    width: 100%;
 }
 
 .bgImg{
@@ -75,7 +80,7 @@ body {
 /* Right column */
 .rightcolumn {
     float: left;
-    width: 35%;
+    width: 80%;
     background-color: #f1f1f1;
     padding-left: 20px;
 }
@@ -138,13 +143,11 @@ h2{
 #holder {
     width:100%;
     margin:20px auto;
-}
-#holder {
-
-    padding-right:20%;
-    padding-left: 20%;
+    padding-right:10%;
+    padding-left: 10%;
     clear:both;
 }
+
 .map {
     text-align: center;
     width: 100%;
@@ -157,18 +160,26 @@ h2{
     margin-left:30px;
 }
 div.dc-chart {
-    padding:10px;
+    padding:5px;
 }
 #demo1{
+    padding: 40px;
 }
 .mapmenu.row{
     margin: 0px;
 }
 .card .table{
-    padding-right: 20%;
-    padding-left: 20%
+    padding-right: 6%;
+    padding-left: 6%
 }
 .download{
     padding: 10px;
 
+}
+.dc-table-column{
+    font-size: 12px;
+}
+
+.dc-table-head{
+    font-size: 12px;
 }

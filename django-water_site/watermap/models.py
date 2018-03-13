@@ -228,6 +228,7 @@ class MusicWater(models.Model):
 
 class SwaziMvp(models.Model):
     id = models.TextField(primary_key = True, db_column="id")
+    wpdx_id = models.TextField(db_column = "wpdx_id", blank= True, null = True)
     country_name = models.TextField(db_column = "country_name", blank = True, null = True)
     water_source = models.TextField(db_column='water_source', blank=True, null=True)
     water_tech = models.TextField(db_column='water_tech', blank=True, null=True)
@@ -237,11 +238,15 @@ class SwaziMvp(models.Model):
     lon_deg = models.FloatField(db_column='lon_deg', blank=True, null=True)
     management = models.TextField(db_column='management', blank=True, null=True)
     fuzzy_water_source = models.TextField(db_column='fuzzy_water_source', blank=True, null=True)
+    fuzzy_water_tech = models.TextField(db_column ='fuzzy_water_tech', blank= True, null= True)
     predicted_class = models.IntegerField(db_column='predicted_class', blank=True, null=True)
     probability = models.FloatField(db_column='probability', blank=True, null=True)
     one_km_population = models.IntegerField(db_column='one_km_population', blank=True, null=True)
     one_km_total_water_points = models.IntegerField(db_column='one_km_total_water_points', blank=True, null=True)
     one_km_functioning_water_points = models.IntegerField(db_column='one_km_functioning_water_points', blank=True, null=True)
+    time_since_meas_years = models.FloatField(db_column='time_since_meas_years', blank=True, null=True)
+    age_well_years = models.FloatField(db_column='age_well_years', blank=True, null=True)
+    impact_score = models.FloatField(db_column='impact_score', blank=True, null=True)
 
     class Meta:
         managed = False

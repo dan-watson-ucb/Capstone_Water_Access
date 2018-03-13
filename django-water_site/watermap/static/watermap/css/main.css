@@ -95,8 +95,8 @@ body {
 /* Add a card effect for articles */
 .card {
     background-color: white;
-    padding: 0px;
-    margin-top: 20px;
+    padding: 10px;
+    margin-top: 10px;
     text-align: center;
 }
 
@@ -152,8 +152,8 @@ h2{
     text-align: center;
     width: 100%;
     min-width:400px;
-    height:400px;
-    padding:100px
+    height:500px;
+    padding:40px
 
 }
 .pie {

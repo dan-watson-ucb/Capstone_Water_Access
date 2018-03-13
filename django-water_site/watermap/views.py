@@ -37,10 +37,10 @@ def solution(request):
 	return render(request, 'watermap/solution.html')
 
 def map_preds(request):
-    raw_data = serializers.serialize('python', SwaziMvp.objects.all()[0:500], fields = ('country_name', \
+    raw_data = serializers.serialize('python', SwaziMvp.objects.all()[0:30], fields = ('wpdx_id', 'country_name', \
     	'water_source', 'water_tech', 'status_id', 'lat_deg', 'lon_deg', 'management', 'fuzzy_water_source', \
-    	'predicted_class', 'probability', 'one_km_population', 'one_km_total_water_points', \
-    	'one_km_functioning_water_points'))
+    	'fuzzy_water_tech', 'predicted_class', 'probability', 'one_km_population', 'one_km_total_water_points', \
+    	'one_km_functioning_water_points', 'impact_score', 'time_since_meas_years', 'age_well_years'))
     actual_data = [d['fields'] for d in raw_data]
     return JsonResponse(actual_data, safe= False)
 

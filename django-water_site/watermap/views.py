@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from watermap.models import SwaziTest
 from watermap.models import SwaziMvp
+from watermap.models import SierraLeone
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.db import connections
@@ -37,7 +38,7 @@ def solution(request):
 	return render(request, 'watermap/solution.html')
 
 def map_preds(request):
-    raw_data = serializers.serialize('python', SwaziMvp.objects.all(), fields = ('wpdx_id', 'country_name', \
+    raw_data = serializers.serialize('python', SierraLeone.objects.all()[0:5000], fields = ('wpdx_id', 'country_name', \
     	'water_source', 'water_tech', 'status_id', 'lat_deg', 'lon_deg', 'management', 'fuzzy_water_source', \
     	'fuzzy_water_tech', 'predicted_class', 'probability', 'one_km_population', 'one_km_total_water_points', \
     	'one_km_functioning_water_points', 'impact_score', 'time_since_meas_years', 'age_well_years'))

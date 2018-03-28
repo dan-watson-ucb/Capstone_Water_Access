@@ -1,0 +1,71 @@
+[{
+	"field_country_name": "Swaziland",
+	"field_water_source": "Borehole fitted with submersible pump",
+	"field_water_tech": "Standpipe",
+	"field_status_id": "no",
+	"field_lat_deg": -27.1031,
+	"field_long_deg": 31.1317
+}, {
+	"field_country_name": "Swaziland",
+	"field_water_source": "Borehole fitted with submersible pump",
+	"field_water_tech": "Standpipe",
+	"field_status_id": "no",
+	"field_lat_deg": -27.1045,
+	"field_long_deg": 31.1286
+}, {
+	"field_country_name": "Swaziland",
+	"field_water_source": "Borehole fitted with submersible pump",
+	"field_water_tech": "Standpipe",
+	"field_status_id": "no",
+	"field_lat_deg": -27.1051,
+	"field_long_deg": 31.1281
+}, {
+	"field_country_name": "Swaziland",
+	"field_water_source": "Borehole fitted with submersible pump",
+	"field_water_tech": "Standpipe",
+	"field_status_id": "no",
+	"field_lat_deg": -27.1068,
+	"field_long_deg": 31.1275
+}, {
+	"field_country_name": "Swaziland",
+	"field_water_source": "Borehole fitted with submersible pump",
+	"field_water_tech": "Standpipe",
+	"field_status_id": "no",
+	"field_lat_deg": -27.1096,
+	"field_long_deg": 31.1319
+}, {
+	"field_country_name": "Swaziland",
+	"field_water_source": "Borehole fitted with submersible pump",
+	"field_water_tech": "Standpipe",
+	"field_status_id": "no",
+	"field_lat_deg": -27.1105,
+	"field_long_deg": 31.1351
+}, {
+	"field_country_name": "Swaziland",
+	"field_water_source": "Borehole fitted with submersible pump",
+	"field_water_tech": "Standpipe",
+	"field_status_id": "no",
+	"field_lat_deg": -27.1188,
+	"field_long_deg": 31.111
+}, {
+	"field_country_name": "Swaziland",
+	"field_water_source": "Borehole fitted with submersible pump",
+	"field_water_tech": "Standpipe",
+	"field_status_id": "yes",
+	"field_lat_deg": -27.0846,
+	"field_long_deg": 31.2212
+}, {
+	"field_country_name": "Swaziland",
+	"field_water_source": "Borehole fitted with submersible pump",
+	"field_water_tech": "Standpipe",
+	"field_status_id": "yes",
+	"field_lat_deg": -27.0626,
+	"field_long_deg": 31.2351
+}, {
+	"field_country_name": "Swaziland",
+	"field_water_source": "gravity river/stream",
+	"field_water_tech": "Standpipe",
+	"field_status_id": "yes",
+	"field_lat_deg": -27.1602,
+	"field_long_deg": 31.5175
+}]

@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+    <head>
+        <title>dc.js bubble cloud</title>
+
+        <link rel="stylesheet" href="../bower_components/dcjs/dc.css">
+        <link rel="stylesheet" href="../dist/tooltip/dc-tooltip-mixin.css">
+
+        <script src="../bower_components/d3/d3.min.js"></script>
+        <script src="../bower_components/d3-tip/index.js"></script>
+        <script src="../bower_components/crossfilter/crossfilter.min.js"></script>
+        <script src="../bower_components/dcjs/dc.js"></script>
+
+        <!-- <script src="../dist/bubble-cloud/dc-bubble-cloud.js"></script>
+        <script src="../dist/tooltip/dc-tooltip-mixin.js"></script> -->
+
+        <!-- use src for testing -->
+        <script src="../src/scripts/bubble-cloud.js"></script>
+        <script src="../src/scripts/tooltip-mixin.js"></script>
+    </head>
+    <body>
+        <h1>dc.js bubble cloud</h1>
+        <div id="chart"></div>
+        <div id="filter"></div>
+
+        <script>
+            var chart = dc.bubbleCloud('#chart');
+            var filter = dc.pieChart('#filter');
+
+            d3.csv('data/morley.csv', function(error, experiments) {
+                experiments.forEach(function(x) {
+                    x.Speed = +x.Speed;
+                });
+
+                var ndx                 = crossfilter(experiments),
+                    runDimension        = ndx.dimension(function(d) {return +d.Run;}),
+                    speedSumGroup       = runDimension.group().reduceSum(function(d) {return d.Speed * d.Run / 1000;}),
+                    speedDimension      = ndx.dimension(function(d) {return +d.Speed;}),
+                    speedGroup          = speedDimension.group().reduceCount();
+
+                chart.options({
+                    // display
+                    width: 500,
+                    height: 500,
+                    elasticRadius: true,
+
+                    r: d3.scale.linear(),
+                    radiusValueAccessor: function(d) {
+                        return d.value;
+                    },
+
+                    // data
+                    dimension: runDimension,
+                    group: speedSumGroup,
+
+                    // x axis
+                    x: d3.scale.ordinal()
+                });
+
+                chart.render();
+
+                dc.tooltipMixin(chart);
+
+                filter.options({
+                    // data
+                    dimension: speedDimension,
+                    group: speedGroup
+                });
+
+                filter.render();
+            });
+        </script>
+    </body>
+</html>

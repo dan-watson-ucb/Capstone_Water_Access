@@ -176,7 +176,7 @@ app.layout = html.Div([
     ], className="col-md-8", style = {'border':'1px solid black'}),
     html.Div([
         generate_table(df)
-        ], className="col-md-12", style = {'border':'1px solid black', "font-size":"small"}),
+        ], className="col-md-12", style = {"font-size":"small"}),
 
 ], className="container-fluid row")
 

@@ -274,7 +274,7 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
     }
     return figure
 
-## Update graph with query from filters above
+## Update table with query from filters above
 @app.callback(Output('filter-table', 'rows'), [Input('submit-button', 'n_clicks')], state= [State('country-select', 'value'),
  State('status-select', 'value'), State('district-select', 'value'), State('sub-district-select', 'value'), State('watersource-select', 'value'), State('watertech-select', 'value'),
  State('management-select', 'value')])
@@ -326,20 +326,50 @@ def update_district(country):
     #return[{'label': i, 'value': i} for i in df2.district[df2.country_name== country_name].sort_values().unique()]
     return[{'label': i, 'value': i} for i in df2[df2.country_name== country].district.sort_values().unique()]
 
+
+##making sure that we clear input if country is none
+@app.callback(Output('district-select', 'value'), [Input('country-select', 'value')])
+def update_district(country):
+    if country is None:
+        return None
+
 #update sub-districts menu- tried to do this like the above example but got errors- think it becomes somewhat circular?
 @app.callback(Output('sub-district-select', 'options'), [Input('district-select', 'value'), Input('country-select', 'value')])
 def update_subdistrict(district_name, country):
      return[{'label': i, 'value': i} for i in df2[df2.country_name == country][df2.district.isin(district_name)].sub_district.sort_values().unique()]
-    
+
+##making sure that we clear input if country is none
+@app.callback(Output('sub-district-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value')])
+def update_subdistrict(district_name, country):
+    if district_name is None:
+        return None
+
 @app.callback(Output('status-select', 'options'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value')])
 def update_status(district_name, country, sub_district):
     return[{'label': i, 'value': i} for i in df2[df2.country_name == country][df2.district.isin(district_name)]\
     [df2.sub_district.isin(sub_district)].status_id.sort_values().unique()]#check this
+
+#clearing
+@app.callback(Output('status-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value')])
+def update_status(district_name, country, sub_district):
+    if district_name is None:
+        return None
+    if sub_district is None:
+        return None
+
     
 @app.callback(Output('watersource-select', 'options'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value')])
 def update_watersource(district_name, country, sub_district, status_id):
     return[{'label': i, 'value': i} for i in df2[df2.country_name == country][df2.district.isin(district_name)]\
      [df2.sub_district.isin(sub_district)][df2.status_id.isin(status_id)].fuzzy_water_source.sort_values().unique()]
+
+#clearing
+@app.callback(Output('watersource-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value')])
+def update_watersource(district_name, country, sub_district, status_id):
+    if district_name is None:
+        return None
+    if sub_district is None:
+        return None
 
 @app.callback(Output('watertech-select', 'options'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value'), Input('watersource-select', 'value')])
 def update_watertech(district_name, country, sub_district, status_id, fuzzy_water_source):
@@ -347,13 +377,25 @@ def update_watertech(district_name, country, sub_district, status_id, fuzzy_wate
      [df2.sub_district.isin(sub_district)][df2.status_id.isin(status_id)]\
      [df2.fuzzy_water_source.isin(fuzzy_water_source)].sort_values().unique()]
 
+@app.callback(Output('watertech-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value'), Input('watersource-select', 'value')])
+def update_watertech(district_name, country, sub_district, status_id, fuzzy_water_source):
+    if district_name is None:
+        return None
+    if sub_district is None:
+        return None
+
 @app.callback(Output('management-select', 'options'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value'), Input('watersource-select', 'value'), Input('watertech-select', 'value')])
 def update_subdistrict(district_name, country, sub_district,  status_id, fuzzy_water_source, fuzzy_water_tech):
      return[{'label': i, 'value': i} for i in df2.management[df2.country_name == country][df2.district.isin(district_name)]\
      [df2.sub_district.isin(sub_district)][df2.status_id.isin(status_id)]\
      [df2.fuzzy_water_source.isin(fuzzy_water_source)][df2.fuzzy_water_tech.isin(fuzzy_water_tech)].sort_values().unique()]
 
-
+@app.callback(Output('management-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value'), Input('watersource-select', 'value'), Input('watertech-select', 'value')])
+def update_subdistrict(district_name, country, sub_district,  status_id, fuzzy_water_source, fuzzy_water_tech):
+    if district_name is None:
+        return None
+    if sub_district is None:
+        return None
 
 if __name__ == '__main__':
     app.run_server(debug=True)

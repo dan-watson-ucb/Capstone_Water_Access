@@ -22,7 +22,16 @@ conn = psycopg2.connect("dbname='water_db' user='dan' host='postgres-instance2.c
 q2 = "SELECT country_name, district, sub_district, status_id, fuzzy_water_tech, fuzzy_water_source, management from final_all"
 df2 = pd.read_sql_query(q2, conn)
 conn.close()
+### Color Scale
 
+#function for colors
+def color_col(x):
+    if x == "yes":
+        return "rgb(0,255,0)"
+    if x == "no":
+        return "rgb(255,0,0)"
+    if x == "unknown":
+        return "rgb(255, 153, 51)"
 
 ## insertion point for css and js
 external_css = [
@@ -61,6 +70,8 @@ for js in external_js:
 
 for css in external_css:
     app.css.append_css({'external_url': css})
+
+
 
 app.layout = html.Div([
     # Column: Title + Map
@@ -156,7 +167,7 @@ app.layout = html.Div([
                     "mode": "markers",
                     "marker": {
                         "size": 8,
-                        "opacity": 1.0
+                        "opacity": 1.0,
                     }
                 }
             ],
@@ -227,6 +238,7 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
 
 
     df = pd.read_sql_query(base_query, conn)
+    df["color"] = df["status_id"].apply(color_col)
     conn.close()
     mapbox_access_token = 'pk.eyJ1IjoiZHdhdHNvbjgyOCIsImEiOiJjamVycHp0b3cxY2dyMnhsdGc4eHBkcW85In0.uGPxMK4_u-nAs_J74yw70A'
     figure = { "data": [
@@ -239,7 +251,8 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
                     "mode": "markers",
                     "marker": {
                         "size": 8,
-                        "opacity": 1.0
+                        "opacity": .8,
+                        "color" : df['color']                        
                     }
                 }
             ],
@@ -304,6 +317,7 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
 
     df = pd.read_sql_query(base_query, conn)
     conn.close()
+    df["color"] = df["status_id"].apply(color_col)
     return df.to_dict('records')
 
 ##update districts menu

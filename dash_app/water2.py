@@ -14,11 +14,14 @@ conn = psycopg2.connect("dbname='water_db' user='dan' host='postgres-instance2.c
 query = "SELECT lat_deg, lon_deg, status_id, district, sub_district, country_name, fuzzy_water_source, fuzzy_water_tech, management from final_all WHERE country_name = 'Sierra Leone'"
 df_init = pd.read_sql_query(query, conn)
 df = pd.read_sql_query(query, conn)
+conn.close()
 mapbox_access_token = 'pk.eyJ1IjoiZHdhdHNvbjgyOCIsImEiOiJjamVycHp0b3cxY2dyMnhsdGc4eHBkcW85In0.uGPxMK4_u-nAs_J74yw70A'
 
 ## query for countries, districts, subdistricts
+conn = psycopg2.connect("dbname='water_db' user='dan' host='postgres-instance2.clhlqrsuvowr.us-east-1.rds.amazonaws.com' password='berkeley'")
 q2 = "SELECT country_name, district, sub_district, status_id, fuzzy_water_tech, fuzzy_water_source, management from final_all"
 df2 = pd.read_sql_query(q2, conn)
+conn.close()
 
 
 ## insertion point for css and js
@@ -224,6 +227,7 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
 
 
     df = pd.read_sql_query(base_query, conn)
+    conn.close()
     mapbox_access_token = 'pk.eyJ1IjoiZHdhdHNvbjgyOCIsImEiOiJjamVycHp0b3cxY2dyMnhsdGc4eHBkcW85In0.uGPxMK4_u-nAs_J74yw70A'
     figure = { "data": [
                 {
@@ -299,6 +303,7 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
 
 
     df = pd.read_sql_query(base_query, conn)
+    conn.close()
     return df.to_dict('records')
 
 ##update districts menu

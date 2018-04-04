@@ -9,9 +9,17 @@ import pandas as pd
 from dash.dependencies import Output, Event, Input, State
 import dash_table_experiments as dt
 
+
+#get rid of lat lon from the table
+#predictions yes no instead of 0's and 1's
+#color code based on today's prediction
+#table columns - order 
+#Status_id should not be used - use status_binary
+
+
 ## Connect and pull initial df
 conn = psycopg2.connect("dbname='water_db' user='dan' host='postgres-instance2.clhlqrsuvowr.us-east-1.rds.amazonaws.com' password='berkeley'")
-query = "SELECT lat_deg, lon_deg, status_id, district, sub_district, country_name, fuzzy_water_source, fuzzy_water_tech, management from final_all WHERE country_name = 'Sierra Leone'"
+query = "SELECT lat_deg, lon_deg, status_id, district, sub_district, country_name, fuzzy_water_source, fuzzy_water_tech, management, today_preds, one_year_preds from final_all WHERE country_name = 'Sierra Leone'"
 df_init = pd.read_sql_query(query, conn)
 df = pd.read_sql_query(query, conn)
 conn.close()
@@ -19,7 +27,7 @@ mapbox_access_token = 'pk.eyJ1IjoiZHdhdHNvbjgyOCIsImEiOiJjamVycHp0b3cxY2dyMnhsdG
 
 ## query for countries, districts, subdistricts
 conn = psycopg2.connect("dbname='water_db' user='dan' host='postgres-instance2.clhlqrsuvowr.us-east-1.rds.amazonaws.com' password='berkeley'")
-q2 = "SELECT country_name, district, sub_district, status_id, fuzzy_water_tech, fuzzy_water_source, management from final_all"
+q2 = "SELECT country_name, district, sub_district, status_id, fuzzy_water_tech, fuzzy_water_source, management, today_preds,one_year_preds from final_all"
 df2 = pd.read_sql_query(q2, conn)
 conn.close()
 ### Color Scale
@@ -75,9 +83,6 @@ for css in external_css:
 
 app.layout = html.Div([
     # Column: Title + Map
-    html.Div([
-        html.H1("Water Map", className="text-center", style = {'width':'100%'}),
-        ], style = {'textAlign':'center'}, className="col-md-12 row"),
         # Row: Title
         html.Div([
         # Row: Map
@@ -152,6 +157,22 @@ app.layout = html.Div([
         ),
         ], style = {"padding":"5px"}),
         html.Div([
+        dcc.Dropdown(id = 'today-pred-select',
+            options=[
+             {'label': i, 'value': i} for i in df_init.today_preds.sort_values().unique()],
+             placeholder = "Select Today's Prediction",
+             multi = True       
+        ),
+        ], style = {"padding":"5px"}),
+        html.Div([
+        dcc.Dropdown(id = 'one-year-pred-select',
+            options=[
+             {'label': i, 'value': i} for i in df_init.one_year_preds.sort_values().unique()],
+             placeholder = "Select One year Prediction",
+             multi = True       
+        ),
+        ], style = {"padding":"5px"}),
+        html.Div([
         html.Button('submit', id= 'submit-button'),
         ], style = {"padding":"5px"}),
         ], className="col-md-4"),
@@ -199,10 +220,10 @@ app.layout = html.Div([
 ## Update graph with query from filters above
 @app.callback(Output('output-graph', 'figure'), [Input('submit-button', 'n_clicks')], state= [State('country-select', 'value'),
  State('status-select', 'value'), State('district-select', 'value'), State('sub-district-select', 'value'), State('watersource-select', 'value'), State('watertech-select', 'value'),
- State('management-select', 'value')])
-def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_source, fuzzy_water_tech, management):
+ State('management-select', 'value'), State('today-pred-select', 'value'), State('one-year-pred-select', 'value')])
+def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_source, fuzzy_water_tech, management, today_preds, one_year_preds):
     conn = psycopg2.connect("dbname='water_db' user='dan' host='postgres-instance2.clhlqrsuvowr.us-east-1.rds.amazonaws.com' password='berkeley'")
-    clause = [status, district, sub_district, fuzzy_water_source, fuzzy_water_tech, management]
+    clause = [status, district, sub_district, fuzzy_water_source, fuzzy_water_tech, management, today_preds, one_year_preds]
     base_query = "SELECT lat_deg, lon_deg, status_id from final_all WHERE country_name =" + "'" + str(country) + "'"
 
 
@@ -235,6 +256,16 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
         pass
     else:
         base_query = base_query +" and management in (" + ', '.join("'" + i + "'" for i in management) + ")"
+
+    if not clause[6]:
+        pass
+    else:
+        base_query = base_query +" and today_preds in (" + ', '.join(i for i in today_preds) + ")"
+
+    if not clause[7]:
+        pass
+    else:
+        base_query = base_query +" and one_year_preds in (" + ', '.join(i for i in one_year_preds) + ")"
 
 
     df = pd.read_sql_query(base_query, conn)
@@ -277,11 +308,11 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
 ## Update table with query from filters above
 @app.callback(Output('filter-table', 'rows'), [Input('submit-button', 'n_clicks')], state= [State('country-select', 'value'),
  State('status-select', 'value'), State('district-select', 'value'), State('sub-district-select', 'value'), State('watersource-select', 'value'), State('watertech-select', 'value'),
- State('management-select', 'value')])
-def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_source, fuzzy_water_tech, management):
+ State('management-select', 'value'), State('today-pred-select', 'value'), State('one-year-pred-select', 'value')])
+def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_source, fuzzy_water_tech, management, today_preds, one_year_preds):
     conn = psycopg2.connect("dbname='water_db' user='dan' host='postgres-instance2.clhlqrsuvowr.us-east-1.rds.amazonaws.com' password='berkeley'")
-    clause = [status, district, sub_district, fuzzy_water_source, fuzzy_water_tech, management]
-    base_query = "SELECT lat_deg, lon_deg, status_id, district, sub_district, country_name, fuzzy_water_source, fuzzy_water_tech, management from final_all WHERE country_name =" + "'" + str(country) + "'"
+    clause = [status, district, sub_district, fuzzy_water_source, fuzzy_water_tech, management, today_preds, one_year_preds]
+    base_query = "SELECT lat_deg, lon_deg, status_id, district, sub_district, country_name, fuzzy_water_source, fuzzy_water_tech, management, today_preds, one_year_preds from final_all WHERE country_name =" + "'" + str(country) + "'"
 
 
     if not clause[0]:
@@ -313,6 +344,16 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
         pass
     else:
         base_query = base_query +" and management in (" + ', '.join("'" + i + "'" for i in management) + ")"
+
+    if not clause[6]:
+        pass
+    else:
+        base_query = base_query +" and today_preds in (" + ', '.join(i for i in today_preds) + ")"
+
+    if not clause[7]:
+        pass
+    else:
+        base_query = base_query +" and one_year_preds in (" + ', '.join(i for i in one_year_preds) + ")"
 
 
     df = pd.read_sql_query(base_query, conn)
@@ -397,8 +438,28 @@ def update_subdistrict(district_name, country, sub_district,  status_id, fuzzy_w
     if sub_district is None:
         return None
 
+
+@app.callback(Output('today-pred-select', 'options'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value'), Input('watersource-select', 'value'), Input('watertech-select', 'value'), Input('management-select', 'value')])
+def update_subdistrict(district_name, country, sub_district,  status_id, fuzzy_water_source, fuzzy_water_tech, management):
+     return[{'label': i, 'value': i} for i in df2.today_preds[df2.country_name == country][df2.district.isin(district_name)]\
+     [df2.sub_district.isin(sub_district)][df2.status_id.isin(status_id)]\
+     [df2.fuzzy_water_source.isin(fuzzy_water_source)][df2.fuzzy_water_tech.isin(fuzzy_water_tech)][df2.management.isin(management)].sort_values().unique()]
+
+@app.callback(Output('today-pred-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value'), Input('watersource-select', 'value'), Input('watertech-select', 'value'), Input('management-select', 'value')])
+def update_subdistrict(district_name, country, sub_district,  status_id, fuzzy_water_source, fuzzy_water_tech, management):
+    if sub_district is None:
+        return None
+
+@app.callback(Output('one-year-pred-select', 'options'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value'), Input('watersource-select', 'value'), Input('watertech-select', 'value'), Input('management-select', 'value'), Input('today-pred-select', 'value')])
+def update_subdistrict(district_name, country, sub_district,  status_id, fuzzy_water_source, fuzzy_water_tech, management, today_preds):
+     return[{'label': i, 'value': i} for i in df2.one_year_preds[df2.country_name == country][df2.district.isin(district_name)]\
+     [df2.sub_district.isin(sub_district)][df2.status_id.isin(status_id)]\
+     [df2.fuzzy_water_source.isin(fuzzy_water_source)][df2.fuzzy_water_tech.isin(fuzzy_water_tech)][df2.management.isin(management)][df2.today_preds.isin(today_preds)].sort_values().unique()]
+
+@app.callback(Output('one-year-pred-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value'), Input('watersource-select', 'value'), Input('watertech-select', 'value'), Input('management-select', 'value'), Input('today-pred-select', 'value')])
+def update_subdistrict(district_name, country, sub_district,  status_id, fuzzy_water_source, fuzzy_water_tech, management, one_year_preds):
+    if sub_district is None:
+        return None
+
 if __name__ == '__main__':
     app.run_server(debug=True)
-
-
-

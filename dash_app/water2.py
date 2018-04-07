@@ -35,7 +35,7 @@ def color_col_pred(x):
 
 ## Connect and pull initial df
 conn = psycopg2.connect("dbname='water_db' user='dan' host='postgres-instance2.clhlqrsuvowr.us-east-1.rds.amazonaws.com' password='berkeley'")
-query = "SELECT country_name, district, sub_district, status_id, fuzzy_water_source, fuzzy_water_tech, management, today_preds_text, one_year_preds_text, one_km_population, lat_deg, lon_deg from final WHERE country_name = 'Sierra Leone'"
+query = "SELECT country_name, district, sub_district, status_id, fuzzy_water_source, fuzzy_water_tech, management, CASE WHEN today_preds = 1 THEN 'Not Working' ELSE 'Working' end as today_preds_text, CASE WHEN one_year_preds = 1 THEN 'Not Working' ELSE 'Working' end as one_year_preds_text, one_km_population, lat_deg, lon_deg from final_all WHERE country_name = 'Sierra Leone'"
 df_init = pd.read_sql_query(query, conn)
 df = pd.read_sql_query(query, conn)
 conn.close()
@@ -218,7 +218,7 @@ app.layout = html.Div([
         }
     })
     ], className="col-md-8", style = {'border':'1px solid black'}),
-    html.H2(children = "", id = "well_text"),
+    html.H6(children = "", id = "well_text"),
     html.Div([
         generate_table(df)
         ], className="col-md-12", style = {"font-size":"small"}),
@@ -322,7 +322,7 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
 def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_source, fuzzy_water_tech, management, today_preds_text, one_year_preds_text):
     conn = psycopg2.connect("dbname='water_db' user='dan' host='postgres-instance2.clhlqrsuvowr.us-east-1.rds.amazonaws.com' password='berkeley'")
     clause = [status, district, sub_district, fuzzy_water_source, fuzzy_water_tech, management, today_preds_text, one_year_preds_text]
-    base_query = "SELECT country_name, district, sub_district, status_id, fuzzy_water_source, fuzzy_water_tech, management, today_preds_text, one_year_preds_text, one_km_population, lat_deg, lon_deg from final WHERE country_name =" + "'" + str(country) + "'"
+    base_query = "SELECT country_name, district, sub_district, status_id, fuzzy_water_source, fuzzy_water_tech, management, CASE WHEN today_preds = 1 THEN 'Not Working' ELSE 'Working' end as today_preds_text, CASE WHEN one_year_preds = 1 THEN 'Not Working' ELSE 'Working' end as one_year_preds_text, one_km_population, lat_deg, lon_deg from final_all WHERE country_name =" + "'" + str(country) + "'"
 
 
     if not clause[0]:
@@ -374,7 +374,7 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
 ## Update well_text for number of water points
 @app.callback(Output("well_text", 'children'), [Input('filter-table', 'rows')])
 def update_well_text(rows):
-    return "The filter returns {} rows".format(str(len(rows)))
+    return "Filters matched {} results".format(str(len(rows)))
 
 ##update districts menu
 @app.callback(Output('district-select', 'options'), [Input('country-select', 'value')])

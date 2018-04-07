@@ -8,6 +8,7 @@ import psycopg2
 import pandas as pd
 from dash.dependencies import Output, Event, Input, State
 import dash_table_experiments as dt
+import urllib
 
 
 #get rid of lat lon from the table - moved to the back
@@ -222,6 +223,13 @@ app.layout = html.Div([
     html.Div([
         generate_table(df)
         ], className="col-md-12", style = {"font-size":"small"}),
+    html.A(
+        'Download Data',
+        id='download-link',
+        download="rawdata.csv",
+        href="",
+        target="_blank"
+    )
 
 ], className="container-fluid row")
 
@@ -475,6 +483,73 @@ def update_one_year_pred(district_name, country, sub_district,  status_id, fuzzy
 def update_one_year_pred(district_name, country, sub_district,  status_id, fuzzy_water_source, fuzzy_water_tech, management, one_year_preds_text):
     if sub_district is None:
         return None
+
+# @app.callback(
+#     dash.dependencies.Output('download-link', 'href'),
+#     [dash.dependencies.Input('datatable-gapminder', 'selected_row_indices')])
+# def update_download_link(selected_row_indices):
+#     dff = filter_data(selected_row_indices)
+#     csv_string = dff.to_csv(index=False, encoding='utf-8')
+#     csv_string = "data:text/csv;charset=utf-8," + urllib.parse.quote(csv_string)
+#     return csv_string
+
+@app.callback(Output('download-link', 'href'), [Input('submit-button', 'n_clicks')], state= [State('country-select', 'value'),
+ State('status-select', 'value'), State('district-select', 'value'), State('sub-district-select', 'value'), State('watersource-select', 'value'), State('watertech-select', 'value'),
+ State('management-select', 'value'), State('today-pred-select', 'value'), State('one-year-pred-select', 'value')])
+def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_source, fuzzy_water_tech, management, today_preds_text, one_year_preds_text):
+    conn = psycopg2.connect("dbname='water_db' user='dan' host='postgres-instance2.clhlqrsuvowr.us-east-1.rds.amazonaws.com' password='berkeley'")
+    clause = [status, district, sub_district, fuzzy_water_source, fuzzy_water_tech, management, today_preds_text, one_year_preds_text]
+    base_query = "SELECT country_name, district, sub_district, status_id, fuzzy_water_source, fuzzy_water_tech, management, CASE WHEN today_preds = 1 THEN 'Not Working' ELSE 'Working' end as today_preds_text, CASE WHEN one_year_preds = 1 THEN 'Not Working' ELSE 'Working' end as one_year_preds_text, one_km_population, lat_deg, lon_deg from final_all WHERE country_name =" + "'" + str(country) + "'"
+
+
+    if not clause[0]:
+        pass
+    else:
+        base_query = base_query + " and status_id in (" + ', '.join("'" + i + "'" for i in status) + ")"
+
+    if not clause[1]:
+        pass
+    else:
+        base_query = base_query +" and district in (" + ', '.join("'" + i + "'" for i in district) + ")"
+
+    if not clause[2]:
+        pass
+    else:
+        base_query = base_query +" and sub_district in (" + ', '.join("'" + i + "'" for i in sub_district) + ")"
+
+    if not clause[3]:
+        pass
+    else:
+        base_query = base_query +" and fuzzy_water_source in (" + ', '.join("'" + i + "'" for i in fuzzy_water_source) + ")"
+
+    if not clause[4]:
+        pass
+    else:
+        base_query = base_query +" and fuzzy_water_tech in (" + ', '.join("'" + i + "'" for i in fuzzy_water_tech) + ")"
+
+    if not clause[5]:
+        pass
+    else:
+        base_query = base_query +" and management in (" + ', '.join("'" + i + "'" for i in management) + ")"
+
+    if not clause[6]:
+        pass
+    else:
+        base_query = base_query +" and today_preds_text in (" + ', '.join("'" + i + "'" for i in today_preds_text) + ")"
+
+    if not clause[7]:
+        pass
+    else:
+        base_query = base_query +" and one_year_preds_text in (" + ', '.join("'" + i + "'" for i in one_year_preds_text) + ")"
+
+
+    df = pd.read_sql_query(base_query, conn)
+    conn.close()
+    df["color"] = df["today_preds_text"].apply(color_col_pred)
+    csv_string = df.to_csv(index=False, encoding='utf-8')
+    csv_string = "data:text/csv;charset=utf-8," + urllib.quote(csv_string)
+
+    return csv_string
 
 if __name__ == '__main__':
     app.run_server(debug=True)

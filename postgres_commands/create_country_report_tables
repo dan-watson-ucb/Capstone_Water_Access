@@ -1,0 +1,5 @@
+drop table if exists country_summary
+
+CREATE TABLE country_summary(id INTEGER,measure TEXT,values DOUBLE PRECISION,country TEXT)
+
+\copy country_summary FROM '/Users/Dan/Desktop/country_report_files/summary_results_by_country.csv'  DELIMITER ',' CSV HEADER;

@@ -183,3 +183,16 @@ div.dc-chart {
 .dc-table-head{
     font-size: 11px;
 }
+
+.mapframe {
+padding-top: 20px;
+border: none;
+}
+
+.frameblock {
+padding-top: 120px;
+text-align:center;
+background-color:white;
+}
+
+

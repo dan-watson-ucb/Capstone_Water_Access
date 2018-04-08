@@ -1,0 +1,107 @@
+,fuzzy_water_tech,# functioning,# not functioning,percentage_broken,country
+0,__MISSING__,8688.0,4416.0,33.7,Sierra Leone
+1,India Mark MK IMK II,12582.0,4235.0,25.18,Sierra Leone
+2,Bucket,13358.0,1051.0,7.29,Sierra Leone
+3,Gravity,2181.0,978.0,30.96,Sierra Leone
+4,Kardia,3237.0,710.0,17.99,Sierra Leone
+5,Hand Pump,801.0,418.0,34.29,Sierra Leone
+6,no match,692.0,317.0,31.42,Sierra Leone
+7,Afridev,707.0,198.0,21.88,Sierra Leone
+8,tap,177.0,76.0,30.04,Sierra Leone
+9,Well,1.0,19.0,95.0,Sierra Leone
+10,Standpipe Stand Post,11.0,7.0,38.89,Sierra Leone
+11,Tank,3.0,1.0,25.0,Sierra Leone
+12,Standpipe Stand Post,17292.0,3020.0,14.87,Swaziland
+13,Borehole,995.0,472.0,32.17,Swaziland
+14,no match,1320.0,286.0,17.81,Swaziland
+15,Spring River Stream Protected,348.0,34.0,8.9,Swaziland
+16,Lake Pond Dam,11.0,2.0,15.38,Swaziland
+17,Well,4.0,,,Swaziland
+18,__MISSING__,6878.0,5282.0,43.44,Uganda
+19,Borehole,21657.0,5068.0,18.96,Uganda
+20,Well,12124.0,5030.0,29.32,Uganda
+21,Spring River Stream Protected,20670.0,3747.0,15.35,Uganda
+22,Tank,13407.0,2550.0,15.98,Uganda
+23,Standpipe Stand Post,6106.0,1507.0,19.8,Uganda
+24,tap,4985.0,894.0,15.21,Uganda
+25,Hand Pump,1205.0,407.0,25.25,Uganda
+26,no match,1074.0,185.0,14.69,Uganda
+27,Lake Pond Dam,237.0,81.0,25.47,Uganda
+28,Gravity,221.0,38.0,14.67,Uganda
+29,Rain Rainwater,33.0,31.0,48.44,Uganda
+30,India Mark MK IMK II,137.0,,,Uganda
+31,__MISSING__,13565.0,2095.0,13.38,Kenya
+32,Hand Pump,1159.0,266.0,18.67,Kenya
+33,Afridev,1139.0,188.0,14.17,Kenya
+34,Borehole,151.0,82.0,35.19,Kenya
+35,Gravity,1026.0,75.0,6.81,Kenya
+36,no match,179.0,61.0,25.42,Kenya
+37,Electrical Pump,583.0,59.0,9.19,Kenya
+38,Bush Pump,48.0,23.0,32.39,Kenya
+39,India Mark MK IMK II,79.0,13.0,14.13,Kenya
+40,Well,33.0,7.0,17.5,Kenya
+41,tap,69.0,6.0,8.0,Kenya
+42,Spring River Stream Protected,36.0,5.0,12.2,Kenya
+43,Bucket,95.0,4.0,4.04,Kenya
+44,Standpipe Stand Post,11.0,2.0,15.38,Kenya
+45,Lake Pond Dam,1.0,,,Kenya
+46,Rain Rainwater,1.0,,,Kenya
+47,Tank,45.0,,,Kenya
+48,municipal water supply,2.0,,,Kenya
+49,Well,13967.0,6601.0,32.09,Afghansitan
+50,__MISSING__,4286.0,4982.0,53.75,Afghansitan
+51,Indus,9253.0,3290.0,26.23,Afghansitan
+52,Pamir,3587.0,1131.0,23.97,Afghansitan
+53,Kabul KABUL,2329.0,1106.0,32.2,Afghansitan
+54,Tube Well,5663.0,658.0,10.41,Afghansitan
+55,Standpipe Stand Post,2825.0,72.0,2.49,Afghansitan
+56,no match,85.0,12.0,12.37,Afghansitan
+57,Rain Rainwater,2.0,,,Afghansitan
+58,Afridev,3476.0,774.0,18.21,Malawi
+59,Hand Pump,858.0,753.0,46.74,Malawi
+60,no match,805.0,669.0,45.39,Malawi
+61,Gravity,77.0,377.0,83.04,Malawi
+62,__MISSING__,3681.0,358.0,8.86,Malawi
+63,Borehole,157.0,60.0,27.65,Malawi
+64,tap,56.0,38.0,40.43,Malawi
+65,India Mark MK IMK II,22.0,8.0,26.67,Malawi
+66,Well,8.0,5.0,38.46,Malawi
+67,Electrical Pump,,1.0,100.0,Malawi
+68,Tank,,1.0,100.0,Malawi
+69,Spring River Stream Protected,3.0,,,Malawi
+70,Standpipe Stand Post,1.0,,,Malawi
+71,Tube Well,3.0,,,Malawi
+72,India Mark MK IMK II,2786.0,717.0,20.47,South Sudan
+73,__MISSING__,1899.0,522.0,21.56,South Sudan
+74,no match,59.0,28.0,32.18,South Sudan
+75,Afridev,52.0,11.0,17.46,South Sudan
+76,Rain Rainwater,2.0,,,South Sudan
+77,municipal water supply,12.0,,,South Sudan
+78,Hand Pump,3977.0,100.0,2.45,India
+79,no match,600.0,35.0,5.51,India
+80,India Mark MK IMK II,1024.0,20.0,1.92,India
+81,municipal water supply,87.0,5.0,5.43,India
+82,Well,24.0,1.0,4.0,India
+83,__MISSING__,1.0,,,India
+84,tap,13.0,,,India
+85,Afridev,6399.0,2639.0,29.2,Liberia
+86,no match,490.0,377.0,43.48,Liberia
+87,Hand Pump,2514.0,316.0,11.17,Liberia
+88,India Mark MK IMK II,422.0,113.0,21.12,Liberia
+89,__MISSING__,1.0,86.0,98.85,Liberia
+90,Kardia,119.0,51.0,30.0,Liberia
+91,Well,168.0,10.0,5.62,Liberia
+92,Standpipe Stand Post,81.0,5.0,5.81,Liberia
+93,Electrical Pump,27.0,4.0,12.9,Liberia
+94,Lake Pond Dam,80.0,3.0,3.61,Liberia
+95,Spring River Stream Protected,64.0,1.0,1.54,Liberia
+96,Tube Well,49.0,1.0,2.0,Liberia
+97,municipal water supply,1.0,1.0,50.0,Liberia
+98,Rain Rainwater,6.0,,,Liberia
+99,Bush Pump,16066.0,6607.0,29.14,Zimbabwe
+100,Bucket,5416.0,5568.0,50.69,Zimbabwe
+101,__MISSING__,1061.0,1712.0,61.74,Zimbabwe
+102,Hand Pump,692.0,905.0,56.67,Zimbabwe
+103,no match,301.0,293.0,49.33,Zimbabwe
+104,Electrical Pump,33.0,75.0,69.44,Zimbabwe
+105,India Mark MK IMK II,4.0,,,Zimbabwe

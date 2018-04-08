@@ -1,0 +1,111 @@
+,measure,values,country
+1,five_fold_nested_cv_auc_mean,0.8396273382197748,Sierra Leone
+2,five_fold_nested_cv_auc_std,0.004596156024515512,Sierra Leone
+3,holdout_accuracy,0.827941310489383,Sierra Leone
+4,holdout_auc,0.8317004287743427,Sierra Leone
+5,holdout_rows,10973,Sierra Leone
+6,test_accuracy,0.8339560739998177,Sierra Leone
+7,test_auc,0.8390689566238145,Sierra Leone
+8,testing_rows,10973,Sierra Leone
+9,train_accuracy,0.8925511877999879,Sierra Leone
+10,train_auc,0.9520468422732453,Sierra Leone
+11,training_rows,32918,Sierra Leone
+13,five_fold_nested_cv_auc_mean,0.9974885479597262,Swaziland
+14,five_fold_nested_cv_auc_std,0.000983169543952608,Swaziland
+15,holdout_accuracy,0.981921379020391,Swaziland
+16,holdout_auc,0.9968573436826276,Swaziland
+17,holdout_rows,4757,Swaziland
+18,test_accuracy,0.9800294303132226,Swaziland
+19,test_auc,0.9959231114036717,Swaziland
+20,testing_rows,4757,Swaziland
+21,train_accuracy,0.9993693062368606,Swaziland
+22,train_auc,0.9999992339908464,Swaziland
+23,training_rows,14270,Swaziland
+25,five_fold_nested_cv_auc_mean,0.8501549312186618,Uganda
+26,five_fold_nested_cv_auc_std,0.0017665241547631441,Uganda
+27,holdout_accuracy,0.8461098146272731,Uganda
+28,holdout_auc,0.851344414670396,Uganda
+29,holdout_rows,22711,Uganda
+30,test_accuracy,0.8451851525692395,Uganda
+31,test_auc,0.8425394229674708,Uganda
+32,testing_rows,22711,Uganda
+33,train_accuracy,0.876489755181119,Uganda
+34,train_auc,0.9236640645858294,Uganda
+35,training_rows,68132,Uganda
+37,five_fold_nested_cv_auc_mean,0.8432819295441399,Kenya
+38,five_fold_nested_cv_auc_std,0.010316980462478927,Kenya
+39,holdout_accuracy,0.8761250592136428,Kenya
+40,holdout_auc,0.8334359652687833,Kenya
+41,holdout_rows,4222,Kenya
+42,test_accuracy,0.8737565135007106,Kenya
+43,test_auc,0.8368727608152475,Kenya
+44,testing_rows,4222,Kenya
+45,train_accuracy,0.9089545167403664,Kenya
+46,train_auc,0.9386677363615357,Kenya
+47,training_rows,12664,Kenya
+49,five_fold_nested_cv_auc_mean,0.8519110867986719,Afghansitan
+50,five_fold_nested_cv_auc_std,0.004383809841219998,Afghansitan
+51,holdout_accuracy,0.8013366750208856,Afghansitan
+52,holdout_auc,0.8448320096780468,Afghansitan
+53,holdout_rows,11970,Afghansitan
+54,test_accuracy,0.7996658312447786,Afghansitan
+55,test_auc,0.8478133920234759,Afghansitan
+56,testing_rows,11970,Afghansitan
+57,train_accuracy,0.8628199058731795,Afghansitan
+58,train_auc,0.9316267722424321,Afghansitan
+59,training_rows,35909,Afghansitan
+61,five_fold_nested_cv_auc_mean,0.8467628348494186,Malawi
+62,five_fold_nested_cv_auc_std,0.006979626385904372,Malawi
+63,holdout_accuracy,0.8323083230832309,Malawi
+64,holdout_auc,0.8485262052814342,Malawi
+65,holdout_rows,2439,Malawi
+66,test_accuracy,0.8191140278917145,Malawi
+67,test_auc,0.8450856974074863,Malawi
+68,testing_rows,2438,Malawi
+69,train_accuracy,0.866420563303254,Malawi
+70,train_auc,0.9137023345169706,Malawi
+71,training_rows,7314,Malawi
+73,five_fold_nested_cv_auc_mean,0.7866926971867229,South Sudan
+74,five_fold_nested_cv_auc_std,0.008321712117325944,South Sudan
+75,holdout_accuracy,0.8169129720853858,South Sudan
+76,holdout_auc,0.8051443119802495,South Sudan
+77,holdout_rows,1218,South Sudan
+78,test_accuracy,0.8013136288998358,South Sudan
+79,test_auc,0.7577342047930282,South Sudan
+80,testing_rows,1218,South Sudan
+81,train_accuracy,0.8365279299014239,South Sudan
+82,train_auc,0.8676827270488228,South Sudan
+83,training_rows,3652,South Sudan
+85,five_fold_nested_cv_auc_mean,0.6836589657116676,India
+86,five_fold_nested_cv_auc_std,0.025956337355518357,India
+87,holdout_accuracy,0.9728353140916808,India
+88,holdout_auc,0.707242582897033,India
+89,holdout_rows,1178,India
+90,test_accuracy,0.9728122344944775,India
+91,test_auc,0.6851118995633187,India
+92,testing_rows,1177,India
+93,train_accuracy,0.9725368063420159,India
+94,train_auc,0.8057368808055344,India
+95,training_rows,3532,India
+97,five_fold_nested_cv_auc_mean,0.8199871274166899,Liberia
+98,five_fold_nested_cv_auc_std,0.007166960216400661,Liberia
+99,holdout_accuracy,0.8114754098360656,Liberia
+100,holdout_auc,0.8090955492580325,Liberia
+101,holdout_rows,2806,Liberia
+102,test_accuracy,0.8239486813970064,Liberia
+103,test_auc,0.8165740361940682,Liberia
+104,testing_rows,2806,Liberia
+105,train_accuracy,0.8496910646387833,Liberia
+106,train_auc,0.8938392209871769,Liberia
+107,training_rows,8416,Liberia
+109,five_fold_nested_cv_auc_mean,0.8371409883873857,Zimbabwe
+110,five_fold_nested_cv_auc_std,0.006291100560378228,Zimbabwe
+111,holdout_accuracy,0.7630050342067898,Zimbabwe
+112,holdout_auc,0.818050969929798,Zimbabwe
+113,holdout_rows,7747,Zimbabwe
+114,test_accuracy,0.7725571188847296,Zimbabwe
+115,test_auc,0.8308430121125807,Zimbabwe
+116,testing_rows,7747,Zimbabwe
+117,train_accuracy,0.8692284521709196,Zimbabwe
+118,train_auc,0.9434151083128723,Zimbabwe
+119,training_rows,23239,Zimbabwe

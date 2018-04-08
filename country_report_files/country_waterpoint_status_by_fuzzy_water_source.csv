@@ -1,0 +1,83 @@
+,fuzzy_water_source,# functioning,# not functioning,percentage_broken,country
+0,Well,30182.0,7238.0,19.34,Sierra Leone
+1,Stand Post Tap,7614.0,3959.0,34.21,Sierra Leone
+2,Borehole,1632.0,455.0,21.8,Sierra Leone
+3,Piped,1497.0,403.0,21.21,Sierra Leone
+4,Tank,421.0,145.0,25.62,Sierra Leone
+5,Hand Pump,91.0,77.0,45.83,Sierra Leone
+6,Spring River Stream Protected,572.0,73.0,11.32,Sierra Leone
+7,no match,298.0,56.0,15.82,Sierra Leone
+8,Rain Rainwater,43.0,16.0,27.12,Sierra Leone
+9,Spring River Stream Unprotected,88.0,4.0,4.35,Sierra Leone
+10,Borehole,8274.0,3033.0,26.82,Swaziland
+11,Spring River Stream Protected,11161.0,695.0,5.86,Swaziland
+12,no match,405.0,85.0,17.35,Swaziland
+13,Hand Pump,126.0,1.0,0.79,Swaziland
+14,Well,4.0,,,Swaziland
+15,__MISSING__ Unknown,80760.0,21118.0,20.73,Uganda
+16,Borehole,5107.0,1876.0,26.87,Uganda
+17,Spring River Stream Protected,1763.0,929.0,34.51,Uganda
+18,Well,533.0,272.0,33.79,Uganda
+19,Rain Rainwater,89.0,206.0,69.83,Uganda
+20,no match,283.0,144.0,33.72,Uganda
+21,Spring River Stream Unprotected,113.0,136.0,54.62,Uganda
+22,municipal water supply,26.0,105.0,80.15,Uganda
+23,Tank,,15.0,100.0,Uganda
+24,Lake Pond Dam,6.0,9.0,60.0,Uganda
+25,Stand Post Tap,49.0,9.0,15.52,Uganda
+26,Hand Pump,,1.0,100.0,Uganda
+27,Sand,5.0,,,Uganda
+28,__MISSING__ Unknown,6907.0,1923.0,21.78,Kenya
+29,Well,3315.0,303.0,8.37,Kenya
+30,Borehole,1951.0,283.0,12.67,Kenya
+31,no match,828.0,157.0,15.94,Kenya
+32,Spring River Stream Protected,2358.0,70.0,2.88,Kenya
+33,Rain Rainwater,374.0,52.0,12.21,Kenya
+34,Spring River Stream Unprotected,2036.0,43.0,2.07,Kenya
+35,Stand Post Tap,215.0,28.0,11.52,Kenya
+36,Lake Pond Dam,61.0,14.0,18.67,Kenya
+37,Piped,101.0,6.0,5.61,Kenya
+38,Sand,55.0,6.0,9.84,Kenya
+39,Tank,4.0,1.0,20.0,Kenya
+40,municipal water supply,17.0,,,Kenya
+41,__MISSING__ Unknown,22458.0,7332.0,24.61,Afghansitan
+42,Tube Well,11698.0,4876.0,29.42,Afghansitan
+43,Well,3724.0,4536.0,54.92,Afghansitan
+44,Stand Post Tap,3623.0,911.0,20.09,Afghansitan
+45,no match,494.0,197.0,28.51,Afghansitan
+46,__MISSING__ Unknown,3056.0,1831.0,37.47,Malawi
+47,no match,702.0,521.0,42.6,Malawi
+48,Hand Pump,1656.0,308.0,15.68,Malawi
+49,Borehole,2554.0,266.0,9.43,Malawi
+50,Well,741.0,84.0,10.18,Malawi
+51,municipal water supply,62.0,17.0,21.52,Malawi
+52,Spring River Stream Unprotected,115.0,6.0,4.96,Malawi
+53,Stand Post Tap,120.0,6.0,4.76,Malawi
+54,Spring River Stream Protected,36.0,3.0,7.69,Malawi
+55,Piped,30.0,2.0,6.25,Malawi
+56,Lake Pond Dam,72.0,,,Malawi
+57,Rain Rainwater,2.0,,,Malawi
+58,Tank,1.0,,,Malawi
+59,Borehole,4507.0,1234.0,21.49,South Sudan
+60,Spring River Stream Unprotected,122.0,22.0,15.28,South Sudan
+61,no match,151.0,16.0,9.58,South Sudan
+62,Well,18.0,5.0,21.74,South Sudan
+63,Rain Rainwater,12.0,1.0,7.69,South Sudan
+64,__MISSING__ Unknown,5726.0,161.0,2.73,India
+65,Well,6032.0,2481.0,29.14,Liberia
+66,Borehole,1239.0,696.0,35.97,Liberia
+67,__MISSING__ Unknown,2757.0,231.0,7.73,Liberia
+68,Rain Rainwater,,70.0,100.0,Liberia
+69,Tank,117.0,54.0,31.58,Liberia
+70,Stand Post Tap,251.0,52.0,17.16,Liberia
+71,Piped,,14.0,100.0,Liberia
+72,Spring River Stream Protected,22.0,9.0,29.03,Liberia
+73,Hand Pump,3.0,,,Liberia
+74,Borehole,13916.0,6276.0,31.08,Zimbabwe
+75,Well,5899.0,4381.0,42.62,Zimbabwe
+76,Spring River Stream Unprotected,2373.0,2563.0,51.92,Zimbabwe
+77,Sand,795.0,906.0,53.26,Zimbabwe
+78,Spring River Stream Protected,491.0,771.0,61.09,Zimbabwe
+79,Lake Pond Dam,69.0,185.0,72.83,Zimbabwe
+80,no match,30.0,77.0,71.96,Zimbabwe
+81,Rain Rainwater,,1.0,100.0,Zimbabwe

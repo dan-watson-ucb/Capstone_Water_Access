@@ -446,10 +446,10 @@ def update_district(country, sub_district, status, fuzzy_water_source, fuzzy_wat
 
 
 ##making sure that we clear input if country is none
-@app.callback(Output('district-select', 'value'), [Input('country-select', 'value')])
-def update_district(country):
-    if country is None:
-        return None
+# @app.callback(Output('district-select', 'value'), [Input('country-select', 'value')])
+# def update_district(country):
+#     if country is None:
+#         return None
 
 ########################################################################################################################################################################
 ##update subdistricts menu
@@ -502,12 +502,12 @@ def update_subdistrict(country, district, status, fuzzy_water_source, fuzzy_wate
     return [{'label': i, 'value': i} for i in df.sub_district.sort_values().unique()]
 
 ##making sure that we clear input if country is none
-@app.callback(Output('sub-district-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value')])
-def update_subdistrict(district, country):
-    if not district:
-        return None
-    if not country:
-        return None
+# @app.callback(Output('sub-district-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value')])
+# def update_subdistrict(district, country):
+#     if not district:
+#         return None
+#     if not country:
+#         return None
 
 ########################################################################################################################################################################
 ##update status
@@ -559,12 +559,12 @@ def update_status(country, district, sub_district, fuzzy_water_source, fuzzy_wat
     return [{'label': i, 'value': i} for i in df.status_id.sort_values().unique()]
 
 #clearing
-@app.callback(Output('status-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value')])
-def update_status(district_name, country, sub_district):
-    if district_name is None:
-        return None
-    if sub_district is None:
-        return None
+# @app.callback(Output('status-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value')])
+# def update_status(district_name, country, sub_district):
+#     if district_name is None:
+#         return None
+#     if sub_district is None:
+#         return None
 
 ########################################################################################################################################################################
 ##update water source
@@ -616,12 +616,12 @@ def update_watersource(country, district, sub_district, status, fuzzy_water_tech
     return [{'label': i, 'value': i} for i in df.fuzzy_water_source.sort_values().unique()]
 
 #clearing
-@app.callback(Output('watersource-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value')])
-def update_watersource(district_name, country, sub_district, status_id):
-    if district_name is None:
-        return None
-    if sub_district is None:
-        return None
+# @app.callback(Output('watersource-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value')])
+# def update_watersource(district_name, country, sub_district, status_id):
+#     if district_name is None:
+#         return None
+#     if sub_district is None:
+#         return None
 
 ########################################################################################################################################################################
 ##update water tech
@@ -672,12 +672,12 @@ def update_watertech(country,  district, sub_district, status, fuzzy_water_sourc
     conn.close()
     return [{'label': i, 'value': i} for i in df.fuzzy_water_tech.sort_values().unique()]
 
-@app.callback(Output('watertech-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value'), Input('watersource-select', 'value')])
-def update_watertech(district_name, country, sub_district, status_id, fuzzy_water_source):
-    if district_name is None:
-        return None
-    if sub_district is None:
-        return None
+# @app.callback(Output('watertech-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value'), Input('watersource-select', 'value')])
+# def update_watertech(district_name, country, sub_district, status_id, fuzzy_water_source):
+#     if district_name is None:
+#         return None
+#     if sub_district is None:
+#         return None
 
 ########################################################################################################################################################################
 ##update management
@@ -728,12 +728,12 @@ def update_management(country,  district, sub_district, status, fuzzy_water_sour
     conn.close()
     return [{'label': i, 'value': i} for i in df.management.sort_values().unique()]
 
-@app.callback(Output('management-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value'), Input('watersource-select', 'value'), Input('watertech-select', 'value')])
-def update_subdistrict(district_name, country, sub_district,  status_id, fuzzy_water_source, fuzzy_water_tech):
-    if district_name is None:
-        return None
-    if sub_district is None:
-        return None
+# @app.callback(Output('management-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value'), Input('watersource-select', 'value'), Input('watertech-select', 'value')])
+# def update_subdistrict(district_name, country, sub_district,  status_id, fuzzy_water_source, fuzzy_water_tech):
+#     if district_name is None:
+#         return None
+#     if sub_district is None:
+#         return None
 
 ########################################################################################################################################################################
 ##update today_pred menu
@@ -784,10 +784,10 @@ def update_today_pre(country,  district, sub_district, status, fuzzy_water_sourc
     conn.close()
     return [{'label': i, 'value': i} for i in df.today_preds_text.sort_values().unique()]
 
-@app.callback(Output('today-pred-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value'), Input('watersource-select', 'value'), Input('watertech-select', 'value'), Input('management-select', 'value')])
-def update_today_pred(district_name, country, sub_district,  status_id, fuzzy_water_source, fuzzy_water_tech, management):
-    if sub_district is None:
-        return None
+# @app.callback(Output('today-pred-select', 'value'), [Input('district-select', 'value'), Input('country-select', 'value'), Input('sub-district-select', 'value'), Input('status-select', 'value'), Input('watersource-select', 'value'), Input('watertech-select', 'value'), Input('management-select', 'value')])
+# def update_today_pred(district_name, country, sub_district,  status_id, fuzzy_water_source, fuzzy_water_tech, management):
+#     if sub_district is None:
+#         return None
 
 ########################################################################################################################################################################
 ##update one year pred menu

@@ -39,7 +39,7 @@ conn = psycopg2.connect("dbname='water_db' user='dan' host='postgres-instance2.c
 query = "SELECT country_name, district, sub_district, status_id, fuzzy_water_source, fuzzy_water_tech, management, CASE WHEN today_preds = 1 THEN 'Not Working' ELSE 'Working' end as today_preds_text, CASE WHEN one_year_preds = 1 THEN 'Not Working' ELSE 'Working' end as one_year_preds_text, one_km_population, lat_deg, lon_deg from final_all WHERE country_name = 'Sierra Leone'"
 df_init = pd.read_sql_query(query, conn)
 df = pd.read_sql_query(query, conn)
-conn.close()
+conn.close() 
 mapbox_access_token = 'pk.eyJ1IjoiZHdhdHNvbjgyOCIsImEiOiJjamVycHp0b3cxY2dyMnhsdGc4eHBkcW85In0.uGPxMK4_u-nAs_J74yw70A'
 
 ## query for countries, districts, subdistricts

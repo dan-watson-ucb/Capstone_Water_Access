@@ -262,36 +262,41 @@ def top_feat_table(df,feat):
     gp.rename_axis('index', axis='columns').fillna(0, inplace=True)
     return gp
 
-def summarize_country(country, df, features, model):
+def summarize_country(country, df, features, model, threshold, results = True):
     frame = df.loc[df.country_name==country]
     X2,Y, X_train, X_test, y_train, y_test, X_holdout, y_holdout = code_and_split(frame, features)
-
-    results, probs, preds = get_holdout_results(model, country ,X2, Y, X_train,
+    if results:
+        results, probs, preds = get_holdout_results(model, country ,X2, Y, X_train,
                                          X_test, y_train, y_test, X_holdout, y_holdout)
 
-    results = results.T #tall format
-    results.to_csv('{}_summary.csv'.format(country))
-    plt.subplots()
-    prob_dist_plot(probs, y_holdout, country)
-    plt.show()
+        results = results.T #tall format
+        results.to_csv('{}_summary.csv'.format(country))
+        plt.subplots()
+        prob_dist_plot(probs, y_holdout, country)
+        plt.show()
 
-    #compute feature importance
+    else:
+        continue
+        #compute feature importance
     imp = permutation_importances(model, X_test, y_test, metrics.log_loss)
     #grab the top feature
     top_feat = plot_perm_importance(imp, X_test)
+    plt.savefig('{}_feature_importance.pdf'.format(country), bbox_inches='tight')
+    plt.savefig('{}_feature_importance.png'.format(country), bbox_inches='tight')
     plt.show()
     #check out summary stats by top feature, water source, water tech, and save
     top_feat_table(frame, top_feat).to_csv('{}_waterpoint_function_by_{}.csv'.format(country,top_feat))
     top_feat_table(frame, 'fuzzy_water_source').to_csv('{}_waterpoint_function_by_{}.csv'.format(country,'fuzzy_water_source'))
     top_feat_table(frame, 'fuzzy_water_tech').to_csv('{}_waterpoint_function_by_{}.csv'.format(country,'fuzzy_water_tech'))
 
-    plt.savefig('{}_feature_importance.pdf'.format(country), bbox_inches='tight')
-    plt.savefig('{}_feature_importance.png'.format(country), bbox_inches='tight')
 
-    #plot the probability distribution for functioning and non-functioning wells
 
-    #plot the confusion matrix
-    cm=confusion_matrix(y_holdout, preds)
+#plot the probability distribution for functioning and non-functioning wells
+
+    #plot the confusion matrix with the threshold used for predictions
+    new_preds = np.where(probs>threshold, 1, 0)
+    cm=confusion_matrix(y_holdout, new_preds)
+
     names = ['functioning', 'not_functioning']
 
     plot_confusion_matrix(cm, names, title = 'confusion matrix on holdout data, without normalization', normalize=False)
@@ -301,3 +306,35 @@ def summarize_country(country, df, features, model):
     plt.savefig('{}_confusion_matrix_normalized.pdf'.format(country, bbox_inches='tight'))
 
     return y_holdout, probs, preds
+
+
+def plot_perm_and_conmat(country, df, features, model,threshold, probs):
+    frame = df.loc[df.country_name==country]
+    X2,Y, X_train, X_test, y_train, y_test, X_holdout, y_holdout = code_and_split(frame, features)
+
+    prob_dist_plot(probs, y_holdout, country)
+    plt.axvline(x=threshold, label='prediction threshold')
+    plt.legend()
+    plt.savefig('distrpob_{}.pdf'.format(country), bbox_inches='tight')
+    plt.show()
+        #compute feature importance
+    imp = permutation_importances(model, X_test, y_test, metrics.log_loss)
+    #grab the top feature
+    top_feat = plot_perm_importance(imp, X_test)
+    plt.savefig('feature_{}.pdf'.format(country), bbox_inches='tight')
+    plt.savefig('feature_{}.png'.format(country), bbox_inches='tight')
+    plt.show()
+
+    #plot the probability distribution for functioning and non-functioning wells
+
+    #plot the confusion matrix with the threshold used for predictions
+    new_preds = np.where(probs>threshold, 1, 0)
+    cm=confusion_matrix(y_holdout, new_preds)
+
+    names = ['functioning', 'not_functioning']
+
+    plot_confusion_matrix(cm, names, title = 'confusion matrix\n on holdout data, threshold = {},\n without normalization'.format(threshold), normalize=False)
+    plt.savefig('table_{}_by_count.pdf'.format(country, bbox_inches='tight'))
+    plt.show()
+    plot_confusion_matrix(cm, names, title = 'confusion matrix\n on holdout data, threshold={},\n with normalization'.format(threshold), normalize=True)
+    plt.savefig('table_{}_normalized.pdf'.format(country, bbox_inches='tight'))

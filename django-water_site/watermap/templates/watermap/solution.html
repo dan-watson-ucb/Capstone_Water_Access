@@ -10,16 +10,15 @@
     $("#cnav").affix({
         offset: {
             top: 195
-     	}
+       }
     });
 </script>
 
 <style>
 .affix {
-    padding-top: 0px; /* Final position of nav */
+    padding-top: 50px; /* Final position of nav */
     margin-top:-25%;
 }
-
 .content {
     text-align: left;
 }
@@ -30,35 +29,43 @@
     position: fixed;
     text-align: left;
 }
-
 #cnav .active {
   font-weight: bold;
 }
-
+.ctable {
+    font-size:12px;
+}
+.ctable th, .ctable td {
+    padding: 5px;
+}
+.ctable li {
+    list-style: square inside url(sqpurple.gif);
+}
 .section {
     padding-top:150px;
     margin-top:-70px;
     border-bottom: 1px solid lightgrey;
 }
-
 .section.last{
     border-bottom: none;
 }
-
 .section .cimage {
     border: 1px solid grey;
     margin: 10px 0px 10px;
     padding: 10px;
     background-color: white;
 }
-
-.section .cpdf, .section .ctable {
+.section .cpdf {
     padding: 10px;
     margin: 10px 0px 10px;
 }
+.section .ctable {
+    padding: 10px;
+    margin: 0px;
+}
 div.scrollspy ul li {
     display: block;
-	padding: 5px
+   padding: 5px
 }
 
 </style>
@@ -67,7 +74,7 @@ div.scrollspy ul li {
   <div class="card">
 
     <div class="bgImg" style="background-image: url('/static/watermap/img/banner.jpg');">
-	    <h1 class="banner-text-white">Our Methodology</h1>
+       <h1 class="banner-text-white">Our Methodology</h1>
     </div>
     <div class="row">
         <div class="col-md-2 scrollspy hidden-sm-down">
@@ -89,31 +96,18 @@ div.scrollspy ul li {
         <div class="col-md-10 content">
             <div style="padding-top:40px;">
                 <h1>Methodology</h1>
-                <p>
-                    The WaterPoint Data Exchange collected data on ~400k waterpoints in Africa, Asia and South America, and recorded which were working and which ones were not.
-                </p>
-                <p>
-                    Our team used this data to help countries prioritize waterpoints to repair. For every waterpoint, we’ve added in the number of people within 1 km, as well as which district and sub-district the waterpoint is located in per country. This helps for waterpoints that were broken when the data was collected (colored in red on the map), but how do we know which new waterpoints may be broken today?
-                </p>
-                <p>
-                    Our team used powerful computer models to predict which waterpoints that were working a few years ago are probably not working today. These waterpoints are in orange on the map.
-                </p>
-                <p>
-                    To make things easy to prioritize, we’ve added a risk score for every waterpoint.  A high risk score means it is known to be or very likely not-functioning, and also serves a large population of people within 1 km. You can filter by risk score for your country and download an Excel file with location information per well.
-                </p>
-                <p>Using data from ~ 200,000 water points, our computer models learned the characteristics of functioning and nonfunctioning waterpoints.  We then used those learned patterns to make predictions on another 70,000 waterpoints, to see how often we were right.  We were right about 90% of the time, sometimes more or less, depending on the country.
-                </p>
-                <p>
-                    We set aside an extra 70,000 waterpoints that we never let our models see, and just made predictions on the status of those water points, to see if we could accurately predict “unseen” data.  We were still correct about 90% of the time.
-                </p>
-                <p>
-                    Confident in our models now, we updated each waterpoints age to be in the current year (March 1, 2018) and 1 year out (March 1, 2019) and made new predictions.  These are still probabilities, but are definitely better than guessing.
-                </p>
+                <p>The WaterPoint Data Exchange collected data on ~400k waterpoints in Africa, Asia and South America, and recorded which were working and which ones were not.</p>
+                <p>Our team used this data to help countries prioritize waterpoints to repair. For every waterpoint, we’ve added in the number of people within 1 km, as well as which district and sub-district the waterpoint is located in per country. This helps for waterpoints that were broken when the data was collected (colored in red on the map), but how do we know which new waterpoints may be broken today?</p>
+                <p>Our team used powerful computer models to predict which waterpoints that were working a few years ago are probably not working today. These waterpoints are in orange on the map.</p>
+                <p>To make things easy to prioritize, we’ve added a risk score for every waterpoint.  A high risk score means it is known to be or very likely not-functioning, and also serves a large population of people within 1 km. You can filter by risk score for your country and download an Excel file with location information per well.</p>
+                <p>Using data from ~ 200,000 water points, our computer models learned the characteristics of functioning and nonfunctioning waterpoints.  We then used those learned patterns to make predictions on another 70,000 waterpoints, to see how often we were right.  We were right about 90% of the time, sometimes more or less, depending on the country.</p>
+                <p>We set aside an extra 70,000 waterpoints that we never let our models see, and just made predictions on the status of those water points, to see if we could accurately predict “unseen” data.  We were still correct about 90% of the time.</p>
+                <p>Confident in our models now, we updated each waterpoints age to be in the current year (March 1, 2018) and 1 year out (March 1, 2019) and made new predictions.  These are still probabilities, but are definitely better than guessing.</p>
             </div>
 
             <!-- Afghanistan -->
             <section id="afghanistan" class="section">
-                <h3>Afghanistan</h3>
+                <h2>Afghanistan</h2>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                 <div class="row">
                   <div class="col-md-6">
@@ -125,34 +119,32 @@ div.scrollspy ul li {
                 </div>
                 <div class="row">
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/distrpob_Afghanistan.png"  width="100%" height="100%" class="cimage img-fluid">
+                      <img src="/static/watermap/img/solution/feature_Afghanistan.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/feature_Afghanistan.png"  width="100%" height="100%" class="cimage img-fluid">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282 <br> 0.99746146  <br> 0.99824737  <br> 0.9956875   <br> 0.99755358</td></tr>
+                          </table>
+                      </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-6">
-                      <div class="table table-responsive ctable">
-                          <table class="table table-bordered table-hover">
-                              <thead><h4>This is the table header</h4></thead>
-                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <caption><i>This is the table caption</i></caption>
-                          </table>
-                      </div>
+                      <img src="/static/watermap/img/solution/distrpob_Afghanistan.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
-                          <h4>Title for bullets</h4>
+                          <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
-                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
+                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
@@ -161,7 +153,7 @@ div.scrollspy ul li {
 
             <!-- India -->
             <section id="india" class="section">
-                <h3>India</h3>
+                <h2>India</h2>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                 <div class="row">
                   <div class="col-md-6">
@@ -171,46 +163,44 @@ div.scrollspy ul li {
                       <img src="/static/watermap/img/solution/table_India_by_count.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                 </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_India.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282 <br>  0.99746146  <br> 0.99824737  <br> 0.9956875  <br>  0.99755358</td></tr>
+                          </table>
+                      </div>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/distrpob_India.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/feature_India.png"  width="100%" height="100%" class="cimage img-fluid">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
                       <div class="table table-responsive ctable">
-                          <table class="table table-bordered table-hover">
-                              <thead><h4>This is the table header</h4></thead>
-                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <caption><i>This is the table caption</i></caption>
-                          </table>
-                      </div>
-                  </div>
-                  <div class="col-md-6">
-                      <div class="table table-responsive ctable">
-                          <h4>Title for bullets</h4>
+                          <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
-                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
+                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
-                </div>
-            </section>
+                </div>            </section>
 
 
             <!-- Kenya -->
             <section id="kenya" class="section">
-              <h3>Kenya</h3>
+              <h2>Kenya</h2>
               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
               <div class="row">
                   <div class="col-md-6">
@@ -222,34 +212,32 @@ div.scrollspy ul li {
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/distrpob_Kenya.png"  width="100%" height="100%" class="cimage img-fluid">
+                      <img src="/static/watermap/img/solution/feature_Kenya.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/feature_Kenya.png"  width="100%" height="100%" class="cimage img-fluid">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282 <br>  0.99746146  <br> 0.99824737  <br> 0.9956875   <br> 0.99755358</td></tr>
+                          </table>
+                      </div>
                   </div>
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <div class="table table-responsive ctable">
-                          <table class="table table-bordered table-hover">
-                              <thead><h4>This is the table header</h4></thead>
-                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <caption><i>This is the table caption</i></caption>
-                          </table>
-                      </div>
+                      <img src="/static/watermap/img/solution/distrpob_Kenya.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
-                          <h4>Title for bullets</h4>
+                          <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
-                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
+                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
@@ -258,7 +246,7 @@ div.scrollspy ul li {
 
             <!-- Liberia -->
             <section id="liberia" class="section">
-              <h3>Liberia</h3>
+              <h2>Liberia</h2>
               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
               <div class="row">
                   <div class="col-md-6">
@@ -270,34 +258,32 @@ div.scrollspy ul li {
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/distrpob_Liberia.png"  width="100%" height="100%" class="cimage img-fluid">
+                      <img src="/static/watermap/img/solution/feature_Liberia.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/feature_Liberia.png"  width="100%" height="100%" class="cimage img-fluid">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282 <br>  0.99746146  <br> 0.99824737  <br> 0.9956875  <br>  0.99755358</td></tr>
+                          </table>
+                      </div>
                   </div>
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <div class="table table-responsive ctable">
-                          <table class="table table-bordered table-hover">
-                              <thead><h4>This is the table header</h4></thead>
-                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <caption><i>This is the table caption</i></caption>
-                          </table>
-                      </div>
+                      <img src="/static/watermap/img/solution/distrpob_Liberia.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
-                          <h4>Title for bullets</h4>
+                          <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
-                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
+                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
@@ -306,7 +292,7 @@ div.scrollspy ul li {
 
             <!-- Malawi -->
             <section id="malawi" class="section">
-              <h3>Malawi</h3>
+              <h2>Malawi</h2>
               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
               <div class="row">
                   <div class="col-md-6">
@@ -316,36 +302,35 @@ div.scrollspy ul li {
                       <img src="/static/watermap/img/solution/table_Malawi_by_count.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
               </div>
+
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_Malawi.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  <br> 0.99746146  <br> 0.99824737  <br> 0.9956875  <br>  0.99755358</td></tr>
+                          </table>
+                      </div>
+                  </div>
+              </div>
               <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/distrpob_Malawi.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/feature_Malawi.png"  width="100%" height="100%" class="cimage img-fluid">
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-md-6">
                       <div class="table table-responsive ctable">
-                          <table class="table table-bordered  table-hover">
-                              <thead><h4>This is the table header</h4></thead>
-                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <caption><i>This is the table caption</i></caption>
-                          </table>
-                      </div>
-                  </div>
-                  <div class="col-md-6">
-                      <div class="table table-responsive ctable">
-                          <h4>Title for bullets</h4>
+                          <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
-                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
+                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
@@ -354,7 +339,7 @@ div.scrollspy ul li {
 
             <!-- Sierra Leone -->
             <section id="sierraleone" class="section">
-              <h3>Sierra Leone</h3>
+              <h2>Sierra Leone</h2>
               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
               <div class="row">
                   <div class="col-md-6">
@@ -366,35 +351,32 @@ div.scrollspy ul li {
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/distrpob_Sierra_Leone.png"  width="100%" height="100%" class="cimage img-fluid">
-                  </div>
-                  <div class="col-md-6">
                       <img src="/static/watermap/img/solution/feature_Sierra_Leone.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
-              </div>
-
-              <div class="row">
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
                           <table class="table table-bordered table-hover">
-                              <thead><h4>This is the table header</h4></thead>
-                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <caption><i>This is the table caption</i></caption>
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  <br> 0.99746146  <br> 0.99824737  <br> 0.9956875   <br> 0.99755358</td></tr>
                           </table>
                       </div>
                   </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/distrpob_Sierra_Leone.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
-                          <h4>Title for bullets</h4>
+                          <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
-                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
+                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                 </div>
@@ -404,7 +386,7 @@ div.scrollspy ul li {
 
             <!-- South Sudan -->
             <section id="southsudan" class="section">
-              <h3>South Sudan</h3>
+              <h2>South Sudan</h2>
               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
               <div class="row">
                   <div class="col-md-6">
@@ -416,35 +398,32 @@ div.scrollspy ul li {
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/distrpob_South_Sudan.png"  width="100%" height="100%" class="cimage img-fluid">
-                  </div>
-                  <div class="col-md-6">
                       <img src="/static/watermap/img/solution/feature_South_Sudan.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
-              </div>
-
-              <div class="row">
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
                           <table class="table table-bordered table-hover">
-                              <thead><h4>This is the table header</h4></thead>
-                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <caption><i>This is the table caption</i></caption>
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  <br> 0.99746146  <br> 0.99824737  <br> 0.9956875  <br>  0.99755358</td></tr>
                           </table>
                       </div>
                   </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/distrpob_South_Sudan.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
-                          <h4>Title for bullets</h4>
+                          <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
-                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
+                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
@@ -454,7 +433,7 @@ div.scrollspy ul li {
 
             <!-- Swaziland -->
             <section id="swaziland" class="section">
-              <h3>Swaziland</h3>
+              <h2>Swaziland</h2>
               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
               <div class="row">
                   <div class="col-md-6">
@@ -466,35 +445,32 @@ div.scrollspy ul li {
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/distrpob_Swaziland.png"  width="100%" height="100%" class="cimage img-fluid">
-                  </div>
-                  <div class="col-md-6">
                       <img src="/static/watermap/img/solution/feature_Swaziland.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
-              </div>
-
-              <div class="row">
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
                           <table class="table table-bordered table-hover">
-                              <thead><h4>This is the table header</h4></thead>
-                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <caption><i>This is the table caption</i></caption>
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  <br> 0.99746146  <br> 0.99824737  <br> 0.9956875  <br>  0.99755358</td></tr>
                           </table>
                       </div>
                   </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/distrpob_Swaziland.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
-                          <h4>Title for bullets</h4>
+                          <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
-                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
+                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
@@ -504,7 +480,7 @@ div.scrollspy ul li {
 
             <!-- Uganda -->
             <section id="uganda" class="section">
-              <h3>Uganda</h3>
+              <h2>Uganda</h2>
               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
               <div class="row">
                   <div class="col-md-6">
@@ -516,44 +492,41 @@ div.scrollspy ul li {
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/distrpob_Uganda.png"  width="100%" height="100%" class="cimage img-fluid">
-                  </div>
-                  <div class="col-md-6">
                       <img src="/static/watermap/img/solution/feature_Uganda.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
-              </div>
-
-              <div class="row">
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
                           <table class="table table-bordered table-hover">
-                              <thead><h4>This is the table header</h4></thead>
-                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <caption><i>This is the table caption</i></caption>
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  <br> 0.99746146   <br>0.99824737  <br> 0.9956875   <br> 0.99755358</td></tr>
                           </table>
                       </div>
                   </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/distrpob_Uganda.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
-                          <h4>Title for bullets</h4>
+                          <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
-                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
+                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
-              </div>
+              </div>                
             </section>
 
             <!-- Zimbabwe -->
             <section id="zimbabwe" class="section last">
-              <h3>Zimbabwe</h3>
+              <h2>Zimbabwe</h2>
               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
               <div class="row">
                   <div class="col-md-6">
@@ -565,34 +538,32 @@ div.scrollspy ul li {
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/distrpob_Zimbabwe.png"  width="100%" height="100%" class="cimage img-fluid">
+                      <img src="/static/watermap/img/solution/feature_Zimbabwe.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/feature_Zimbabwe.png"  width="100%" height="100%" class="cimage img-fluid">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282<br> 0.99746146<br>  0.99824737<br>  0.9956875<br>   0.99755358</td></tr>
+                          </table>
+                      </div>
                   </div>
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <div class="table table-responsive ctable">
-                          <table class="table table-bordered table-hover">
-                              <thead><h4>This is the table header</h4></thead>
-                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
-                              <caption><i>This is the table caption</i></caption>
-                          </table>
-                      </div>
+                      <img src="/static/watermap/img/solution/distrpob_Zimbabwe.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
-                          <h4>Title for bullets</h4>
+                          <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
-                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
-                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
+                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
@@ -603,4 +574,3 @@ div.scrollspy ul li {
   </div> <!-- end card -->
 </div> <!-- end spacer container -->
 {% endblock %}
-

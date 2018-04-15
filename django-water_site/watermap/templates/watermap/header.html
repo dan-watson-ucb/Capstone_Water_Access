@@ -4,29 +4,195 @@
 <html lang="en">
 
 <head>
-	<title>Water Point Map</title>
 	<meta charset="utf-8" />
+	<title>Water Point Map</title>
+    <meta name="description" content="Water Point Map">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--[if IE]> <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
 	{% load staticfiles %}
 	<link rel="stylesheet" href="{% static 'watermap/css/bootstrap.css' %}" type = "text/css"/>
     <link rel="stylesheet" href="{% static 'watermap/css/main.css' %}" type = "text/css"/>
-	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
 
 </head>
-<div class="topnav">
+<body data-spy="scroll" data-target=".scrollspy">
+<!---
+<div class="topnav" id="myTopnav">
 	<div class="container">
-      <img src="https://dret.net/netdret/docs/itng2011/ischool-logo.png" width="15%">
+      <img src="/static/watermap/img/ischool-logo.png" width="15%">
       <a href="/team" class="top-links">Team</a>
       <a href="/solution" class="top-links">Solution</a>
       <a href="/dashboard" class="top-links">Map</a>
       <a href = "/" class = "top-links"> Home </a>
 	</div>
 </div>
+--->
 
+<header>
+    <a href="/home" id="logo"><img src="/static/watermap/img/ischool-logo.png" width="150px"></a>
+    <nav>
+        <a href="#" id="menu-icon"></a>
+        <ul class="mainnav">
+            <li class="navitem"><a href="/">Home</a></li>
+            <li class="navitem"><a href="/dashboard" class="">Map</a></li>
+            <li class="navitem"><a href="/solution" class="">Solution</a></li>
+            <li class="navitem"><a href="/team" class="">Team</a></li>
+        </ul>
+    </nav>
+</header>
+
+<style>
+/*RESET*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt,
+var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin:0; padding:0; border:0; outline:0; font-size:100%;
+    vertical-align:baseline; background:transparent;
+}
+body {line-height: 1;}
+ol, ul{list-style:none;}
+blockquote, q{quotes:none;}
+blockquote:before, blockquote:after, q:before, q:after{content:'';content:none;} :focus{outline:0;}
+ins{text-decoration:none;} del{text-decoration:line-through;}
+table{border-collapse:collapse; border-spacing:0;}
+
+/*MAIN*/
+body {
+	font-size: 1.05em;
+	line-height: 1.25em;
+	font-family: Helvetica Neue, Helvetica, Arial;
+	background: #f9f9f9;
+	color: #555;
+}
+
+a {
+	color: #4C9CF1;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #444;
+}
+a.active {
+    font-weight: bold;
+}
+
+header {
+	background: #fff;
+	width: 100%;
+	height: 76px;
+    position: sticky;
+	top: 0;
+	left: 0;
+	border-bottom: 4px solid #4C9CF1;
+	z-index: 100;
+}
+
+#logo{
+	margin: 20px;
+	float: left;
+	width: 200px;
+	height: 40px;
+	display: block;
+}
+
+nav {
+	float: right;
+	padding: 20px;
+}
+
+#menu-icon {
+	display: hidden;
+	width: 40px;
+	height: 40px;
+	background: #4C8FEC url(/static/watermap/img/menu-icon.png) center;
+}
+
+a:hover#menu-icon {
+	background-color: #444;
+	border-radius: 4px 4px 0 0;
+}
+
+ul.mainnav {
+	list-style: none;
+}
+
+li.navitem  {
+	display: inline-block;
+	float: left;
+	padding: 10px
+}
+
+h1 {
+	font-size: 2em;
+	line-height: 1.15em;
+	margin: 20px 0 ;
+}
+
+h2 {
+	font-size: 1.5em;
+	line-height: 1.15em;
+	margin: 20px 0 ;
+}
+
+h3 {
+	font-size: 1.25em;
+	line-height: 1em;
+	margin: 20px 0 ;
+}
+h4 {
+	font-size: 1em;
+	line-height: 1em;
+	margin: 20px 0 ;
+}
+
+p {
+	line-height: 1.45em;
+	margin-bottom: 20px;
+}
+
+
+/*MEDIA QUERY*/
+@media only screen and (max-width : 640px) {
+
+	header {
+		position: absolute;
+    }
+
+	#menu-icon {
+		display:inline-block;
+	}
+
+	nav ul.mainnav, nav:active ul.mainnav {
+		display: none;
+		position: absolute;
+		padding: 20px;
+		background: #fff;
+		border: 4px solid #444;
+		right: 20px;
+		top: 60px;
+		width: 50%;
+		border-radius: 4px 0 4px 4px;
+	}
+
+	nav li.navitem {
+		text-align: center;
+		width: 100%;
+		padding: 10px 0;
+		margin: 0;
+	}
+
+	nav:hover ul.mainnav {
+		display: block;
+	}
+}
+</style>
 {% block content %}
 
 {% endblock %}
 
-</body>
 
 <div class="footer">
   <h2>Footer</h2>

@@ -2,6 +2,48 @@
 {% block content%}
 {% load staticfiles %}
 
-<h1> This is where we will put team information </h1>
-
+<style>
+  .media img {
+    border: 1px solid grey;
+    margin: 10px;
+    width:200px;
+  }
+  .media-body {
+    padding-left: 20px;
+    }
+   .media h3 {
+    padding:10px;
+    }
+</style>
+<div class="container text-left">
+    <h1>Our Team </h1>
+    <ul class="list-unstyled">
+      <li class="media">
+        <img class="mr-3" src="/static/watermap/img/team/dan.jpg" alt="Dan Watson">
+        <div class="media-body">
+          <h3 class="mt-0 mb-1">Dan Watson</h3>
+          Dan is a candidate for the Master of Information and Data Science degree at the University of California, Berkeley. He currently works as a Population Health Data Analyst, seeking to help provide optimized healthcare to medicare patients. Prior to his career transition into the data field, Dan was a practicing attorney for four years, representing disabled clients before the Social Security Administration. Dan lives in Winston-Salem, North Carolina with his wife Katie and their two dogs. Outside of work, he enjoys playing tennis, golfing, and working on fantasy sports prediction models.
+        </div>
+      </li>
+      <li class="media">
+        <img class="mr-3" src="/static/watermap/img/team/pranay.jpg" alt="Pranay Suri">
+        <div class="media-body">
+          <h3 class="mt-0 mb-1">Pranay Suri</h3>
+          Pranay Suri is pursuing a Masters Degree in Information and Data Science from the University of California Berkeley. He currently works as a product manager at a Bay Area based start up. He is interested in leveraging data to inform Product decisions. During his free time he is an avid cricket player.        </div>
+      </li>
+      <li class="media my-4">
+        <img class="mr-3" src="/static/watermap/img/team/chandler.jpg" alt="Chandler McCann">
+        <div class="media-body">
+          <h3 class="mt-0 mb-1">Chandler McCann</h3>
+          Chandler McCann is a Data Scientist at DataRobot, based out of Washington, D.C. Chandler holds a B.S. in Materials Science Engineering from the University of Maryland, College Park, and is a candidate at the University of California, Berkeley for a M.S. in Information and Data Science. Prior to joining DataRobot, Chandler applied his understanding of machine learning and applied statistics to a wide range of verticals such as Ultra High Volume DRAM and FLASH memory manufacturing at Micron Technology, to the Defense Sector as a consultant to senior Army and DoD leaders at the Pentagon, Kuwait, and Afghanistan. Outside of work he enjoys producing music, playing guitar and practicing Brazilian Jiu-Jitsu.
+        </div>
+      </li>
+      <li class="media">
+        <img class="mr-3" src="/static/watermap/img/team/alex.jpg" alt="Alex Jamar">
+        <div class="media-body">
+          <h3 class="mt-0 mb-1">Alex Jamar</h3>
+          Alex was born and raised in Darien, Connecticut. He’s lived in the South (Nashville, TN), Midwest (Madison, WI), West Coast (San Francisco, CA) and just returned to the East Coast (New York, NY). He currently works in business development at Enigma, a data intelligence startup in Manhattan, and is pursuing a Masters in Information and Data Science from UC Berkeley. Outside of work, he is an outdoors enthusiast; he enjoys any sport that requires running at top speeds and/or chasing a Frisbee.        </div>
+      </li>
+    </ul>
+</div>
 {% endblock %}

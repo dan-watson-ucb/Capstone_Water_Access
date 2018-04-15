@@ -1,7 +1,606 @@
 {% extends 'watermap/header.html' %}
 {% block content%}
 {% load staticfiles %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<h1> This is where we will put information about our solution </h1>
 
+
+<script>
+    $("#cnav").affix({
+        offset: {
+            top: 195
+     	}
+    });
+</script>
+
+<style>
+.affix {
+    padding-top: 0px; /* Final position of nav */
+    margin-top:-25%;
+}
+
+.content {
+    text-align: left;
+}
+#cnav {
+    padding-left:5px;
+    display: block;
+    top:400px;
+    position: fixed;
+    text-align: left;
+}
+
+#cnav .active {
+  font-weight: bold;
+}
+
+.section {
+    padding-top:150px;
+    margin-top:-70px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.section.last{
+    border-bottom: none;
+}
+
+.section .cimage {
+    border: 1px solid grey;
+    margin: 10px 0px 10px;
+    padding: 10px;
+    background-color: white;
+}
+
+.section .cpdf, .section .ctable {
+    padding: 10px;
+    margin: 10px 0px 10px;
+}
+div.scrollspy ul li {
+    display: block;
+	padding: 5px
+}
+
+</style>
+
+<div class ="container">
+  <div class="card">
+
+    <div class="bgImg" style="background-image: url('/static/watermap/img/banner.jpg');">
+	    <h1 class="banner-text-white">Our Methodology</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-2 scrollspy hidden-sm-down">
+            <ul id="cnav" class="" data-spy="affix" data-offset-top="200">
+                <h4>Countries</h4>
+                <li><a href="#afghanistan">Afghanistan</a></li>
+                <li><a href="#india">India</a></li>
+                <li><a href="#kenya">Kenya</a></li>
+                <li><a href="#liberia">Liberia</a></li>
+                <li><a href="#malawi">Malawi</a></li>
+                <li><a href="#sierraleone">Sierra Leone</a></li>
+                <li><a href="#southsudan">South Sudan</a></li>
+                <li><a href="#swaziland">Swaziland</a></li>
+                <li><a href="#uganda">Uganda</a></li>
+                <li><a href="#zimbabwe">Zimbabwe</a></li>
+            </ul><!-- end of main navigation -->
+        </div> <!-- end col-md-2 scrollspy -->
+
+        <div class="col-md-10 content">
+            <div style="padding-top:40px;">
+                <h1>Methodology</h1>
+                <p>
+                    The WaterPoint Data Exchange collected data on ~400k waterpoints in Africa, Asia and South America, and recorded which were working and which ones were not.
+                </p>
+                <p>
+                    Our team used this data to help countries prioritize waterpoints to repair. For every waterpoint, we’ve added in the number of people within 1 km, as well as which district and sub-district the waterpoint is located in per country. This helps for waterpoints that were broken when the data was collected (colored in red on the map), but how do we know which new waterpoints may be broken today?
+                </p>
+                <p>
+                    Our team used powerful computer models to predict which waterpoints that were working a few years ago are probably not working today. These waterpoints are in orange on the map.
+                </p>
+                <p>
+                    To make things easy to prioritize, we’ve added a risk score for every waterpoint.  A high risk score means it is known to be or very likely not-functioning, and also serves a large population of people within 1 km. You can filter by risk score for your country and download an Excel file with location information per well.
+                </p>
+                <p>Using data from ~ 200,000 water points, our computer models learned the characteristics of functioning and nonfunctioning waterpoints.  We then used those learned patterns to make predictions on another 70,000 waterpoints, to see how often we were right.  We were right about 90% of the time, sometimes more or less, depending on the country.
+                </p>
+                <p>
+                    We set aside an extra 70,000 waterpoints that we never let our models see, and just made predictions on the status of those water points, to see if we could accurately predict “unseen” data.  We were still correct about 90% of the time.
+                </p>
+                <p>
+                    Confident in our models now, we updated each waterpoints age to be in the current year (March 1, 2018) and 1 year out (March 1, 2019) and made new predictions.  These are still probabilities, but are definitely better than guessing.
+                </p>
+            </div>
+
+            <!-- Afghanistan -->
+            <section id="afghanistan" class="section">
+                <h3>Afghanistan</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_Afghanistan_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_Afghanistan_by_count.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/distrpob_Afghanistan.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_Afghanistan.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <thead><h4>This is the table header</h4></thead>
+                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <caption><i>This is the table caption</i></caption>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <h4>Title for bullets</h4>
+                          <ul>
+                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
+                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                          </ul>
+                      </div>
+                  </div>
+                </div>
+            </section>
+
+            <!-- India -->
+            <section id="india" class="section">
+                <h3>India</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_India_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_India_by_count.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/distrpob_India.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_India.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <thead><h4>This is the table header</h4></thead>
+                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <caption><i>This is the table caption</i></caption>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <h4>Title for bullets</h4>
+                          <ul>
+                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
+                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                          </ul>
+                      </div>
+                  </div>
+                </div>
+            </section>
+
+
+            <!-- Kenya -->
+            <section id="kenya" class="section">
+              <h3>Kenya</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_Kenya_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_Kenya_by_count.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/distrpob_Kenya.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_Kenya.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <thead><h4>This is the table header</h4></thead>
+                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <caption><i>This is the table caption</i></caption>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <h4>Title for bullets</h4>
+                          <ul>
+                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
+                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+            </section>
+
+            <!-- Liberia -->
+            <section id="liberia" class="section">
+              <h3>Liberia</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_Liberia_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_Liberia_by_count.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/distrpob_Liberia.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_Liberia.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <thead><h4>This is the table header</h4></thead>
+                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <caption><i>This is the table caption</i></caption>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <h4>Title for bullets</h4>
+                          <ul>
+                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
+                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+            </section>
+
+            <!-- Malawi -->
+            <section id="malawi" class="section">
+              <h3>Malawi</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_Malawi_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_Malawi_by_count.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/distrpob_Malawi.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_Malawi.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered  table-hover">
+                              <thead><h4>This is the table header</h4></thead>
+                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <caption><i>This is the table caption</i></caption>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <h4>Title for bullets</h4>
+                          <ul>
+                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
+                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+            </section>
+
+            <!-- Sierra Leone -->
+            <section id="sierraleone" class="section">
+              <h3>Sierra Leone</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_Sierra_Leone_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_Sierra_Leone_by_count.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/distrpob_Sierra_Leone.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_Sierra_Leone.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <thead><h4>This is the table header</h4></thead>
+                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <caption><i>This is the table caption</i></caption>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <h4>Title for bullets</h4>
+                          <ul>
+                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
+                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                          </ul>
+                      </div>
+                </div>
+              </div>
+            </section>
+
+
+            <!-- South Sudan -->
+            <section id="southsudan" class="section">
+              <h3>South Sudan</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_South_Sudan_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_South_Sudan_by_count.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/distrpob_South_Sudan.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_South_Sudan.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <thead><h4>This is the table header</h4></thead>
+                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <caption><i>This is the table caption</i></caption>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <h4>Title for bullets</h4>
+                          <ul>
+                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
+                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+            </section>
+
+
+            <!-- Swaziland -->
+            <section id="swaziland" class="section">
+              <h3>Swaziland</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_Swaziland_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_Swaziland_by_count.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/distrpob_Swaziland.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_Swaziland.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <thead><h4>This is the table header</h4></thead>
+                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <caption><i>This is the table caption</i></caption>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <h4>Title for bullets</h4>
+                          <ul>
+                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
+                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+            </section>
+
+
+            <!-- Uganda -->
+            <section id="uganda" class="section">
+              <h3>Uganda</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_Uganda_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_Uganda_by_count.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/distrpob_Uganda.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_Uganda.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <thead><h4>This is the table header</h4></thead>
+                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <caption><i>This is the table caption</i></caption>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <h4>Title for bullets</h4>
+                          <ul>
+                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
+                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+            </section>
+
+            <!-- Zimbabwe -->
+            <section id="zimbabwe" class="section last">
+              <h3>Zimbabwe</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_Zimbabwe_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/table_Zimbabwe_by_count.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/distrpob_Zimbabwe.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_Zimbabwe.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <thead><h4>This is the table header</h4></thead>
+                              <tr><th>Title1</th><th>Title2</th><th>Title3</th><th>Title4</th><th>Title5</th></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <tr><td>Title1</td><td>Title2</td><td>Title3</td><td>Title4</td><td>Title5</td></tr>
+                              <caption><i>This is the table caption</i></caption>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <h4>Title for bullets</h4>
+                          <ul>
+                              <li>Lorem Ipsum is simply is simply dummy text of the printing</li>
+                              <li>Lof the printing. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting. Lorem Ipsum is simply dummy text of the printing</li>
+                              <li>Lorem Ipsum isnting is simply dummy text of the printing</li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+            </section>
+        </div> <!-- end col-md-10 content -->
+    </div> <!-- end row -->
+  </div> <!-- end card -->
+</div> <!-- end spacer container -->
 {% endblock %}
+

@@ -12,7 +12,7 @@ import dash_table_experiments as dt
 #import urllib.parse
 import urllib
 
-
+#text
 #get rid of lat lon from the table - moved to the back
 #predictions yes no instead of 0's and 1's
 #color code based on today's prediction - done

@@ -13,38 +13,37 @@
 	{% load staticfiles %}
 	<link rel="stylesheet" href="{% static 'watermap/css/bootstrap.css' %}" type = "text/css"/>
     <link rel="stylesheet" href="{% static 'watermap/css/main.css' %}" type = "text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 <body data-spy="scroll" data-target=".scrollspy">
-<!---
-<div class="topnav" id="myTopnav">
-	<div class="container">
-      <img src="/static/watermap/img/ischool-logo.png" width="15%">
-      <a href="/team" class="top-links">Team</a>
-      <a href="/solution" class="top-links">Solution</a>
-      <a href="/dashboard" class="top-links">Map</a>
-      <a href = "/" class = "top-links"> Home </a>
-	</div>
-</div>
---->
-
 <header>
     <a href="/home" id="logo"><img src="/static/watermap/img/ischool-logo.png" width="150px"></a>
     <nav>
         <a href="#" id="menu-icon"></a>
         <ul class="mainnav">
             <li class="navitem"><a href="/">Home</a></li>
-            <li class="navitem"><a href="/dashboard" class="">Map</a></li>
-            <li class="navitem"><a href="/solution" class="">Solution</a></li>
-            <li class="navitem"><a href="/team" class="">Team</a></li>
+            <li class="navitem"><a href="dashboard">Map</a></li>
+            <li class="navitem"><a href="solution">Solution</a></li>
+            <li class="navitem"><a href="team">Team</a></li>
         </ul>
     </nav>
-</header>
-
+ </header>
+<script>
+$(document).ready(function(){
+    var path = window.location.pathname.split("/").pop();
+    if (path =='') {
+        path = '/';
+    }
+    var target = $('nav a[href="' + path + '"]');
+    target.addClass('active');
+});
+</script>
 <style>
-/*RESET*/
+/*RESET
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6,
-p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+p, blockquote, pre, abbr, acronym, address, big, cite, code, del, dfn,
 em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt,
 var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td {
@@ -55,9 +54,10 @@ body {line-height: 1;}
 ol, ul{list-style:none;}
 blockquote, q{quotes:none;}
 blockquote:before, blockquote:after, q:before, q:after{content:'';content:none;} :focus{outline:0;}
-ins{text-decoration:none;} del{text-decoration:line-through;}
+ins{text-decoration:none;}
+del{text-decoration:line-through;}
 table{border-collapse:collapse; border-spacing:0;}
-
+*/
 /*MAIN*/
 body {
 	font-size: 1.05em;
@@ -69,18 +69,21 @@ body {
 
 a {
 	color: #4C9CF1;
-	text-decoration: none;
-}
-
-a:hover {
-	color: #444;
-}
-a.active {
     font-weight: bold;
 }
 
+a:hover {
+	color: #4C9CF1;
+    font-weight: bold;
+}
+a.active {
+	color: #ffa500 !important;
+    font-weight: bold;
+}
+
+
 header {
-	background: #fff;
+	background: #000;
 	width: 100%;
 	height: 76px;
     position: sticky;
@@ -189,149 +192,41 @@ p {
 	}
 }
 </style>
+
+<script>
+//ACTIVE LINKS
+$(document).ready(function(){
+var selector = 'nav li a';
+
+  $(selector).on('click', function(){
+    $(selector).removeClass('active');
+      $(this).addClass('active');
+      console.log('test');
+  });
+});
+
+</script>
 {% block content %}
 
 {% endblock %}
 
 
 <div class="footer">
-  <h2>Footer</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <a href="https://twitter.com/ctspberkeley"><img src="/static/watermap/img/tw.png" width="50px"></a>
+            <a href="https://www.facebook.com/CTSPUCBerkeley/"><img src="/static/watermap/img/fb.png" width="50px"></a>
+            <a href="https://www.linkedin.com/company/center-for-technology-society-&-policy-ctsp-/"><img src="/static/watermap/img/li.png" width="50px"></a>
+        </div>
+        <div class="col-md-6">
+            <a href="https://ctsp.berkeley.edu/data-for-good-projects/">Data For Good Projects</a> |
+            <a href="https://ctsp.berkeley.edu/data-for-good-grantees/">Data For Good Grantees</a> |
+            <a href="https://ctsp.berkeley.edu/blog/">CSTP Blog</a>
+        </div>
+        <div class="col-md-3">&copy; 2018 UC Berkeley. All rights reserved.</div>
+    </div>
 </div>
 
 </body>
 </html>
 
-{#<style type="text/css">#}
-{#* {#}
-{#    box-sizing: border-box;#}
-{#}#}
-{##}
-{#body {#}
-{#    font-family: Arial;#}
-{#    padding: 0px;#}
-{#    background: #f1f1f1;#}
-{#}#}
-{##}
-{#/* Header/Blog Title */#}
-{#.header {#}
-{#    padding: 30px;#}
-{#    text-align: center;#}
-{#    background: white;#}
-{#    background-color: #F1F1F1;#}
-{#}#}
-{##}
-{#.header h1 {#}
-{#    font-size: 50px;#}
-{#}#}
-{##}
-{#.intro {#}
-{#	padding-top:20px;#}
-{#}#}
-{##}
-{#.top-links {#}
-{#	float: right !important;#}
-{#}#}
-{##}
-{#.banner-text-white {#}
-{#	padding-top:80px;#}
-{#	text-align:center;#}
-{#	color:white#}
-{#}#}
-{#/* Style the top navigation bar */#}
-{#.topnav {#}
-{#    overflow: hidden;#}
-{#    background-color: #333;#}
-{#}#}
-{##}
-{#/* Style the topnav links */#}
-{#.topnav a {#}
-{#    float: left;#}
-{#    display: block;#}
-{#    color: #f2f2f2;#}
-{#    text-align: center;#}
-{#    padding: 20px 16px;#}
-{#    text-decoration: none;#}
-{#}#}
-{##}
-{#/* Change color on hover */#}
-{#.topnav a:hover {#}
-{#    background-color: #ddd;#}
-{#    color: black;#}
-{#}#}
-{##}
-{#.topnav .container {#}
-{#    padding: 10px 10px 0px 0px;#}
-{#}#}
-{##}
-{#/* Create two unequal columns that floats next to each other */#}
-{#/* Left column */#}
-{#.leftcolumn {#}
-{#    width: 100%;#}
-{##}
-{#}#}
-{##}
-{#.bgImg{#}
-{#    background-repeat: no-repeat;#}
-{#    background-size: cover;#}
-{#    height: 250px;#}
-{#}#}
-{##}
-{#/* Right column */#}
-{#.rightcolumn {#}
-{#    float: left;#}
-{#    width: 35%;#}
-{#    background-color: #f1f1f1;#}
-{#    padding-left: 20px;#}
-{#}#}
-{##}
-{#/* Fake image */#}
-{#.fakeimg {#}
-{#    background-color: #aaa;#}
-{#    width: 100%;#}
-{#    padding: 20px;#}
-{#}#}
-{##}
-{#/* Add a card effect for articles */#}
-{#.card {#}
-{#    background-color: white;#}
-{#    padding: 0px;#}
-{#    margin-top: 20px;#}
-{#    text-align: center;#}
-{#}#}
-{##}
-{#.card .intro, .card .about {#}
-{#    padding-left:10%;#}
-{#    padding-right:10%;#}
-{#}#}
-{#/* Clear floats after the columns */#}
-{#.row:after {#}
-{#    content: "";#}
-{#    display: table;#}
-{#    clear: both;#}
-{#}#}
-{##}
-{#/* Footer */#}
-{#.footer {#}
-{#    padding: 20px;#}
-{#    text-align: center;#}
-{#    background: #ddd;#}
-{#    margin-top: 20px;#}
-{#}#}
-{##}
-{#/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */#}
-{#@media (max-width: 800px) {#}
-{#    .leftcolumn, .rightcolumn {#}
-{#        width: 100%;#}
-{#        padding: 0;#}
-{#    }#}
-{#}#}
-{##}
-{#/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */#}
-{#@media (max-width: 400px) {#}
-{#    .topnav a {#}
-{#        float: none;#}
-{#        width: 100%;#}
-{#    }#}
-{#}#}
-{##}
-{#</style>#}

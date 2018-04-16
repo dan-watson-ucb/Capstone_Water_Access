@@ -1,22 +1,23 @@
 {% extends 'watermap/header.html' %}
 {% block content%}
 {% load staticfiles %}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 
 
 <script>
     $("#cnav").affix({
         offset: {
             top: 195
-       }
+     	}
     });
+
 </script>
 
 <style>
+body {
+  position: relative;
+}
 .affix {
-    padding-top: 50px; /* Final position of nav */
+    padding-top: 100px; /* Final position of nav */
     margin-top:-25%;
 }
 .content {
@@ -29,8 +30,8 @@
     position: fixed;
     text-align: left;
 }
-#cnav .active {
-  font-weight: bold;
+#cnav li.active a {
+    color: orange;
 }
 .ctable {
     font-size:12px;
@@ -39,7 +40,7 @@
     padding: 5px;
 }
 .ctable li {
-    list-style: square inside url(sqpurple.gif);
+    list-style: square inside;
 }
 .section {
     padding-top:150px;
@@ -55,17 +56,13 @@
     padding: 10px;
     background-color: white;
 }
-.section .cpdf {
-    padding: 10px;
-    margin: 10px 0px 10px;
-}
 .section .ctable {
     padding: 10px;
     margin: 0px;
 }
-div.scrollspy ul li {
+div.cnavparent ul li {
     display: block;
-   padding: 5px
+	padding: 5px
 }
 
 </style>
@@ -74,11 +71,11 @@ div.scrollspy ul li {
   <div class="card">
 
     <div class="bgImg" style="background-image: url('/static/watermap/img/banner.jpg');">
-       <h1 class="banner-text-white">Our Methodology</h1>
+	    <h1 class="banner-text-white">Our Methodology</h1>
     </div>
     <div class="row">
-        <div class="col-md-2 scrollspy hidden-sm-down">
-            <ul id="cnav" class="" data-spy="affix" data-offset-top="200">
+        <div class="col-md-2 scrollspy cnavparent">
+            <ul id="cnav" class="nav" data-spy="affix" data-offset-top="200" role="tablist">
                 <h4>Countries</h4>
                 <li><a href="#afghanistan">Afghanistan</a></li>
                 <li><a href="#india">India</a></li>
@@ -125,11 +122,11 @@ div.scrollspy ul li {
                       <div class="table table-responsive ctable">
                           <table class="table table-bordered table-hover">
                               <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
                               <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
                               <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
                               <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282 <br> 0.99746146  <br> 0.99824737  <br> 0.9956875   <br> 0.99755358</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
                           </table>
                       </div>
                   </div>
@@ -163,24 +160,6 @@ div.scrollspy ul li {
                       <img src="/static/watermap/img/solution/table_India_by_count.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                 </div>
-
-                <div class="row">
-                  <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/feature_India.png"  width="100%" height="100%" class="cimage img-fluid">
-                  </div>
-                  <div class="col-md-6">
-                      <div class="table table-responsive ctable">
-                          <table class="table table-bordered table-hover">
-                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282 <br>  0.99746146  <br> 0.99824737  <br> 0.9956875  <br>  0.99755358</td></tr>
-                          </table>
-                      </div>
-                  </div>
-                </div>
                 <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/distrpob_India.png"  width="100%" height="100%" class="cimage img-fluid">
@@ -195,7 +174,25 @@ div.scrollspy ul li {
                           </ul>
                       </div>
                   </div>
-                </div>            </section>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_India.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
+                          </table>
+                      </div>
+                  </div>
+                </div>
+            </section>
 
 
             <!-- Kenya -->
@@ -212,23 +209,6 @@ div.scrollspy ul li {
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/feature_Kenya.png"  width="100%" height="100%" class="cimage img-fluid">
-                  </div>
-                  <div class="col-md-6">
-                      <div class="table table-responsive ctable">
-                          <table class="table table-bordered table-hover">
-                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282 <br>  0.99746146  <br> 0.99824737  <br> 0.9956875   <br> 0.99755358</td></tr>
-                          </table>
-                      </div>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-md-6">
                       <img src="/static/watermap/img/solution/distrpob_Kenya.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                   <div class="col-md-6">
@@ -239,6 +219,23 @@ div.scrollspy ul li {
                               <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
                               <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_Kenya.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
+                          </table>
                       </div>
                   </div>
               </div>
@@ -258,24 +255,25 @@ div.scrollspy ul li {
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/feature_Liberia.png"  width="100%" height="100%" class="cimage img-fluid">
+                      <img src="/static/watermap/img/solution/distrpob_Liberia.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
+
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
                           <table class="table table-bordered table-hover">
                               <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
                               <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
                               <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
                               <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282 <br>  0.99746146  <br> 0.99824737  <br> 0.9956875  <br>  0.99755358</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
                           </table>
                       </div>
                   </div>
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/distrpob_Liberia.png"  width="100%" height="100%" class="cimage img-fluid">
+                      <img src="/static/watermap/img/solution/feature_Liberia.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
@@ -302,24 +300,6 @@ div.scrollspy ul li {
                       <img src="/static/watermap/img/solution/table_Malawi_by_count.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
               </div>
-
-              <div class="row">
-                  <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/feature_Malawi.png"  width="100%" height="100%" class="cimage img-fluid">
-                  </div>
-                  <div class="col-md-6">
-                      <div class="table table-responsive ctable">
-                          <table class="table table-bordered table-hover">
-                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  <br> 0.99746146  <br> 0.99824737  <br> 0.9956875  <br>  0.99755358</td></tr>
-                          </table>
-                      </div>
-                  </div>
-              </div>
               <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/distrpob_Malawi.png"  width="100%" height="100%" class="cimage img-fluid">
@@ -332,6 +312,23 @@ div.scrollspy ul li {
                               <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
                               <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_Malawi.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
+                          </table>
                       </div>
                   </div>
               </div>
@@ -351,23 +348,6 @@ div.scrollspy ul li {
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/feature_Sierra_Leone.png"  width="100%" height="100%" class="cimage img-fluid">
-                  </div>
-                  <div class="col-md-6">
-                      <div class="table table-responsive ctable">
-                          <table class="table table-bordered table-hover">
-                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  <br> 0.99746146  <br> 0.99824737  <br> 0.9956875   <br> 0.99755358</td></tr>
-                          </table>
-                      </div>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-md-6">
                       <img src="/static/watermap/img/solution/distrpob_Sierra_Leone.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                   <div class="col-md-6">
@@ -380,6 +360,24 @@ div.scrollspy ul li {
                           </ul>
                       </div>
                 </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_Sierra_Leone.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
+                          </table>
+                      </div>
+                  </div>
               </div>
             </section>
 
@@ -398,23 +396,6 @@ div.scrollspy ul li {
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/feature_South_Sudan.png"  width="100%" height="100%" class="cimage img-fluid">
-                  </div>
-                  <div class="col-md-6">
-                      <div class="table table-responsive ctable">
-                          <table class="table table-bordered table-hover">
-                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  <br> 0.99746146  <br> 0.99824737  <br> 0.9956875  <br>  0.99755358</td></tr>
-                          </table>
-                      </div>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-md-6">
                       <img src="/static/watermap/img/solution/distrpob_South_Sudan.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                   <div class="col-md-6">
@@ -425,6 +406,24 @@ div.scrollspy ul li {
                               <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
                               <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_South_Sudan.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
+                          </table>
                       </div>
                   </div>
               </div>
@@ -445,23 +444,6 @@ div.scrollspy ul li {
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/feature_Swaziland.png"  width="100%" height="100%" class="cimage img-fluid">
-                  </div>
-                  <div class="col-md-6">
-                      <div class="table table-responsive ctable">
-                          <table class="table table-bordered table-hover">
-                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  <br> 0.99746146  <br> 0.99824737  <br> 0.9956875  <br>  0.99755358</td></tr>
-                          </table>
-                      </div>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-md-6">
                       <img src="/static/watermap/img/solution/distrpob_Swaziland.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                   <div class="col-md-6">
@@ -472,6 +454,24 @@ div.scrollspy ul li {
                               <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
                               <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_Swaziland.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
+                          </table>
                       </div>
                   </div>
               </div>
@@ -492,23 +492,6 @@ div.scrollspy ul li {
               </div>
               <div class="row">
                   <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/feature_Uganda.png"  width="100%" height="100%" class="cimage img-fluid">
-                  </div>
-                  <div class="col-md-6">
-                      <div class="table table-responsive ctable">
-                          <table class="table table-bordered table-hover">
-                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  <br> 0.99746146   <br>0.99824737  <br> 0.9956875   <br> 0.99755358</td></tr>
-                          </table>
-                      </div>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-md-6">
                       <img src="/static/watermap/img/solution/distrpob_Uganda.png"  width="100%" height="100%" class="cimage img-fluid">
                   </div>
                   <div class="col-md-6">
@@ -521,7 +504,25 @@ div.scrollspy ul li {
                           </ul>
                       </div>
                   </div>
-              </div>                
+              </div>
+
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_Uganda.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
+                          </table>
+                      </div>
+                  </div>
+              </div>
             </section>
 
             <!-- Zimbabwe -->
@@ -534,23 +535,6 @@ div.scrollspy ul li {
                   </div>
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/table_Zimbabwe_by_count.png"  width="100%" height="100%" class="cimage img-fluid">
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-md-6">
-                      <img src="/static/watermap/img/solution/feature_Zimbabwe.png"  width="100%" height="100%" class="cimage img-fluid">
-                  </div>
-                  <div class="col-md-6">
-                      <div class="table table-responsive ctable">
-                          <table class="table table-bordered table-hover">
-                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (#waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282<br> 0.99746146<br>  0.99824737<br>  0.9956875<br>   0.99755358</td></tr>
-                          </table>
-                      </div>
                   </div>
               </div>
               <div class="row">
@@ -568,9 +552,27 @@ div.scrollspy ul li {
                       </div>
                   </div>
               </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="/static/watermap/img/solution/feature_Zimbabwe.png"  width="100%" height="100%" class="cimage img-fluid">
+                  </div>
+                  <div class="col-md-6">
+                      <div class="table table-responsive ctable">
+                          <table class="table table-bordered table-hover">
+                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
+                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
+                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
+                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
+                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
+                          </table>
+                      </div>
+                  </div>
+              </div>
             </section>
         </div> <!-- end col-md-10 content -->
     </div> <!-- end row -->
   </div> <!-- end card -->
 </div> <!-- end spacer container -->
 {% endblock %}
+

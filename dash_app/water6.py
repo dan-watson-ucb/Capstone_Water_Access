@@ -188,26 +188,6 @@ app.layout = html.Div([
              multi = True       
         ),
         ], style = {"padding":"5px"}),
-        html.Div([
-        html.H6(children = "Color Water Points By:"),
-        dcc.RadioItems(id = 'point-color-select',
-            options=[
-                {'label': 'Last Known Status', 'value': 1},
-                {'label': 'Today\'s Prediction', 'value': 2},
-                {'label': 'One Year Prediction', 'value':3}
-            ],
-            value = 2                   
-        ),
-        ], style = {"padding":"5px"}),
-        html.Div([
-        html.Button('Submit', id= 'submit-button'),
-        # html.Button('Easy Button', id= 'easy-button')
-        ],
-        style = {"padding":"5px"}),
-        html.Div([
-        html.H6(children = "", id = "well_text"),
-        html.A('Download Data', id= 'download-link', download ="waterpoint_data.csv", href="", target= "_blank"),
-        ]),
         ], className="col-md-4"),
     
     html.Div([
@@ -248,6 +228,29 @@ app.layout = html.Div([
         }
     })
     ], className="col-md-8", style = {'border':'1px solid black'}),
+
+    html.Div([
+        html.Div([
+        html.H6(children = "Color Water Points By:"),
+        dcc.RadioItems(id = 'point-color-select',
+            options=[
+                {'label': 'Last Known Status', 'value': 1},
+                {'label': 'Today\'s Prediction', 'value': 2},
+                {'label': 'One Year Prediction', 'value':3}
+            ],
+            value = 2,
+            labelStyle={'display': 'block'}                   
+        ),
+        ], style = {"padding":"5px"}),
+        html.Div([
+        html.Button('Submit', id= 'submit-button'),
+        # html.Button('Easy Button', id= 'easy-button')
+        ],
+        style = {"padding":"5px"}),
+        html.Div([
+        html.H6(children = "", id = "well_text"),
+        html.A('Download Data', id= 'download-link', download ="waterpoint_data.csv", href="", target= "_blank")
+        ])],className="col-md-4"),
     
     html.Div([
         generate_table(df_init2)

@@ -192,11 +192,12 @@ app.layout = html.Div([
         html.H6(children = "Color Water Points By:"),
         dcc.RadioItems(id = 'point-color-select',
             options=[
-                {'label': 'Last Known Status', 'value': 1},
-                {'label': 'Today\'s Prediction', 'value': 2},
-                {'label': 'One Year Prediction', 'value':3}
+                {'label': ' Last Known Status', 'value': 1},
+                {'label': ' Today\'s Prediction', 'value': 2},
+                {'label': ' One Year Prediction', 'value':3}
             ],
-            value = 2                   
+            value = 2,
+            labelStyle={'display': 'block', 'font-size':'14px'}                   
         ),
         ], style = {"padding":"5px"}),
         html.Div([
@@ -224,7 +225,7 @@ app.layout = html.Div([
                     "cluster": True,
                     "mode": "markers",
                     "marker": {
-                        "size": 10,
+                        "size": 8,
                         "opacity": 1.0,
                         "color" : df_init['color'] 
                     }
@@ -243,12 +244,11 @@ app.layout = html.Div([
                 "cluster": True,
                 "pitch": 0,
                 "zoom": 4,
-                "style": "outdoors",
-                "height":"100%"
+                "style": "outdoors"
             }
         }
     })
-    ], className="col-md-8", style = {'border':'1px solid black'}),
+    ], className="col-md-8", style = {'border':'1px solid black','height':'470px'}),
     
     html.Div([
         generate_table(df_init2)
@@ -333,7 +333,7 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
 
                     "mode": "markers",
                     "marker": {
-                        "size": 10,
+                        "size": 8,
                         "opacity": .8,
                         "color" : df['color']                        
                     }
@@ -353,7 +353,6 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
                 "zoom": 4,
                 "style": "outdoors",
                 "cluster": True,
-                #"height":"100%"
             }
         }
     }

@@ -94,12 +94,17 @@ div.cnavparent ul li {
             <div style="padding-top:40px;">
                 <h1>Methodology</h1>
                 <p>The WaterPoint Data Exchange collected data on ~400k waterpoints in Africa, Asia and South America, and recorded which were working and which ones were not.</p>
-                <p>Our team used this data to help countries prioritize waterpoints to repair. For every waterpoint, we’ve added in the number of people within 1 km, as well as which district and sub-district the waterpoint is located in per country. This helps for waterpoints that were broken when the data was collected (colored in red on the map), but how do we know which new waterpoints may be broken today?</p>
-                <p>Our team used powerful computer models to predict which waterpoints that were working a few years ago are probably not working today. These waterpoints are in orange on the map.</p>
-                <p>To make things easy to prioritize, we’ve added a risk score for every waterpoint.  A high risk score means it is known to be or very likely not-functioning, and also serves a large population of people within 1 km. You can filter by risk score for your country and download an Excel file with location information per well.</p>
-                <p>Using data from ~ 200,000 water points, our computer models learned the characteristics of functioning and nonfunctioning waterpoints.  We then used those learned patterns to make predictions on another 70,000 waterpoints, to see how often we were right.  We were right about 90% of the time, sometimes more or less, depending on the country.</p>
-                <p>We set aside an extra 70,000 waterpoints that we never let our models see, and just made predictions on the status of those water points, to see if we could accurately predict “unseen” data.  We were still correct about 90% of the time.</p>
-                <p>Confident in our models now, we updated each waterpoints age to be in the current year (March 1, 2018) and 1 year out (March 1, 2019) and made new predictions.  These are still probabilities, but are definitely better than guessing.</p>
+                <p>Our team used this data to help countries prioritize waterpoints to repair. We appended a number of columns to the dataset,
+                  including: the number of people within 1 km, the total number of other waterpoints within 1 km, the number of other functioning waterpoints within 1 km, and the district and sub-district in which the waterpoint is located.
+                  This helps identify waterpoints that were broken when the data was collected, but how do we know which new waterpoints may be broken today?</p>
+                <p>Our team used machine learning algorithms (specifically, eXtreme Gradient Boosted Trees) to predict which waterpoints that were working a few years ago are probably not working today. </p>
+                <p>Using data from ~ 200,000 water points across all 10 countries with the most data, our  models learned the characteristics of functioning and nonfunctioning waterpoints. We then used those learned patterns to make predictions on another 70,000 waterpoints, to see how often we were right. We were right about 85% of the time, sometimes more or less, depending on the country.</p>
+                <p>We set aside an extra 70,000 waterpoints that we never let our models see, and just made predictions on the status of those water points, to see if we could accurately predict “unseen” data. We were still correct about 85% of the time.</p>
+                <p>At this point, we had built models that were very good at predicting a failure at the last time it was measured.
+                  However, we wanted to predict if a waterpoint was broken today, and one year from now.
+                  To do so, we adjusted the age of each waterpoint in the data set, and then made new predictions.
+                  For example, if a well was 20 years old when it was measured two years ago, we adjusted the age of the well to be 22 years old to make a prediction for today, and 23 years old for a prediction one year from now.</p>
+                <p>To make things easy to prioritize, we’ve added a risk score for every waterpoint. A high risk score means it is known to be or very likely not-functioning, and also serves a large population of people within 1 km. You can filter by risk score for your country and download an Excel file with location information per well.</p>
             </div>
 
             <!-- Afghanistan -->
@@ -112,8 +117,7 @@ div.cnavparent ul li {
                  In one year, we predict this number to grow to 63.7%.
                  A prediction threshold of 0.237 was used to predict a non-functioning waterpoint.
                  For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 wells investigated was actually not working.
-                 We were able to achieve 52% precision while maintaining 81% recall of non-functioning waterpoints.
-</p>
+                 We were able to achieve 52% precision while maintaining 81% recall of non-functioning waterpoints.</p>
                 <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/table_Afghanistan_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
@@ -223,7 +227,8 @@ div.cnavparent ul li {
                  A prediction threshold of 0.25 was used to predict a non-functionging waterpoint.
                  For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 wells investigated was actually not working. We could not achieve those levels with the Kenya model,
                 however were close, at 42% precision.
-              It is worth noting that 78% of wells did not have dates for "Install Year", so the age of the well and lifespan was more challenging to predict.  Improved data collection on well age will help future modeling efforts.</p>
+              It is worth noting that 78% of wells did not have dates for "Install Year", so the age of the well and lifespan was more challenging to predict.  Improved data collection on well age will help future modeling efforts.
+            Further, when the water sourcew as recorded as "missing", it was highly predictive of not working.  Finally, there is a strong importance to location. You can see on the map that waterpoints in north west and central kenya have clusters of non-functioning waterpoints, compared to the east and the south.</p>
               <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/table_Kenya_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
@@ -276,7 +281,8 @@ div.cnavparent ul li {
                  In one year, we predict this number to grow to 56%.
                  A prediction threshold of 0.237 was used to predict a non-functioning waterpoint.
                  For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 wells investigated, one was actually not working.
-                 We were able to achieve this with the Liberia model, with 50% precision and 69% recall.</p>
+                 We were able to achieve this with the Liberia model, with 50% precision and 69% recall.
+                Interestingly, "adm1", or who was administering the waterpoint, was the most predictive feature in Liberia.</p>
               <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/table_Liberia_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
@@ -329,9 +335,11 @@ div.cnavparent ul li {
                  Today, we predict the number of non-functioning waterpoints to have grown to 41.3%.
                  In one year, we predict this number to grow to 45.6%.
                  A prediction threshold of 0.237 was used to predict a non-functioning waterpoint.
-                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 wells investigated, one was actually not working.
+                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 waterpoints investigated, one was actually not working.
                  We were able to achieve this with the Malawi model, with 53% precision and 78% recall.
-               Note - Malawi also had a large amount of missing values for "Install Year" at 55%, so improved data collection will likely improve future model performance, as this value is our proxy for the age of a well.</p>
+               Note - Malawi also had a large amount of missing values for "Install Year" at 55%, so improved data collection will likely improve future model performance, as this value informs our estimate for the age of a well.
+              It is also interesting that latitude and longitude were the most predictive features for Malawi.  Looking on the map, we can see large concentrations of bad wells west of the Mulanje
+            Mountain Forest Reserve, along road S152, and along road S136 between the Majete Wildlife Preserve and Lengwe National Park. </p>
               <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/table_Malawi_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
@@ -383,7 +391,7 @@ div.cnavparent ul li {
                  Today, we predict the number of non-functioning waterpoints to have grown to 35.1.
                  In one year, we predict this number to grow to 36.7%.
                  A prediction threshold of 0.289474 was used to predict a non-functioning waterpoint.
-                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 wells investigated, one was actually not working.
+                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 waterpoints investigated, one was actually not working.
                  We were able to achieve this with the Sierra Leone model, with 53% precision and 64% recall.
                Note- the "Pay" feature could not be used in Sierra Leone as "No water" was a common value and "gave away" the answer (e.g. target leakage).
                 Instead, we were able to use "Installer" sucecssfully as an alternative feature to "Pay".</p>
@@ -440,7 +448,7 @@ div.cnavparent ul li {
                  Today, we predict the number of non-functioning waterpoints to have grown to 29.9%.
                  In one year, we predict this number to grow to 30.2%.
                  A prediction threshold of 0.34 was used to predict a non-functioning waterpoint.
-                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 wells investigated, one was actually not working.
+                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 waterpoints investigated, one was actually not working.
                  We were able to achieve this with the South Sudan model, with 53% precision and 52% recall.
                Note - South Sudan, like Kenya and Malawi, had extremely high missing values for "install year", and thus, the age of a waterpoint.
                However, the "Time Since Measurement" served as a proxy for well age in the absence of "Install Year." Still, a decent model was built purely on the technology and source of a waterpoint and the time since measurement.
@@ -498,7 +506,7 @@ div.cnavparent ul li {
                  Today, we predict the number of non-functioning waterpoints to have grown to 17.7%.
                  In one year, we predict this number to grow to 18.2%.
                  A prediction threshold of 0.21056 was used to predict a non-functioning waterpoint.
-                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 wells investigated, one was actually not working.
+                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 waterpoints investigated, one was actually not working.
                  We were able to achieve this with the Swaziland model, with 91% precision and 96% recall.
                Swaziland is our best performing model, and this is likely due to government sponsored and organized data collection (potentially more standardized), as well as nearly no missing values, except for the management field, which generally wasn't very predictive across countries.
              The quality of Swaziland's data is further reflected in their consistency in labeling of data, with much fewer categories of water tech and water source compared to other countries. This consistency also likely drove higher model performance.
@@ -551,13 +559,13 @@ div.cnavparent ul li {
             <!-- Uganda -->
             <section id="uganda" class="section">
               <h2>Uganda</h2>
-              <p>There are 113,558 measurements in Swaziland covering 110,102 unique water points.
+              <p>There are 113,558 measurements in Uganda covering 110,102 unique water points.
                  The vast majority of these measurements were taken between Dec 1 1991 and August 20 2016.
                  As of the last measurement,  21.9% of waterpoints were not functioning or had a status of ‘unknown’.
                  Today, we predict the number of non-functioning waterpoints to have grown to 38.7%.
                  In one year, we predict this number to grow to 43.1.
                  A prediction threshold of 0.236842 was used to predict a non-functioning waterpoint.
-                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 wells investigated, one was actually not working.
+                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 waterpoints investigated, one was actually not working.
                  We were able to achieve this with the Uganda model, with 51% precision and 72% recall.
                Note- "Water Source" was missing 84% of the time in this data set. </p>
               <div class="row">
@@ -606,7 +614,14 @@ div.cnavparent ul li {
             <!-- Zimbabwe -->
             <section id="zimbabwe" class="section last">
               <h2>Zimbabwe</h2>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <p>There are 38,734 measurements in Zimbabwe covering 38,083 unique water points.
+                 The vast majority of these measurements were taken between June 19 2012 and July 07 2017.
+                 As of the last measurement,  39.1% of waterpoints were not functioning or had a status of ‘unknown’.
+                 Today, we predict the number of non-functioning waterpoints to have grown to 61.4%.
+                 In one year, we predict this number to grow to 68.2.
+                 A prediction threshold of 0.25 was used to predict a non-functioning waterpoint.
+                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 waterpoints investigated, one was actually not working.
+                 We were able to achieve this with the Zimbabwe model, with 57% precision and 83% recall.</p>
               <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/table_Zimbabwe_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
@@ -623,9 +638,9 @@ div.cnavparent ul li {
                       <div class="table table-responsive ctable">
                           <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
-                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
-                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.25</li>
+                              <li>Precision  = 0.57 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.83 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
@@ -638,11 +653,11 @@ div.cnavparent ul li {
                       <div class="table table-responsive ctable">
                           <table class="table table-bordered table-hover">
                               <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
+                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Accuracy</th></tr>
+                              <tr><th>Train</th><td>23,239</td><td>0.943</td><td>0.869</td></tr>
+                              <tr><th>Test</th><td>7,747</td><td>0.831</td><td>0.773</td></tr>
+                              <tr><th>Holdout</th><td>7,747</td><td>0.818</td><td>0.763</td></tr>
+                              <tr><th>Full Sample 5 fold nested Cross-Validation</th><td>38,734</td><td>0.837 mean  0.006 std</td><td>N/A</td></tr>
                           </table>
                       </div>
                   </div>

@@ -224,7 +224,7 @@ app.layout = html.Div([
                     "cluster": True,
                     "mode": "markers",
                     "marker": {
-                        "size": 8,
+                        "size": 10,
                         "opacity": 1.0,
                         "color" : df_init['color'] 
                     }
@@ -243,7 +243,8 @@ app.layout = html.Div([
                 "cluster": True,
                 "pitch": 0,
                 "zoom": 4,
-                "style": "outdoors"
+                "style": "outdoors",
+                "height":"100%"
             }
         }
     })
@@ -332,7 +333,7 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
 
                     "mode": "markers",
                     "marker": {
-                        "size": 8,
+                        "size": 10,
                         "opacity": .8,
                         "color" : df['color']                        
                     }
@@ -352,6 +353,7 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
                 "zoom": 4,
                 "style": "outdoors",
                 "cluster": True,
+                #"height":"100%"
             }
         }
     }

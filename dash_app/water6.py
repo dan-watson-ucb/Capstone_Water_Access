@@ -234,9 +234,9 @@ app.layout = html.Div([
         html.H6(children = "Color Water Points By:"),
         dcc.RadioItems(id = 'point-color-select',
             options=[
-                {'label': 'Last Known Status', 'value': 1},
-                {'label': 'Today\'s Prediction', 'value': 2},
-                {'label': 'One Year Prediction', 'value':3}
+                {'label': ' Last Known Status', 'value': 1},
+                {'label': ' Today\'s Prediction', 'value': 2},
+                {'label': ' One Year Prediction', 'value':3}
             ],
             value = 2,
             labelStyle={'display': 'block'}                   

@@ -105,7 +105,15 @@ div.cnavparent ul li {
             <!-- Afghanistan -->
             <section id="afghanistan" class="section">
                 <h2>Afghanistan</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p>There are 59,849 measurements in Afghanistan covering 58,118 unique water points.
+                 These measurements were taken between Jan 1 2003 and Dec 31 2013.
+                 As of the last measurement, 29.7 % of waterpoints were not functioning or had a status of ‘unknown’.
+                 Today, we predict the number of non-functioning waterpoints to have grown to 60%.
+                 In one year, we predict this number to grow to 63.7%.
+                 A prediction threshold of 0.237 was used to predict a non-functioning waterpoint.
+                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 wells investigated was actually not working.
+                 We were able to achieve 52% precision while maintaining 81% recall of non-functioning waterpoints.
+</p>
                 <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/table_Afghanistan_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
@@ -122,11 +130,11 @@ div.cnavparent ul li {
                       <div class="table table-responsive ctable">
                           <table class="table table-bordered table-hover">
                               <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
+                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Accuracy</th></tr>
+                              <tr><th>Train</th><td>35,909</td><td>0.932</td><td>0.863</td></tr>
+                              <tr><th>Test</th><td>11,970</td><td>0.848</td><td>0.800</td></tr>
+                              <tr><th>Holdout</th><td>11970</td><td>0.845</td><td>0.801</td></tr>
+                              <tr><th>Full Sample 5 fold nested Cross-Validation</th><td>59,849</td><td>0.852 mean  0.004 std</td><td>N/A</td></tr>
                           </table>
                       </div>
                   </div>
@@ -139,9 +147,9 @@ div.cnavparent ul li {
                       <div class="table table-responsive ctable">
                           <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
-                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
-                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.237</li>
+                              <li>Precision  = 0.52 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.81 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
@@ -151,7 +159,16 @@ div.cnavparent ul li {
             <!-- India -->
             <section id="india" class="section">
                 <h2>India</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p>There are 5,887 measurements in India covering 5,850 unique water points.
+                 The vast majority of these measurements were taken between March 20 2015 and October 3 2016.
+                 As of the last measurement, 2.7 % of waterpoints were not functioning or had a status of ‘unknown’.
+                 Today, we predict the number of non-functioning waterpoints to have grown to 20%.
+                 In one year, we predict this number to grow to 75%. This is obviously extreme.  India is our worst performing model, in part due to the
+                 small sample size, as well as the geographic restrictions (only from a handful of districts). Further, there is no data on the water source, it's completely missing.  Thus, this model is largely dependent on water tech data and well age, which is measured over a short window.
+                 This poor performance is evident on the probability distribution plot where there is little separation between functioning and non-functioning waterpoint predictions.
+                  To improve forecasting of waterpoint access in India, efforts to increase data collection would be very helpful.
+
+</p>
                 <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/table_India_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
@@ -168,9 +185,9 @@ div.cnavparent ul li {
                       <div class="table table-responsive ctable">
                           <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
-                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
-                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.052632</li>
+                              <li>Precision  = 0.07 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.47 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
@@ -181,14 +198,14 @@ div.cnavparent ul li {
                   </div>
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
-                          <table class="table table-bordered table-hover">
-                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
-                          </table>
+                        <table class="table table-bordered table-hover">
+                            <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                            <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Accuracy</th></tr>
+                            <tr><th>Train</th><td>3,532</td><td>0.806</td><td>0.973</td></tr>
+                            <tr><th>Test</th><td>1,177</td><td>0.685</td><td>0.973</td></tr>
+                            <tr><th>Holdout</th><td>1,178</td><td>0.707</td><td>0.973</td></tr>
+                            <tr><th>Full Sample 5 fold nested Cross-Validation</th><td>5,887</td><td>0.684 mean  0.026 std</td><td>N/A</td></tr>
+                        </table>
                       </div>
                   </div>
                 </div>
@@ -198,7 +215,15 @@ div.cnavparent ul li {
             <!-- Kenya -->
             <section id="kenya" class="section">
               <h2>Kenya</h2>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <p>There are 21,108 measurements in Kenya covering 20,627 unique water points.
+                 These measurements were taken between Jan 1 2013 and Dec 31 2013.
+                 As of the last measurement, 13.67% of waterpoints were not functioning or had a status of ‘unknown’.
+                 Today, we predict the number of non-functioning waterpoints to grow to 22%.
+                 In one year, we predict this number to grow to 25.8%.
+                 A prediction threshold of 0.25 was used to predict a non-functionging waterpoint.
+                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 wells investigated was actually not working. We could not achieve those levels with the Kenya model,
+                however were close, at 42% precision.
+              It is worth noting that 78% of wells did not have dates for "Install Year", so the age of the well and lifespan was more challenging to predict.  Improved data collection on well age will help future modeling efforts.</p>
               <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/table_Kenya_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
@@ -215,9 +240,9 @@ div.cnavparent ul li {
                       <div class="table table-responsive ctable">
                           <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
-                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
-                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.25</li>
+                              <li>Precision  = 0.42 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.54 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
@@ -229,12 +254,12 @@ div.cnavparent ul li {
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
                           <table class="table table-bordered table-hover">
-                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
+                            <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                            <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Accuracy</th></tr>
+                            <tr><th>Train</th><td>12,664</td><td>0.939</td><td>0.909</td></tr>
+                            <tr><th>Test</th><td>4,222</td><td>0.837</td><td>0.874</td></tr>
+                            <tr><th>Holdout</th><td>4,222</td><td>0.833</td><td>0.876</td></tr>
+                            <tr><th>Full Sample 5 fold nested Cross-Validation</th><td>21,108</td><td>0.843 mean  0.010 std</td><td>N/A</td></tr>
                           </table>
                       </div>
                   </div>
@@ -244,7 +269,14 @@ div.cnavparent ul li {
             <!-- Liberia -->
             <section id="liberia" class="section">
               <h2>Liberia</h2>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <p>There are 14,028 measurements in Liberia covering 13,498 unique water points.
+                 The vast majority of these measurements were taken between Jan 1 2010 and Dec 31 2016.
+                 As of the last measurement, 25.7 % of waterpoints were not functioning or had a status of ‘unknown’.
+                 Today, we predict the number of non-functioning waterpoints to have grown to 50%.
+                 In one year, we predict this number to grow to 56%.
+                 A prediction threshold of 0.237 was used to predict a non-functioning waterpoint.
+                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 wells investigated, one was actually not working.
+                 We were able to achieve this with the Liberia model, with 50% precision and 69% recall.</p>
               <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/table_Liberia_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
@@ -261,12 +293,12 @@ div.cnavparent ul li {
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
                           <table class="table table-bordered table-hover">
-                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
+                            <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                            <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Accuracy</th></tr>
+                            <tr><th>Train</th><td>8,416</td><td>0.894</td><td>0.850</td></tr>
+                            <tr><th>Test</th><td>2,806</td><td>0.817</td><td>0.824</td></tr>
+                            <tr><th>Holdout</th><td>2,806</td><td>0.809</td><td>0.811</td></tr>
+                            <tr><th>Full Sample 5 fold nested Cross-Validation</th><td>14,208</td><td>0.820 mean  0.007 std</td><td>N/A</td></tr>
                           </table>
                       </div>
                   </div>
@@ -279,9 +311,9 @@ div.cnavparent ul li {
                       <div class="table table-responsive ctable">
                           <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
-                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
-                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.237</li>
+                              <li>Precision  = 0.50(when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.69 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
@@ -291,7 +323,15 @@ div.cnavparent ul li {
             <!-- Malawi -->
             <section id="malawi" class="section">
               <h2>Malawi</h2>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <p>There are 12,191 measurements in Malawi covering 11,797 unique water points.
+                 The vast majority of these measurements were taken between April 5 1984 and Jun 27 2017.
+                 As of the last measurement, 24.9 % of waterpoints were not functioning or had a status of ‘unknown’.
+                 Today, we predict the number of non-functioning waterpoints to have grown to 41.3%.
+                 In one year, we predict this number to grow to 45.6%.
+                 A prediction threshold of 0.237 was used to predict a non-functioning waterpoint.
+                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 wells investigated, one was actually not working.
+                 We were able to achieve this with the Malawi model, with 53% precision and 78% recall.
+               Note - Malawi also had a large amount of missing values for "Install Year" at 55%, so improved data collection will likely improve future model performance, as this value is our proxy for the age of a well.</p>
               <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/table_Malawi_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
@@ -308,9 +348,9 @@ div.cnavparent ul li {
                       <div class="table table-responsive ctable">
                           <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
-                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
-                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.237</li>
+                              <li>Precision  = 0.53 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.78 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
@@ -322,12 +362,12 @@ div.cnavparent ul li {
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
                           <table class="table table-bordered table-hover">
-                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
+                            <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                            <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Accuracy</th></tr>
+                            <tr><th>Train</th><td>7,314</td><td>0.914</td><td>0.866</td></tr>
+                            <tr><th>Test</th><td>2,438</td><td>0.845</td><td>0.819</td></tr>
+                            <tr><th>Holdout</th><td>2,439</td><td>0.849</td><td>0.832</td></tr>
+                            <tr><th>Full Sample 5 fold nested Cross-Validation</th><td>12,191</td><td>0.847 mean  0.007 std</td><td>N/A</td></tr>
                           </table>
                       </div>
                   </div>
@@ -337,7 +377,16 @@ div.cnavparent ul li {
             <!-- Sierra Leone -->
             <section id="sierraleone" class="section">
               <h2>Sierra Leone</h2>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <p>There are 54,864 measurements in Sierra Leone covering 53,403 unique water points.
+                 The vast majority of these measurements were taken between Jan 3 2012 and Dec 09 2016.
+                 As of the last measurement, 22.6 % of waterpoints were not functioning or had a status of ‘unknown’.
+                 Today, we predict the number of non-functioning waterpoints to have grown to 35.1.
+                 In one year, we predict this number to grow to 36.7%.
+                 A prediction threshold of 0.289474 was used to predict a non-functioning waterpoint.
+                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 wells investigated, one was actually not working.
+                 We were able to achieve this with the Sierra Leone model, with 53% precision and 64% recall.
+               Note- the "Pay" feature could not be used in Sierra Leone as "No water" was a common value and "gave away" the answer (e.g. target leakage).
+                Instead, we were able to use "Installer" sucecssfully as an alternative feature to "Pay".</p>
               <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/table_Sierra_Leone_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
@@ -354,9 +403,9 @@ div.cnavparent ul li {
                       <div class="table table-responsive ctable">
                           <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
-                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
-                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.289474</li>
+                              <li>Precision  = 0.53 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.64 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                 </div>
@@ -369,12 +418,12 @@ div.cnavparent ul li {
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
                           <table class="table table-bordered table-hover">
-                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
+                            <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                            <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Accuracy</th></tr>
+                            <tr><th>Train</th><td>32,918</td><td>0.952</td><td>0.893</td></tr>
+                            <tr><th>Test</th><td>10,973</td><td>0.839</td><td>0.834</td></tr>
+                            <tr><th>Holdout</th><td>10,973</td><td>0.832</td><td>0.828</td></tr>
+                            <tr><th>Full Sample 5 fold nested Cross-Validation</th><td>54,864</td><td>0.840 mean  0.005 std</td><td>N/A</td></tr>
                           </table>
                       </div>
                   </div>
@@ -385,7 +434,17 @@ div.cnavparent ul li {
             <!-- South Sudan -->
             <section id="southsudan" class="section">
               <h2>South Sudan</h2>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <p>There are 6,088 measurements in South Sudan covering 5,874 unique water points.
+                 These measurements were taken between May 27 1973 and Dec 05 2016.
+                 As of the last measurement, 21 % of waterpoints were not functioning or had a status of ‘unknown’.
+                 Today, we predict the number of non-functioning waterpoints to have grown to 29.9%.
+                 In one year, we predict this number to grow to 30.2%.
+                 A prediction threshold of 0.34 was used to predict a non-functioning waterpoint.
+                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 wells investigated, one was actually not working.
+                 We were able to achieve this with the South Sudan model, with 53% precision and 52% recall.
+               Note - South Sudan, like Kenya and Malawi, had extremely high missing values for "install year", and thus, the age of a waterpoint.
+               However, the "Time Since Measurement" served as a proxy for well age in the absence of "Install Year." Still, a decent model was built purely on the technology and source of a waterpoint and the time since measurement.
+             Improved data collection on the install year of the waterpoint, as well as more data on waterpoints in general, will likely improve model performance in the future.</p>
               <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/table_South_Sudan_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
@@ -402,9 +461,9 @@ div.cnavparent ul li {
                       <div class="table table-responsive ctable">
                           <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
-                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
-                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.34</li>
+                              <li>Precision  = 0.53 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.52 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
@@ -418,11 +477,11 @@ div.cnavparent ul li {
                       <div class="table table-responsive ctable">
                           <table class="table table-bordered table-hover">
                               <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
+                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Accuracy</th></tr>
+                              <tr><th>Train</th><td>3,652</td><td>0.868</td><td>0.837</td></tr>
+                              <tr><th>Test</th><td>1,218</td><td>0.758</td><td>0.801</td></tr>
+                              <tr><th>Holdout</th><td>1,218</td><td>0.805</td><td>0.817</td></tr>
+                              <tr><th>Full Sample 5 fold nested Cross-Validation</th><td>6,088</td><td>0.787 mean  0.008 std</td><td>N/A</td></tr>
                           </table>
                       </div>
                   </div>
@@ -433,7 +492,18 @@ div.cnavparent ul li {
             <!-- Swaziland -->
             <section id="swaziland" class="section">
               <h2>Swaziland</h2>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <p>There are 23,784 measurements in Swaziland covering 23,784 unique water points.
+                 The vast majority of these measurements were taken between Nov 26 2013 and July 24 2015.
+                 As of the last measurement,  16% of waterpoints were not functioning or had a status of ‘unknown’.
+                 Today, we predict the number of non-functioning waterpoints to have grown to 17.7%.
+                 In one year, we predict this number to grow to 18.2%.
+                 A prediction threshold of 0.21056 was used to predict a non-functioning waterpoint.
+                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 wells investigated, one was actually not working.
+                 We were able to achieve this with the Swaziland model, with 91% precision and 96% recall.
+               Swaziland is our best performing model, and this is likely due to government sponsored and organized data collection (potentially more standardized), as well as nearly no missing values, except for the management field, which generally wasn't very predictive across countries.
+             The quality of Swaziland's data is further reflected in their consistency in labeling of data, with much fewer categories of water tech and water source compared to other countries. This consistency also likely drove higher model performance.
+           Swaziland's data collection is worth investigating further to see if any best practices can be shared across other nations to produce such reliable results.
+         Note - no evidence of target leakage was found in the data set.  We believe the high AUC values to be accurate.</p>
               <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/table_Swaziland_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
@@ -450,9 +520,9 @@ div.cnavparent ul li {
                       <div class="table table-responsive ctable">
                           <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
-                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
-                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.21056</li>
+                              <li>Precision  = 0.91 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.96 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
@@ -464,14 +534,14 @@ div.cnavparent ul li {
                   </div>
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
-                          <table class="table table-bordered table-hover">
-                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
-                          </table>
+                        <table class="table table-bordered table-hover">
+                            <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                            <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Accuracy</th></tr>
+                            <tr><th>Train</th><td>14,270</td><td>0.99</td><td>0.99</td></tr>
+                            <tr><th>Test</th><td>4,757</td><td>0.996</td><td>0.980</td></tr>
+                            <tr><th>Holdout</th><td>4,757</td><td>0.997</td><td>0.982</td></tr>
+                            <tr><th>Full Sample 5 fold nested Cross-Validation</th><td>23,784</td><td>0.997 mean  0.001 std</td><td>N/A</td></tr>
+                        </table>
                       </div>
                   </div>
               </div>
@@ -481,7 +551,15 @@ div.cnavparent ul li {
             <!-- Uganda -->
             <section id="uganda" class="section">
               <h2>Uganda</h2>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <p>There are 113,558 measurements in Swaziland covering 110,102 unique water points.
+                 The vast majority of these measurements were taken between Dec 1 1991 and August 20 2016.
+                 As of the last measurement,  21.9% of waterpoints were not functioning or had a status of ‘unknown’.
+                 Today, we predict the number of non-functioning waterpoints to have grown to 38.7%.
+                 In one year, we predict this number to grow to 43.1.
+                 A prediction threshold of 0.236842 was used to predict a non-functioning waterpoint.
+                 For all countries, we opted to maximize recall (finding all the bad waterpoints) while targeting 50% precision,so that for every 1 of 2 wells investigated, one was actually not working.
+                 We were able to achieve this with the Uganda model, with 51% precision and 72% recall.
+               Note- "Water Source" was missing 84% of the time in this data set. </p>
               <div class="row">
                   <div class="col-md-6">
                       <img src="/static/watermap/img/solution/table_Uganda_normalized.png"  width="100%" height="100%" class="cimage img-fluid">
@@ -498,9 +576,9 @@ div.cnavparent ul li {
                       <div class="table table-responsive ctable">
                           <h3>Distribution of probabilties on holdout data</h3>
                           <ul>
-                              <li>Threshold used for Today and 1 year out predictions = 0.2156</li>
-                              <li>Precision  = 0.9 (when we predict a bad well, how often it’s actually bad)</li>
-                              <li>Recall = 0.95 ( of all the bad wells, how often we actually identify them)</li>
+                              <li>Threshold used for Today and 1 year out predictions = 0.236842</li>
+                              <li>Precision  = 0.51 (when we predict a bad well, how often it’s actually bad)</li>
+                              <li>Recall = 0.72 ( of all the bad wells, how often we actually identify them)</li>
                           </ul>
                       </div>
                   </div>
@@ -512,14 +590,14 @@ div.cnavparent ul li {
                   </div>
                   <div class="col-md-6">
                       <div class="table table-responsive ctable">
-                          <table class="table table-bordered table-hover">
-                              <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
-                              <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Nested Cross-Validation AUC</th></tr>
-                              <tr><th>Train</th><td>14,270</td><td>0.999</td><td>N/A</td></tr>
-                              <tr><th>Test</th><td>4,757</td><td>0.9959</td><td>N/A</td></tr>
-                              <tr><th>Holdout</th><td>4,757</td><td>0.996</td><td>N/A</td></tr>
-                              <tr><th>Full Sample</th><td>23,784</td><td>0.9975</td><td>0.99849282  0.99746146  0.99824737  0.9956875   0.99755358</td></tr>
-                          </table>
+                        <table class="table table-bordered table-hover">
+                            <tr><th colspan = "4" style="text-align: center;">AUC Table</th></tr>
+                            <tr><th></th><th>Sample size (# waterpoints)</th><th>AUC</th><th>Accuracy</th></tr>
+                            <tr><th>Train</th><td>68,132</td><td>0.924</td><td>0.876</td></tr>
+                            <tr><th>Test</th><td>22,711</td><td>0.843</td><td>0.845</td></tr>
+                            <tr><th>Holdout</th><td>22,711</td><td>0.851</td><td>0.846</td></tr>
+                            <tr><th>Full Sample 5 fold nested Cross-Validation</th><td>113,558</td><td>0.850 mean  0.002 std</td><td>N/A</td></tr>
+                        </table>
                       </div>
                   </div>
               </div>
@@ -575,4 +653,3 @@ div.cnavparent ul li {
   </div> <!-- end card -->
 </div> <!-- end spacer container -->
 {% endblock %}
-

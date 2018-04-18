@@ -9,8 +9,8 @@ import pandas as pd
 from dash.dependencies import Output, Event, Input, State
 import dash_table_experiments as dt
 #Switch these two when putting live
-#import urllib.parse
-import urllib
+import urllib.parse
+#import urllib
 
 #text
 #get rid of lat lon from the table - moved to the back
@@ -1133,8 +1133,8 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
     conn.close()
     csv_string = df.to_csv(index=False, encoding='utf-8')
     #Switch these two when pushing live
-    #csv_string = "data:text/csv;charset=utf-8," + urllib.parse.quote(csv_string)
-    csv_string = "data:text/csv;charset=utf-8," + urllib.quote(csv_string)
+    csv_string = "data:text/csv;charset=utf-8," + urllib.parse.quote(csv_string)
+    #csv_string = "data:text/csv;charset=utf-8," + urllib.quote(csv_string)
 
     return csv_string
 

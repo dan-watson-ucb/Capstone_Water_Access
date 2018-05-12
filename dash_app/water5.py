@@ -9,8 +9,10 @@ import pandas as pd
 from dash.dependencies import Output, Event, Input, State
 import dash_table_experiments as dt
 #Switch these two when putting live
-import urllib.parse
-#import urllib
+#Live Code
+#import urllib.parse
+#Testing Code
+import urllib
 
 #text
 #get rid of lat lon from the table - moved to the back
@@ -40,13 +42,13 @@ def color_col_pred(x):
 
 ## Connect and pull initial df
 conn = psycopg2.connect("dbname='water_db' user='dan' host='postgres-instance2.clhlqrsuvowr.us-east-1.rds.amazonaws.com' password='berkeley'")
-query = "SELECT country_name, district, sub_district, current_status_text, fuzzy_water_source, fuzzy_water_tech, management, today_preds_text, one_year_preds_text, one_km_population, impact_text, lat_deg, lon_deg from final_all WHERE country_name = 'Kenya'"
+query = "SELECT country_name, district, sub_district, current_status_text, fuzzy_water_source, fuzzy_water_tech,  today_preds_text, one_year_preds_text, one_km_population, one_km_functioning_water_points, impact_text, management, lat_deg, lon_deg from final_all WHERE country_name = 'Kenya'"
 df_init = pd.read_sql_query(query, conn)
 df_init["color"] = df_init["today_preds_text"].apply(color_col_pred)
 df_init2 = df_init.copy()
-df_init2.drop(['color', 'lat_deg', 'lon_deg'], axis=1, inplace= True)
-df_init2.columns =['Country', 'District', 'Subdistrict', 'Last Known Status', 'Water Source', 'Water Tech', 'Management', 'Predicted Status: Today',
-    'Predicted Status: 1 Year', 'Pop. within 1km', 'Impact Level']
+df2_init = df_init2.drop(['color', 'lat_deg', 'lon_deg', 'management'], axis=1, inplace= True)
+df_init2.columns =['Country', 'District', 'Subdistrict', 'Last Known Status', 'Water Source', 'Water Tech', 'Predicted Status: Today',
+    'Predicted Status: 1 Year', 'Pop. within 1km', 'Func. Water Points within 1km', 'Impact Level']
 conn.close()
 mapbox_access_token = 'pk.eyJ1IjoiZHdhdHNvbjgyOCIsImEiOiJjamVycHp0b3cxY2dyMnhsdGc4eHBkcW85In0.uGPxMK4_u-nAs_J74yw70A'
 
@@ -462,7 +464,7 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
  State('management-select', 'value'), State('today-pred-select', 'value'), State('one-year-pred-select', 'value'), State('impact-level-select', 'value')])
 def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_source, fuzzy_water_tech, management, today_preds_text, one_year_preds_text, impact_text):
     conn = psycopg2.connect("dbname='water_db' user='dan' host='postgres-instance2.clhlqrsuvowr.us-east-1.rds.amazonaws.com' password='berkeley'")
-    base_query = "SELECT country_name, district, sub_district, current_status_text, fuzzy_water_source, fuzzy_water_tech, management,  today_preds_text, one_year_preds_text, one_km_population, one_km_functioning_water_points, impact_text, lat_deg, lon_deg from final_all WHERE country_name =" + "'" + str(country) + "'"
+    base_query = "SELECT country_name, district, sub_district, current_status_text, fuzzy_water_source, fuzzy_water_tech,   today_preds_text, one_year_preds_text, one_km_population, one_km_functioning_water_points, impact_text, management, lat_deg, lon_deg from final_all WHERE country_name =" + "'" + str(country) + "'"
 
 
     if not status:
@@ -511,8 +513,9 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
         base_query = base_query +" and impact_text in (" + ', '.join("'" + i + "'" for i in impact_text) + ")"
 
     df = pd.read_sql_query(base_query, conn)
-    df.columns = ['Country', 'District', 'Subdistrict', 'Last Known Status', 'Water Source', 'Water Tech', 'Management', 'Predicted Status: Today',
-    'Predicted Status: 1 Year', 'Pop. within 1km', 'Func. Water Points within 1km', 'Impact Level', 'lat_deg', 'lon_deg']
+    df.drop(['management', 'lat_deg', 'lon_deg'], axis = 1, inplace= True)
+    df.columns = ['Country', 'District', 'Subdistrict', 'Last Known Status', 'Water Source', 'Water Tech', 'Predicted Status: Today',
+    'Predicted Status: 1 Year', 'Pop. within 1km', 'Func. Water Points within 1km', 'Impact Level']
     conn.close()
     return df.to_dict('records')
 
@@ -1079,7 +1082,7 @@ def update_impact_level(country,  district, sub_district,status, fuzzy_water_sou
 def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_source, fuzzy_water_tech, management, today_preds_text, one_year_preds_text, impact_text):
     conn = psycopg2.connect("dbname='water_db' user='dan' host='postgres-instance2.clhlqrsuvowr.us-east-1.rds.amazonaws.com' password='berkeley'")
     clause = [status, district, sub_district, fuzzy_water_source, fuzzy_water_tech, management, today_preds_text, one_year_preds_text]
-    base_query = "SELECT country_name, district, sub_district, current_status_text, fuzzy_water_source, fuzzy_water_tech, management, CASE WHEN today_preds = 1 THEN 'Not Working' ELSE 'Working' end as today_preds_text, CASE WHEN one_year_preds = 1 THEN 'Not Working' ELSE 'Working' end as one_year_preds_text, one_km_population, one_km_functioning_water_points, impact_text, lat_deg, lon_deg from final_all WHERE country_name =" + "'" + str(country) + "'"
+    base_query = "SELECT country_name, district, sub_district, current_status_text, fuzzy_water_source, fuzzy_water_tech, today_preds_text, one_year_preds_text, one_km_population, one_km_functioning_water_points, impact_text, management, lat_deg, lon_deg from final_all WHERE country_name =" + "'" + str(country) + "'"
 
 
     if not clause[0]:
@@ -1128,13 +1131,15 @@ def run_query(n_clicks, country, status, district, sub_district, fuzzy_water_sou
         base_query = base_query +" and impact_text in (" + ', '.join("'" + i + "'" for i in impact_text) + ")"
 
     df = pd.read_sql_query(base_query, conn)
-    df.columns = ['Country', 'District', 'Subdistrict', 'Last Known Status', 'Water Source', 'Water Tech', 'Management', 'Predicted Status: Today',
-    'Predicted Status: 1 Year', 'Pop. within 1km', 'Func. Water Points within 1km', 'Impact Level', 'lat_deg', 'lon_deg']
+    df.columns = ['Country', 'District', 'Subdistrict', 'Last Known Status', 'Water Source', 'Water Tech', 'Predicted Status: Today',
+    'Predicted Status: 1 Year', 'Pop. within 1km', 'Func. Water Points within 1km', 'Impact Level', 'Management', 'Lat_Deg', 'Lon_Deg']
     conn.close()
     csv_string = df.to_csv(index=False, encoding='utf-8')
     #Switch these two when pushing live
-    csv_string = "data:text/csv;charset=utf-8," + urllib.parse.quote(csv_string)
-    #csv_string = "data:text/csv;charset=utf-8," + urllib.quote(csv_string)
+    #Live Code
+    #csv_string = "data:text/csv;charset=utf-8," + urllib.parse.quote(csv_string)
+    #Testing Code
+    csv_string = "data:text/csv;charset=utf-8," + urllib.quote(csv_string)
 
     return csv_string
 

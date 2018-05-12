@@ -16,7 +16,7 @@ create table afghanistan_preds(country_name TEXT,water_source TEXT, water_tech T
 	three_year_predprob TEXT,five_year_preds TEXT,five_year_predprob TEXT);
 
 -- Load data from local csv
-\copy afghanistan_preds FROM '/Users/Dan/Desktop/prediction_files/deduplicated/afghanistan_dedup.csv'  DELIMITER ',' CSV HEADER;
+\copy afghanistan_preds FROM '/Users/Dan/Desktop/prediction_files/2018_05_03/dedup/Afghanistan_dedup.csv'  DELIMITER ',' CSV HEADER;
 
 -- Merge Swazi_preds with population data
 ALTER TABLE afghanistan_preds ALTER today_predprob TYPE double precision USING today_predprob::double precision;
@@ -80,7 +80,7 @@ create table india_preds(country_name TEXT,water_source TEXT, water_tech TEXT,
 	three_year_predprob TEXT,five_year_preds TEXT,five_year_predprob TEXT);
 
 -- Load data from local csv
-\copy india_preds FROM '/Users/Dan/Desktop/prediction_files/deduplicated/india_dedup.csv'  DELIMITER ',' CSV HEADER;
+\copy india_preds FROM '/Users/Dan/Desktop/prediction_files/2018_05_03/dedup/india_dedup.csv'  DELIMITER ',' CSV HEADER;
 
 -- Merge Swazi_preds with population data
 ALTER TABLE india_preds ALTER today_predprob TYPE double precision USING today_predprob::double precision;
@@ -146,7 +146,7 @@ create table kenya_preds(country_name TEXT,water_source TEXT, water_tech TEXT,
 	three_year_predprob TEXT,five_year_preds TEXT,five_year_predprob TEXT);
 
 -- Load data from local csv
-\copy kenya_preds FROM '/Users/Dan/Desktop/prediction_files/deduplicated/kenya_dedup.csv'  DELIMITER ',' CSV HEADER;
+\copy kenya_preds FROM '/Users/Dan/Desktop/prediction_files/2018_05_03/dedup/kenya_dedup.csv'  DELIMITER ',' CSV HEADER;
 
 -- Merge Swazi_preds with population data
 ALTER TABLE kenya_preds ALTER today_predprob TYPE double precision USING today_predprob::double precision;
@@ -211,7 +211,7 @@ create table liberia_preds(country_name TEXT,water_source TEXT, water_tech TEXT,
 	three_year_predprob TEXT,five_year_preds TEXT,five_year_predprob TEXT);
 
 -- Load data from local csv
-\copy liberia_preds FROM '/Users/Dan/Desktop/prediction_files/deduplicated/liberia_dedup.csv'  DELIMITER ',' CSV HEADER;
+\copy liberia_preds FROM '/Users/Dan/Desktop/prediction_files/2018_05_03/dedup/liberia_dedup.csv'  DELIMITER ',' CSV HEADER;
 
 -- Merge Swazi_preds with population data
 ALTER TABLE liberia_preds ALTER today_predprob TYPE double precision USING today_predprob::double precision;
@@ -278,7 +278,7 @@ create table malawi_preds(country_name TEXT,water_source TEXT, water_tech TEXT,
 	three_year_predprob TEXT,five_year_preds TEXT,five_year_predprob TEXT);
 
 -- Load data from local csv
-\copy malawi_preds FROM '/Users/Dan/Desktop/prediction_files/deduplicated/malawi_dedup.csv'  DELIMITER ',' CSV HEADER;
+\copy malawi_preds FROM '/Users/Dan/Desktop/prediction_files/2018_05_03/dedup/malawi_dedup.csv'  DELIMITER ',' CSV HEADER;
 
 -- Merge Swazi_preds with population data
 ALTER TABLE malawi_preds ALTER today_predprob TYPE double precision USING today_predprob::double precision;
@@ -343,7 +343,7 @@ create table sierraleone_preds(country_name TEXT,water_source TEXT, water_tech T
 	three_year_predprob TEXT,five_year_preds TEXT,five_year_predprob TEXT);
 
 -- Load data from local csv
-\copy sierraleone_preds FROM '/Users/Dan/Desktop/prediction_files/deduplicated/sierra_leone_dedup.csv'  DELIMITER ',' CSV HEADER;
+\copy sierraleone_preds FROM '/Users/Dan/Desktop/prediction_files/2018_05_03/dedup/sierra_leone_dedup.csv'  DELIMITER ',' CSV HEADER;
 
 -- Merge Swazi_preds with population data
 ALTER TABLE sierraleone_preds ALTER today_predprob TYPE double precision USING today_predprob::double precision;
@@ -409,7 +409,7 @@ create table southsudan_preds(country_name TEXT,water_source TEXT, water_tech TE
 	three_year_predprob TEXT,five_year_preds TEXT,five_year_predprob TEXT);
 
 -- Load data from local csv
-\copy southsudan_preds FROM '/Users/Dan/Desktop/prediction_files/deduplicated/south_sudan_dedup.csv'  DELIMITER ',' CSV HEADER;
+\copy southsudan_preds FROM '/Users/Dan/Desktop/prediction_files/2018_05_03/dedup/south_sudan_dedup.csv'  DELIMITER ',' CSV HEADER;
 
 -- Merge Swazi_preds with population data
 ALTER TABLE southsudan_preds ALTER today_predprob TYPE double precision USING today_predprob::double precision;
@@ -474,7 +474,7 @@ create table swazi_preds(country_name TEXT,water_source TEXT, water_tech TEXT,
 	three_year_predprob TEXT,five_year_preds TEXT,five_year_predprob TEXT);
 
 -- Load data from local csv
-\copy swazi_preds FROM '/Users/Dan/Desktop/prediction_files/deduplicated/swaziland_dedup.csv'  DELIMITER ',' CSV HEADER;
+\copy swazi_preds FROM '/Users/Dan/Desktop/prediction_files/2018_05_03/dedup/swaziland_dedup.csv'  DELIMITER ',' CSV HEADER;
 
 -- Merge Swazi_preds with population data
 ALTER TABLE swazi_preds ALTER today_predprob TYPE double precision USING today_predprob::double precision;
@@ -539,7 +539,7 @@ create table uganda_preds(country_name TEXT,water_source TEXT, water_tech TEXT,
 	three_year_predprob TEXT,five_year_preds TEXT,five_year_predprob TEXT);
 
 -- Load data from local csv
-\copy uganda_preds FROM '/Users/Dan/Desktop/prediction_files/deduplicated/uganda_dedup.csv'  DELIMITER ',' CSV HEADER;
+\copy uganda_preds FROM '/Users/Dan/Desktop/prediction_files/2018_05_03/dedup/uganda_dedup.csv'  DELIMITER ',' CSV HEADER;
 
 -- Merge Swazi_preds with population data
 ALTER TABLE uganda_preds ALTER today_predprob TYPE double precision USING today_predprob::double precision;
@@ -605,7 +605,7 @@ create table zimbabwe_preds(country_name TEXT,water_source TEXT, water_tech TEXT
 	three_year_predprob TEXT,five_year_preds TEXT,five_year_predprob TEXT);
 
 -- Load data from local csv
-\copy zimbabwe_preds FROM '/Users/Dan/Desktop/prediction_files/deduplicated/zimbabwe_dedup.csv'  DELIMITER ',' CSV HEADER;
+\copy zimbabwe_preds FROM '/Users/Dan/Desktop/prediction_files/2018_05_03/dedup/zimbabwe_dedup.csv'  DELIMITER ',' CSV HEADER;
 
 -- Merge Swazi_preds with population data
 ALTER TABLE zimbabwe_preds ALTER today_predprob TYPE double precision USING today_predprob::double precision;
@@ -695,12 +695,25 @@ INNER JOIN preds_text b
 ON a.one_year_preds = b.pred;
 
 SELECT a.*, b.pred as pred_today, b.text_output as today_preds_text
-into final_all
+into TEMPORARY TABLE final_three
 from final_two a
 INNER JOIN preds_text b
 ON a.today_preds =b.pred; 
 
-SELECT * FROM final_all limit 10;
+
+SELECT a.*, b.pred as pred_3_year, b.text_output as three_year_preds_text
+into TEMPORARY TABLE final_four
+FROM final_three a
+INNER JOIN preds_text b
+on a.three_year_preds = b.pred;
+
+SELECT a.*, b.pred as pred_5_year, b.text_output as five_year_preds_text
+into final_all
+FROM final_four a
+INNER JOIN preds_text b
+ON a.five_year_preds = b.pred;
+
+
 
 ALTER TABLE final_all
 DROP COLUMN pred_1_year;
@@ -708,11 +721,17 @@ DROP COLUMN pred_1_year;
 ALTER TABLE final_all
 DROP COLUMN pred_today;
 
+ALTER TABLE final_all
+DROP COLUMN pred_3_year;
+
+ALTER TABLE final_all
+DROP COLUMN pred_5_year;
+
 
 --- Create menu table
 drop table if exists menu_table;
 SELECT distinct country_name, district, sub_district, status_id, fuzzy_water_tech, 
-fuzzy_water_source, management, today_preds_text,one_year_preds_text, impact_text 
+fuzzy_water_source, management, today_preds_text,one_year_preds_text, three_year_preds_text, five_year_preds_text, impact_text 
 into menu_table
 from final_all;
 

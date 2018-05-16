@@ -1,4 +1,13 @@
 --Code to create the final tables in postgres
+
+-- Create map coordinates table
+drop table if exists map_coords;
+
+CREATE TABLE map_coords(country TEXT, lat DOUBLE PRECISION, lon DOUBLE PRECISION)
+
+\copy map_coords FROM '/Users/Dan/Desktop/prediction_files/map_coords.csv'  DELIMITER ',' CSV HEADER;
+
+
 -- Afghanistan
 
 drop table if exists afghanistan_preds;
@@ -662,10 +671,12 @@ FROM zimbabwe_temp
 ------------------------------------------------------------------------------------------------------------
 -------------UNION- RUN AFTER TABLES MADE
 ------------------------------------------------------------------------------------------------------------
+-- drop unnecessary tables
 drop table if exists final_all;
 drop table if exists final;
 drop table if exists final_two;
 
+-- union tables into temporary final
 CREATE TEMPORARY TABLE final
 AS
 SELECT * FROM afghanistan_final
@@ -688,52 +699,78 @@ SELECT * FROM uganda_final
 	UNION
 SELECT * FROM zimbabwe_final;
 
+-- Ugly code to convert one year prediction to text output "working" or 'not working'
 SELECT a.*, b.pred as pred_1_year, b.text_output as one_year_preds_text
 into TEMPORARY TABLE final_two
 FROM final a
 INNER JOIN preds_text b
 ON a.one_year_preds = b.pred;
 
+-- Ugly code to convert today prediction to text output "working" or 'not working'
 SELECT a.*, b.pred as pred_today, b.text_output as today_preds_text
 into TEMPORARY TABLE final_three
 from final_two a
 INNER JOIN preds_text b
 ON a.today_preds =b.pred; 
 
-
+-- Ugly code to convert three year prediction to text output "working" or 'not working'
 SELECT a.*, b.pred as pred_3_year, b.text_output as three_year_preds_text
 into TEMPORARY TABLE final_four
 FROM final_three a
 INNER JOIN preds_text b
 on a.three_year_preds = b.pred;
 
+-- Ugly code to convert five year prediction to text output "working" or 'not working'
 SELECT a.*, b.pred as pred_5_year, b.text_output as five_year_preds_text
-into final_all
+into TEMPORARY TABLE final_five
 FROM final_four a
 INNER JOIN preds_text b
 ON a.five_year_preds = b.pred;
 
+-- Ugly code to convert status id into current_status_text
+SELECT country_name, water_source, water_tech, install_year, lat_deg, lon_deg, time_since_meas_years, management,
+fuzzy_water_source, fuzzy_water_tech, today_preds, today_predprob, wpdx_id, one_km_population, one_km_total_water_points,
+one_km_functioning_water_points, key, district, sub_district, impact_score, age_well_years, one_year_preds, one_year_predprob, three_year_preds,
+three_year_predprob, five_year_preds, five_year_predprob, impact_text, one_year_preds_text, today_preds_text,
+three_year_preds_text, five_year_preds_text, CASE WHEN status_id = 'no' THEN 'Not Working' WHEN status_id = 'yes' THEN 'Working'
+ELSE 'Unknown' end as current_status_text
+into TEMPORARY TABLE final_temp
+FROM final_five;
 
 
-ALTER TABLE final_all
-DROP COLUMN pred_1_year;
+-- -- Drop unneeded columns
+-- ALTER TABLE final_all
+-- DROP COLUMN pred_1_year;
 
-ALTER TABLE final_all
-DROP COLUMN pred_today;
+-- ALTER TABLE final_all
+-- DROP COLUMN pred_today;
 
-ALTER TABLE final_all
-DROP COLUMN pred_3_year;
+-- ALTER TABLE final_all
+-- DROP COLUMN pred_3_year;
 
-ALTER TABLE final_all
-DROP COLUMN pred_5_year;
+-- ALTER TABLE final_all
+-- DROP COLUMN pred_5_year;
 
+
+
+
+--add mapping coordinates for final table
+SELECT a.*, b.lat as map_lat, b.lon as map_lon, b.country
+INTO final_all
+FROM final_temp a
+INNER JOIN map_coords b
+on a.country_name = b.country;
+
+ALTER table final_all
+DROP COLUMN country;
 
 --- Create menu table
 drop table if exists menu_table;
-SELECT distinct country_name, district, sub_district, status_id, fuzzy_water_tech, 
+SELECT distinct country_name, district, sub_district, current_status_text, fuzzy_water_tech, 
 fuzzy_water_source, management, today_preds_text,one_year_preds_text, three_year_preds_text, five_year_preds_text, impact_text 
 into menu_table
 from final_all;
+
 
 
 
